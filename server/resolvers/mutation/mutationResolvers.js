@@ -224,8 +224,7 @@ module.exports = {
         }
       }
       catch (e) {
-        console.log("Error in addPortfolio: ", e.message);
-        throw e.message;
+        throw e;
       }
 		},
 
@@ -246,8 +245,7 @@ module.exports = {
 					message: 'Successfully became a mentor!',
 				}
 			} catch (e) {
-				console.log('Error in addMentors: ', e.message)
-				throw e.message
+				throw e
 			}
 		},
 
@@ -301,8 +299,7 @@ module.exports = {
 					thumbnail: thumbnail,
 				}
 			} catch (e) {
-				console.log('Error in updateUserPortfolio Resolver: ', e.message)
-				throw e.message
+				throw e
 			}
 		},
 
@@ -322,8 +319,7 @@ module.exports = {
 					message: 'Successfully deleted portfolio item',
 				}
 			} catch (e) {
-				console.log('Error in deleteUserPortfolio Resolver: ', e.message)
-				throw e.message
+				throw e
 			}
 		},
 
@@ -342,7 +338,7 @@ module.exports = {
 						'Access-Control-Allow-Credentials': 'true',
 					})
 					.catch(err => {
-						console.log('this is catch error, :', err)
+						throw err
 					})
 
 				const psql = {
@@ -353,7 +349,7 @@ module.exports = {
 
 				let query = await postgres.query(psql)
 			} catch (e) {
-				throw e.message
+				throw e
 			}
 		},
 
@@ -375,8 +371,7 @@ module.exports = {
         }
       }
       catch (e) {
-        console.log("Error in addMentors: ", e.message);
-        throw e.message;
+        throw e;
       }
 		},
 
@@ -414,8 +409,7 @@ module.exports = {
 				}
 			}
 			catch (e) {
-				console.log(e.message)
-				throw e.message;
+				throw e;
 			}
 		},
 
@@ -432,27 +426,24 @@ module.exports = {
          'Access-Control-Allow-Credentials': 'true',
        })
        .catch(err => {
-         console.log('this is catch error, :', err)
+				 throw err
 			 })
-			 console.log('githubres.data: ', GithubRes.data)
 			const githubAccessTokenArray = GithubRes.data.split('access_token=')
 			const githubFilterScope = githubAccessTokenArray[1].split('&scope=')
-			const githubAccessToken = githubFilterScope[0];
-			console.log('githubAccessToken', githubAccessToken)
+			const githubAccessToken = githubFilterScope[0]
       const insertGithubAPI = {
         text: 'UPDATE hired.users SET github_api_code=$1, github_access_token=$2 WHERE id=$3 RETURNING *',
         values: [input.api_code, githubAccessToken, userId]
       }
-      await postgres.query(insertGithubAPI);
+      await postgres.query(insertGithubAPI)
       } catch (error) {
-        console.log(" The error is: ", error);
+        throw err
       }
     },
 
     async addStatus(parent, {input}, {req, app, postgres}){
       try {
         let user_id =  1 //authenticate(app, req)
-        console.log('show me value: ', input)
         const insertStatus = {
           text: "INSERT INTO hired.status ( user_id, role, looking_for, location) VALUES ($1, $2, $3, $4) RETURNING *",
           values: [ user_id, input.role, input.looking_for, input.location]
@@ -463,8 +454,7 @@ module.exports = {
         }
       }
       catch (e) {
-        console.log("Sorry! there is an error: ", e.message);
-        throw e.message;
+        throw e;
       }
     },
 async addConversation(parent, input, {req, app, postgres}) {
@@ -553,8 +543,7 @@ async addConversation(parent, input, {req, app, postgres}) {
         message: 'Successfully deleted portfolio item'
       }
     } catch (e) {
-        console.log("Error in deleteUserPortfolio Resolver: ", e.message);
-        throw e.message;
+        throw e;
       }
     },
 	}

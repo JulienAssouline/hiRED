@@ -105,7 +105,7 @@ module.exports = {
 					let dribbbleJson = await axios.get('https://api.dribbble.com/v2/user/shots?access_token=' + myAccessToken)
 					return dribbbleJson.data
 				} catch (e) {
-					throw e.message
+					throw e
 				}
 			})
 			
@@ -121,7 +121,7 @@ module.exports = {
 			return masterarray
 	
 		} catch (e) {
-			throw e.message
+			throw e
 		}
 	},
 
@@ -183,7 +183,7 @@ module.exports = {
 						repo: githubJson.data.data.viewer.repositories.nodes
 					}
 				} catch (e) {
-					throw e.message
+					throw e
 				}
 			})
 			
@@ -204,7 +204,7 @@ module.exports = {
 			saveGithubFetch(masterarray)
 			return masterarray
 		} catch (e) {
-			throw e.message
+			throw e
 		}
 	},
 }
