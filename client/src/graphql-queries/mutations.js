@@ -67,3 +67,11 @@ export const updateProfileMutation = gql`
     }
   }
 `
+
+export const updateMentorMutation = gql`
+	mutation updateVars($input: UpdateMentorObject!) {
+		updateMentor(input: $input) {
+			message
+		}
+	}
+`

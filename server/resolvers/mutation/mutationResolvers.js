@@ -145,6 +145,26 @@ module.exports = {
 			}
 		},
 
+		async updateMentor(parent, { input }, { app, req, postgres }) {
+			try {
+				const user_id = authenticate(app, req)
+				const { status } = input
+
+				const updateMentorObject = {
+					status: status,
+				}
+				const updateMentorQuery = createUpdateQuery(updateMentorObject, 'user_id', 'hired.mentors', user_id)
+				await postgres.query(updateMentorQuery)
+
+				return {
+					message: 'success'
+				}
+
+			} catch(err) {
+				throw err
+			}
+		},
+
 		async login(parent, { input }, { app, req, postgres }) {
 			try {
 				let { email, password } = input

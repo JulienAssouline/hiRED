@@ -6,7 +6,7 @@ import ProfileCard from './ProfileCard'
 import ProfileFilterPortfolio from './ProfileFilterPortfolio'
 import Portfolio from '../portfolio/Portfolio'
 
-import '../../css/profile.css'
+import '../../css/profile/generalProfile.css'
 
 const Profile = (props) => {
   return (

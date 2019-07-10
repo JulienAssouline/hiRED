@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { Avatar, Button, CardHeader, CardContent, Typography } from '@material-ui/core'
 
-import '../../css/editProfileModal.css'
+import '../../css/profile/editProfileModal.css'
 
 import ProfileInfoHeaderModal from './ProfileInfoHeaderModal'
 

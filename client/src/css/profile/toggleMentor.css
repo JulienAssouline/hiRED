@@ -1,0 +1,37 @@
+/*
+=========================
+Mentor Switch
+=========================
+*/
+
+.profile-card .toggle-mentor-container {
+	margin-top: -0.5em;
+	padding-top: 0;
+	padding-bottom: 0.5em;
+}
+
+.toggle-mentor-container .mentor-item {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
+
+	margin-left: 1em;
+}
+
+.mentor-item .mentor-item-label {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.mentor-item .mentor-switch-icon {
+	width: 25px;
+	height: 25px;
+	margin-right: 1em;
+}
+
+.mentor-item p {
+	font-size: 1em;
+}

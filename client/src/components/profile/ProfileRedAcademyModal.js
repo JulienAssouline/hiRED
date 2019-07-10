@@ -5,7 +5,9 @@ import { Formik } from 'formik'
 import { useMutation } from 'react-apollo-hooks'
 import { updateProfileMutation } from '../../graphql-queries/mutations'
 
-import { Button, Card,  MenuItem, Modal, TextField } from '@material-ui/core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { Button, Card, CardHeader, MenuItem, Modal, TextField } from '@material-ui/core'
 
 import { programs as programsOptions, campus as campusOptions, studyCohort as studyCohortOptions, studyYear as studyYearOptions } from '../../form-dropdown-values'
 
@@ -31,6 +33,17 @@ const ProfileRedAcademyModal = props => {
 			onClose={closeModal}
 		>
 			<Card className='modal-card'>
+				<CardHeader
+					className='modal-header'
+					title={
+						<h3>Edit Basic Information</h3>
+					}
+					action={
+						<Button onClick={closeModal}>
+							<FontAwesomeIcon className='close-modal' icon={faTimes} />
+						</Button>
+					}
+				/>
 				<Formik
 					initialValues={initialFormValues}
 					onSubmit={async (values, { setSubmitting }) => {
@@ -143,7 +156,7 @@ const ProfileRedAcademyModal = props => {
                   </TextField>
                 </div>
 
-								<section className='signup-form-btns'>
+								<section className='modal-form-btns'>
 									<Button
 										className='btn-submit'
 										type='submit'
@@ -168,7 +181,6 @@ const ProfileRedAcademyModal = props => {
 					}}
 				</Formik>
 				{ completed ? <p>Update Submitted!</p> : ''}
-				<Button onClick={closeModal}>close</Button>
 			</Card>
 		</Modal>
 	)
