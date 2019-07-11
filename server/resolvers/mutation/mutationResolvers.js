@@ -147,6 +147,26 @@ module.exports = {
 			}
 		},
 
+		async updateMentor(parent, { input }, { app, req, postgres }) {
+			try {
+				const user_id = authenticate(app, req)
+				const { status } = input
+
+				const updateMentorObject = {
+					status: status,
+				}
+				const updateMentorQuery = createUpdateQuery(updateMentorObject, 'user_id', 'hired.mentors', user_id)
+				await postgres.query(updateMentorQuery)
+
+				return {
+					message: 'success'
+				}
+
+			} catch(err) {
+				throw err
+			}
+		},
+
 		async login(parent, { input }, { app, req, postgres }) {
 			try {
 				let { email, password } = input
@@ -206,8 +226,7 @@ module.exports = {
         }
       }
       catch (e) {
-        console.log("Error in addPortfolio: ", e.message);
-        throw e.message;
+        throw e;
       }
 		},
 
@@ -228,8 +247,7 @@ module.exports = {
 					message: 'Successfully became a mentor!',
 				}
 			} catch (e) {
-				console.log('Error in addMentors: ', e.message)
-				throw e.message
+				throw e
 			}
 		},
 
@@ -283,8 +301,7 @@ module.exports = {
 					thumbnail: thumbnail,
 				}
 			} catch (e) {
-				console.log('Error in updateUserPortfolio Resolver: ', e.message)
-				throw e.message
+				throw e
 			}
 		},
 
@@ -304,8 +321,7 @@ module.exports = {
 					message: 'Successfully deleted portfolio item',
 				}
 			} catch (e) {
-				console.log('Error in deleteUserPortfolio Resolver: ', e.message)
-				throw e.message
+				throw e
 			}
 		},
 
@@ -324,7 +340,7 @@ module.exports = {
 						'Access-Control-Allow-Credentials': 'true',
 					})
 					.catch(err => {
-						console.log('this is catch error, :', err)
+						throw err
 					})
 
 				const psql = {
@@ -335,7 +351,7 @@ module.exports = {
 
 				let query = await postgres.query(psql)
 			} catch (e) {
-				throw e.message
+				throw e
 			}
 		},
 
@@ -357,8 +373,7 @@ module.exports = {
         }
       }
       catch (e) {
-        console.log("Error in addMentors: ", e.message);
-        throw e.message;
+        throw e;
       }
 		},
 
@@ -396,8 +411,7 @@ module.exports = {
 				}
 			}
 			catch (e) {
-				console.log(e.message)
-				throw e.message;
+				throw e;
 			}
 		},
 
@@ -414,18 +428,18 @@ module.exports = {
          'Access-Control-Allow-Credentials': 'true',
        })
        .catch(err => {
-         console.log('this is catch error, :', err)
+				 throw err
 			 })
 			const githubAccessTokenArray = GithubRes.data.split('access_token=')
 			const githubFilterScope = githubAccessTokenArray[1].split('&scope=')
-			const githubAccessToken = githubFilterScope[0];
+			const githubAccessToken = githubFilterScope[0]
       const insertGithubAPI = {
         text: 'UPDATE hired.users SET github_api_code=$1, github_access_token=$2 WHERE id=$3 RETURNING *',
         values: [input.api_code, githubAccessToken, userId]
       }
-      await postgres.query(insertGithubAPI);
+      await postgres.query(insertGithubAPI)
       } catch (error) {
-        console.log(" The error is: ", error);
+        throw err
       }
     },
 
@@ -442,8 +456,7 @@ module.exports = {
         }
       }
       catch (e) {
-        console.log("Sorry! there is an error: ", e.message);
-        throw e.message;
+        throw e;
       }
     },
 async addConversation(parent, input, {req, app, postgres}) {
@@ -532,8 +545,7 @@ async addConversation(parent, input, {req, app, postgres}) {
         message: 'Successfully deleted portfolio item'
       }
     } catch (e) {
-        console.log("Error in deleteUserPortfolio Resolver: ", e.message);
-        throw e.message;
+        throw e;
       }
     },
 	}

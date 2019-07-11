@@ -13,7 +13,7 @@ module.exports = {
 				const allUsers = await postgres.query(selectAllUsers)
 				return allUsers.rows
 			} catch (error) {
-				console.log('Could not find any user! ', error)
+				throw err
 			}
 		},
 
@@ -59,7 +59,6 @@ module.exports = {
 				return portfolio.rows
 			}
 			catch (e) {
-				console.log("Error in getUserPortfolio: ", e.message);
 				throw e;
 			}
 		},
@@ -249,8 +248,7 @@ module.exports = {
 				)
 				return dribbbleJson.data
 			} catch (e) {
-				console.log('Sorry! This returned an error of: ', e.message)
-				throw e.message
+				throw e
 			}
 		},
 

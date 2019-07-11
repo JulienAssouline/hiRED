@@ -182,6 +182,7 @@ module.exports = gql`
     signup(input: SignupObject!): SignupResponse!
     signupForm2(input: SignupForm2Object!): SignupForm2Response!
     updateProfile(input: UpdateProfileObject!): MessageResponse!
+		updateMentor(input: UpdateMentorObject): MessageResponse!
     login(input: LoginObject!): LoginResponse!
     addUserPortfolio(input: AddUserPortfolioInput!): Portfolio!
     updateUserPortfolio(input: UpdateUserPortfolioInput!): Portfolio!
@@ -227,6 +228,10 @@ module.exports = gql`
   input AddMentorsObject {
     status: Boolean
   }
+
+	input UpdateMentorObject { 
+		status: Boolean
+	}
 
   type addMentorsResponse {
     message: String
