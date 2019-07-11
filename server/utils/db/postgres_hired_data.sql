@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.12
--- Dumped by pg_dump version 11.2
+-- Dumped from database version 11.3
+-- Dumped by pg_dump version 11.3
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -12,6 +12,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -100,7 +101,6 @@ COPY hired.github (id, user_id, feed_item_id, date_pulled) FROM stdin;
 --
 
 COPY hired.mentors (id, user_id, status, disabled) FROM stdin;
-1	1	t	\N
 2	2	t	\N
 3	3	t	\N
 4	5	t	\N
@@ -109,6 +109,7 @@ COPY hired.mentors (id, user_id, status, disabled) FROM stdin;
 7	13	t	\N
 8	14	t	\N
 9	15	t	\N
+1	1	t	\N
 \.
 
 
@@ -203,7 +204,8 @@ COPY hired.messages (id, conversation_id, content, date_created, from_user) FROM
 --
 
 COPY hired.portfolio (id, user_id, title, description, type, custom_link, api_link, thumbnail) FROM stdin;
-1	11	Julien Assouline	some dude	I don't know what this is			
+2	1	Sir Cats A Lot	All your headscratches are belong to me	Cat	cat.com	cat.com	https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500
+1	1	Hot Dog	All is hot dog	type stuff	greeentea.com	redmug.com	https://media1.s-nbcnews.com/i/newscms/2017_41/1288823/giada-hot-dog-today-tease-171013_cc8ea08d065ebe92133af1c5cd1c868e.jpg
 \.
 
 
@@ -228,7 +230,6 @@ COPY hired.programs (id, name) FROM stdin;
 
 COPY hired.users (id, fullname, email, password, role, campus, location, current_job, avatar, date_created, study_year, study_cohort, github_access_token, github_api_code, dribbble_access_token, dribbble_api_code, dribbble_connected, description) FROM stdin;
 2	julien something	julien@something.com	$2b$12$sA31Ve47d2uYQ16g.kGtCutwmxmnDskxu0Rd3peLfaQQ9tDsNh78G	\N	\N	\N	\N	\N	2019-05-08 11:34:59.181124	\N	\N	\N	\N	\N	\N	\N	\N
-1	person3	person3@person.com	$2b$12$D.8A4BIC724NRtOQH6PXZOanToquS2iJrIxkB/z0Goz6.rOAiQwPu	\N	\N	\N	\N	\N	2019-05-07 17:07:28.874048	\N	\N	\N	\N	\N	\N	\N	\N
 3	Julien Assouline	julien1993@hotmail.ca	$2b$12$iltwkgmupuzjf9Lx9enH8eXmUydOLv3cmNIy3gYy2W9XTp19T/toG	\N	\N	\N	\N	\N	2019-05-13 13:24:52.410748	\N	\N	\N	\N	\N	\N	\N	\N
 4	Julienngjienisd	jul@hotmail.ca	$2b$12$DbcsJhKGH1cUwz75qra9d.eCrKFiguoQYVjlBf9m7FpnIMMHr3BlO	STUDENT	TOR	Wayne Towers	batman	\N	2019-05-14 13:38:49.411468	2018	Q2	\N	\N	\N	\N	\N	\N
 5	thing	thing@hotmail.com	$2b$12$fW8sSqAgQghhOdVZXX8QbObskE/YGS3Kh8iDGqXPdJKd7ePVxvLea	ALUMNI	TOR	Wayne Towers	batman	\N	2019-05-14 15:12:49.297095	2015	Q1	\N	\N	\N	\N	\N	\N
@@ -243,6 +244,7 @@ COPY hired.users (id, fullname, email, password, role, campus, location, current
 14	j9	j9@hotmail.ca	$2b$12$DW4ac.iM.KpAUWRG0SWYDeSdODHSogCSfIdcw9cp0S8MxwT/HlAd.					\N	2019-05-21 11:31:56.570641			\N	\N	\N	\N	\N	\N
 15	Julien Assouline	ju93@hotmail.ca	$2b$12$GLz6YNjlfuyXH/NWAuZ6xOWisQX.FZKLv4Vr9.16u2wxxbDvUN4E6	STUDENT	TOR	Toronto	developer	\N	2019-06-05 11:43:08.630994	2014	Q2	\N	\N	\N	\N	\N	\N
 16	Juli	gj3@hotmail.ca	$2b$12$NuqpoelMfiJML6f0fbr05OdresV.86DSOgIpAbDPtlu5DAR1j9U2C					\N	2019-06-06 13:52:39.431745			\N	\N	\N	\N	\N	\N
+1	person3	person3@person.com	$2b$12$D.8A4BIC724NRtOQH6PXZOanToquS2iJrIxkB/z0Goz6.rOAiQwPu	\N	TOR	1101 S. Avocado Way	Cat Watcher	\N	2019-05-07 17:07:28.874048	2018	Q3	\N	\N	\N	\N	\N	Maybe add a portfolio description of sorts here? To describe the person. We could implement a character or a word limit to prevent it from getting too long.
 \.
 
 
@@ -359,7 +361,7 @@ SELECT pg_catalog.setval('hired.messages_id_seq', 80, true);
 -- Name: portfolio_id_seq; Type: SEQUENCE SET; Schema: hired; Owner: postgres
 --
 
-SELECT pg_catalog.setval('hired.portfolio_id_seq', 1, true);
+SELECT pg_catalog.setval('hired.portfolio_id_seq', 2, true);
 
 
 --
