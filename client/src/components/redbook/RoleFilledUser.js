@@ -1,6 +1,8 @@
 import React from 'react'
 import Role from "./Role"
 import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+
 
 const RoleFilledUser = (props) => {
 
@@ -9,10 +11,14 @@ const RoleFilledUser = (props) => {
   initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
 
   return (
-    <div className = "user-cards-container">
+    <div className = "overall-cards-container">
       <Avatar className = "avatar redbook"> {initials} </Avatar>
-      <h2> {d.fullname} </h2>
-        <Role d = {d} />
+      <Card className = "info-cards-container">
+        <div className = "information-container">
+          <h2 className = "name"> {d.fullname} </h2>
+          <Role d = {d} />
+        </div>
+      </Card>
     </div>
   );
 }

@@ -25,7 +25,7 @@ const ProfileMentorToggle = props => {
 			if (updateStatus) {
 				updateMentor({
 					variables: {input: {
-						status: mentorStatus, 
+						status: mentorStatus,
 					}}
 				})
 				setUpdateStatus(false)
