@@ -1,70 +1,44 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import logo from '../../logo.svg'
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { Query } from 'react-apollo'
-import { testConnection } from '../../graphql-queries/queries'
+import { Query } from "react-apollo";
+import { testConnection } from "../../graphql-queries/queries";
 
-import { Button } from '@material-ui/core'
+import { Button } from "@material-ui/core";
+
+import LoginForm from "../login/LoginForm";
+
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles= makeStyles({
+  root: {
+
+  }
+})
 
 const Landing = () => {
-	return (
-		<Query query={ testConnection }>
-			{({ loading, err, data }) => {
-				if (loading) return <div>loading...</div>
-				if (err) return <div>error!</div>
-
-				return (
-					<div className='App'>
-						<header className='App-header'>
-							<img src={logo} className='App-logo' alt='logo' />
-							<p>
-								Edit <code>src/App.js</code> and save to reload.
-							</p>
-							<Link to='/'>
-								<Button>
-									Home
-								</Button>
-							</Link>
-							<Link to='/chatbot/'>
-								<Button>
-									Messages
-								</Button>
-							</Link>
-							<Link to='/profile/'>
-								<Button>
-									Profile
-								</Button>
-							</Link>
-							<Link to='/mentors/'>
-								<Button>
-									Mentors
-								</Button>
-							</Link>
-							<Link to='/home/'>
-								<Button>
-									feed
-								</Button>
-							</Link>
-							<Link to='/login/'>
-								<Button>
-									Login
-								</Button>
-							</Link>
-							<Link to='/signup/'>
-								<Button>
-									signup
-								</Button>
-							</Link>
-						</header>
-					</div>
-				)
-			}}
-		</Query>
 
 
-		
-	)
-}
+  const classes = useStyles()
 
-export default Landing
+  // Next to code:
+  // if user is logged in, then route to a different page
+  // if user is not logged in, return below
+
+  return (
+    <Query query={testConnection}>
+      {({ loading, err, data }) => {
+        if (loading) return <div>loading...</div>;
+        if (err) return <div>error!</div>;
+
+        return (
+          <div className="App">
+            <h1>Welecome to hiRED!</h1>
+          </div>
+        );
+      }}
+    </Query>
+  );
+};
+
+export default Landing;
