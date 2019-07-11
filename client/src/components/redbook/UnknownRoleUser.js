@@ -12,9 +12,8 @@ const UnknownRoleUser = (props) => {
     <div className = "overall-cards-container">
       <Avatar className = "avatar"> {initials} </Avatar>
       <Card className = "info-cards-container">
-        <div className = "information-container">
+        <div className = "information-unknown-container">
           <h2 className = "name"> {d.fullname} </h2>
-          <p> {d.role} </p>
         </div>
       </Card>
     </div>

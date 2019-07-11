@@ -24,7 +24,7 @@ const Role = (props) => {
         <div className = "role-container">
           <div className = "role-icon-container">
             <FontAwesomeIcon className='redbook-role-icon' icon={faBook} />
-            <p> Studying {programs[d.programs]} </p>
+            <p className = "role-text"> Studying {programs[d.programs]} </p>
           </div>
           <p> @ {d.campus} </p>
         </div>
@@ -35,7 +35,7 @@ const Role = (props) => {
         <div className = "role-container">
           <div className = "role-icon-container">
             <FontAwesomeIcon className='redbook-role-icon' icon={faGraduationCap} />
-            <p> {d.current_job} </p>
+            <p className = "role-text"> {d.current_job} </p>
           </div>
           <p> @ {d.job_location} </p>
         </div>
@@ -46,7 +46,7 @@ const Role = (props) => {
         <div className = "role-container">
           <div className = "role-icon-container">
             <FontAwesomeIcon className='redbook-role-icon' icon={faChalkboardTeacher} />
-            <p> Teaching {programs[d.programs]} </p>
+            <p className = "role-text"> Teaching {programs[d.programs]} </p>
           </div>
           <p> @ {d.campus} </p>
         </div>
