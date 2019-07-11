@@ -1,19 +1,70 @@
 
+.redbook-page-container {
+  --card-height: 350px;
+  --avatar-overhang: 20px;
+}
+
 .redbook-cards-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
+  grid-auto-rows: var(--card-height);
+  grid-gap: 20px;
   justify-content: center;
+  max-width: 1024px;
+  margin: auto;
 }
 
-.user-cards-container{
-  border: 1px solid black;
-  margin: 10px;
+.overall-cards-container {
+  position: relative;
+  margin-top: var(--avatar-overhang);
   padding: 10px;
+  /*height: 200px;*/
 }
 
-.avatar.redbook {
-  margin-bottom: 10px;
-  width: 60px;
-  height: 60px;
+.overall-cards-container .avatar {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--avatar-overhang) * -1);
+  transform: translate(-50%, 0);
+
+  width: 80%;
+  height: calc(var(--card-height) * 0.55);
+
+  border-radius: 6px;
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  /*margin-top: -30px;*/
+  border-radius: 6px;
+}
+
+.info-cards-container {
+  height: 100%;
+}
+
+.information-container {
+  position: absolute;
+  bottom: 10px;
+  padding: 0 20px;
+}
+
+.name {
+  text-align: center;
+}
+
+.avatar-header-container {
+  display: flex;
+  align-items: center;
+}
+
+.role-container {
+  margin-top: 6px;
+
+}
+
+.role-icon-container {
+  display: flex;
+}
+
+.redbook-role-icon {
+  margin-right: 10px;
+  margin-top: 5px;
 }

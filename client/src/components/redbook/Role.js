@@ -1,4 +1,9 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
+import { faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons'
+import { faBook } from '@fortawesome/free-solid-svg-icons'
+
 
 const programs = {
     APP: 'App Dev',
@@ -17,7 +22,10 @@ const Role = (props) => {
   if (d.role === "STUDENT") {
     return (
         <div className = "role-container">
-          <p> Studying {programs[d.programs]} </p>
+          <div className = "role-icon-container">
+            <FontAwesomeIcon className='redbook-role-icon' icon={faBook} />
+            <p> Studying {programs[d.programs]} </p>
+          </div>
           <p> @ {d.campus} </p>
         </div>
     );
@@ -25,7 +33,10 @@ const Role = (props) => {
   else if (d.role === "ALUMNI") {
     return (
         <div className = "role-container">
-          <p> {d.current_job} </p>
+          <div className = "role-icon-container">
+            <FontAwesomeIcon className='redbook-role-icon' icon={faGraduationCap} />
+            <p> {d.current_job} </p>
+          </div>
           <p> @ {d.job_location} </p>
         </div>
     );
@@ -33,7 +44,10 @@ const Role = (props) => {
   else if (d.role === "STAFF") {
     return (
         <div className = "role-container">
-          <p> Teaching {programs[d.programs]} </p>
+          <div className = "role-icon-container">
+            <FontAwesomeIcon className='redbook-role-icon' icon={faChalkboardTeacher} />
+            <p> Teaching {programs[d.programs]} </p>
+          </div>
           <p> @ {d.campus} </p>
         </div>
     );
