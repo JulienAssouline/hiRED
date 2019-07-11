@@ -15,11 +15,14 @@ import Skills from "./components/skills/Skills"
 import Chatbot from "./components/chat/Chatbot"
 import Messages from "./components/chat/Messages"
 import Home from './components/feed/Home'
+import TopNav from './components/navigation/TopNav';
 import Redbook from "./components/redbook/Redbook"
+
 
 const AppRouter = () => {
 	return (
 		<Router>
+			<TopNav />
 			<Route path='/' exact component={Landing} />
 			<Route path='/landing/' exact component={Landing} />
 			<Route path='/signup/' exact component={Signup} />
