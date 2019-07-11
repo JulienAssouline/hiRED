@@ -13,9 +13,8 @@ import { programs as programsOptions, campus as campusOptions, studyCohort as st
 
 
 const ProfileRedAcademyModal = props => {
-	const { modalState, closeModal } = props
+	const { modalState, closeModal, refetch } = props
 	const { campus, programName, studyYear, studyCohort } = props
-	const [completed, setCompleted] = useState(false)
 
 	const updateProfile = useMutation(updateProfileMutation) 
 
@@ -56,7 +55,8 @@ const ProfileRedAcademyModal = props => {
 									study_cohort: values.editStudyCohort,
 								}}
 							})
-							if (result) setCompleted(true)
+							refetch()
+							closeModal()
 						} catch(err) {
 							throw err
 						}
@@ -180,7 +180,6 @@ const ProfileRedAcademyModal = props => {
 						)
 					}}
 				</Formik>
-				{ completed ? <p>Update Submitted!</p> : ''}
 			</Card>
 		</Modal>
 	)

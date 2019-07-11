@@ -7,7 +7,7 @@ import '../../css/profile/editProfileModal.css'
 import ProfileRedAcademyModal from './ProfileRedAcademyModal'
 
 const ProfileRedAcademySection = props => {
-	const { campus, programName, studyYear, studyCohort } = props
+	const { campus, programName, studyYear, studyCohort, refetch } = props
 
 	const [modalState, setModalState] = useState(false)
 
@@ -54,6 +54,7 @@ const ProfileRedAcademySection = props => {
 				programName={programName}
 				studyYear={studyYear}
 				studyCohort={studyCohort}
+				refetch={refetch}
 			/>
 		</CardContent>
 	)

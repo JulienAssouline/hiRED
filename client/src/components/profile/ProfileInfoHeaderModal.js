@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Formik } from 'formik'
 
@@ -12,9 +12,8 @@ import { Button, Card, CardHeader, FormHelperText, MenuItem, Modal, TextField } 
 import { programs as programsOptions } from '../../form-dropdown-values'
 
 const ProfileInfoHeaderModal = props => {
-	const { modalState, closeModal } = props
+	const { modalState, closeModal, refetch } = props
 	const { fullname, programName, description } = props
-	const [completed, setCompleted] = useState(false)
 
 	const updateProfile = useMutation(updateProfileMutation)
 
@@ -54,7 +53,8 @@ const ProfileInfoHeaderModal = props => {
 									description: values.editDescription,
 								}}
 							})
-							if (result) setCompleted(true)
+							refetch()
+							closeModal()
 						} catch(err) {
 							throw err
 						}
@@ -164,7 +164,6 @@ const ProfileInfoHeaderModal = props => {
 						)
 					}}
 				</Formik>
-				{ completed ? <p>Update Submitted!</p> : ''}
 			</Card>
 		</Modal>
 	)

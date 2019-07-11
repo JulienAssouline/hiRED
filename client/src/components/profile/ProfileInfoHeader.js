@@ -7,7 +7,7 @@ import '../../css/profile/editProfileModal.css'
 import ProfileInfoHeaderModal from './ProfileInfoHeaderModal'
 
 const ProfileInfoHeader = props => {
-	const { fullname, programName, description } = props
+	const { fullname, programName, description, refetch } = props
 	const [modalState, setModalState] = useState(false)
 
 	const handleOpenModal = () => {
@@ -44,6 +44,7 @@ const ProfileInfoHeader = props => {
 				fullname={fullname}
 				programName={programName}
 				description={description}
+				refetch={refetch}
 			/>
 		</>
 	)

@@ -20,3 +20,23 @@ mutation{
     thumbnail
   }
 }
+
+mutation {
+	addUserPortfolio(input: {
+		title: "Sir Cats A Lot,
+		description: "All your headscratches are belong to me"
+		type: "Cat"
+		custom_link: "cat.com"
+		api_link: "cat.com"
+		thumbnail: "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+	}) {
+		id
+		user_id
+		title
+		description
+		type
+		custom_link
+		api_link
+		thumbnail
+	}
+}
