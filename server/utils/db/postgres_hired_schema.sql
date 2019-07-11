@@ -484,7 +484,9 @@ CREATE TABLE hired.users (
     dribbble_access_token text,
     dribbble_api_code text,
     dribbble_connected text,
-    description character varying(256)
+    description character varying(256),
+    programs text,
+    job_location text
 );
 
 

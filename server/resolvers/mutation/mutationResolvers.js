@@ -46,7 +46,7 @@ module.exports = {
 		async signupForm2(parent, { input }, { app, req, postgres }) {
 			try {
 				const user_id = authenticate(app, req)
-				const { campus, program_name, study_year, study_cohort, role, current_job, location, mentor } = input
+				const { campus, program_name, study_year, study_cohort, role, current_job, location, mentor, job_location } = input
 
 				const updateUserObject = {
 					campus: campus,
@@ -55,8 +55,10 @@ module.exports = {
 					role: role,
 					current_job: current_job,
 					location: location,
-				}
+          job_location: job_location,
+          programs: program_name,
 
+				}
 				const updateUserQuery = createUpdateQuery(updateUserObject, 'id', 'hired.users', user_id)
 				await postgres.query(updateUserQuery)
 

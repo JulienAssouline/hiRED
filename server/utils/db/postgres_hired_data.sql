@@ -110,7 +110,6 @@ COPY hired.mentors (id, user_id, status, disabled) FROM stdin;
 8	14	t	\N
 9	15	t	\N
 1	1	t	\N
-\.
 
 
 --
@@ -257,6 +256,9 @@ COPY hired.program_users (user_id, program_id) FROM stdin;
 13	5
 14	1
 15	5
+17	6
+18	6
+19	6
 \.
 
 
@@ -347,7 +349,7 @@ SELECT pg_catalog.setval('hired.linkedin_id_seq', 1, false);
 -- Name: mentors_id_seq; Type: SEQUENCE SET; Schema: hired; Owner: postgres
 --
 
-SELECT pg_catalog.setval('hired.mentors_id_seq', 9, true);
+SELECT pg_catalog.setval('hired.mentors_id_seq', 13, true);
 
 
 --
@@ -389,7 +391,7 @@ SELECT pg_catalog.setval('hired.tags_id_seq', 14, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: hired; Owner: postgres
 --
 
-SELECT pg_catalog.setval('hired.users_id_seq', 16, true);
+SELECT pg_catalog.setval('hired.users_id_seq', 19, true);
 
 
 --
