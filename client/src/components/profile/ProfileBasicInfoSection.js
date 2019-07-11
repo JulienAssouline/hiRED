@@ -7,7 +7,7 @@ import '../../css/profile/editProfileModal.css'
 import ProfileBasicInfoModal from './ProfileBasicInfoModal'
 
 const ProfileBasicInfoSection = props => {
-	const { email, currentJob, location } = props
+	const { email, currentJob, location, refetch } = props
 	const [modalState, setModalState ] = useState(false)
 	
 	const handleOpenModal = () => {
@@ -46,6 +46,7 @@ const ProfileBasicInfoSection = props => {
 			<ProfileBasicInfoModal
 				modalState={modalState}
 				closeModal={handleCloseModal}
+				refetch={refetch}
 				email={email}
 				currentJob={currentJob}
 				location={location}

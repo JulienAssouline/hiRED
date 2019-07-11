@@ -10,9 +10,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { Button, Card, CardHeader, FormHelperText, Modal, TextField } from '@material-ui/core'
 
 const ProfileBasicInfoModal = props => {
-	const { modalState, closeModal } = props
+	const { modalState, closeModal, refetch } = props
 	const { email, currentJob, location } = props
-	const [completed, setCompleted] = useState(false)
 
 	const updateProfile = useMutation(updateProfileMutation)
 
@@ -51,7 +50,8 @@ const ProfileBasicInfoModal = props => {
 									location: values.editLocation,
 								}}
 							})
-							if (result) setCompleted(true)
+							refetch()
+							closeModal()
 						} catch(err) {
 							throw err
 						}
@@ -162,7 +162,6 @@ const ProfileBasicInfoModal = props => {
 						)
 					}}
 				</Formik>
-				{ completed ? <p>Update Submitted!</p> : ''}
 			</Card>
 		</Modal>
 	)
