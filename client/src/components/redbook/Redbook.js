@@ -4,6 +4,7 @@ import { GET_REDBOOK_USERS } from '../../graphql-queries/queries'
 import RoleFilledUser from "./RoleFilledUser"
 import UnknownRoleUser from "./UnknownRoleUser"
 import '../../css/redbook.css'
+import Filter from "./Filter"
 
 
 
@@ -16,6 +17,7 @@ const Redbook = () => {
 
   return (
     <div className = "redbook-page-container">
+      <Filter />
       <div className = "redbook-cards-container">
         {
           data.getRedBookUsers.map((d,i) =>
