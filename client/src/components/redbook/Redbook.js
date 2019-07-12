@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { useQuery } from 'react-apollo-hooks';
 import { GET_REDBOOK_USERS } from '../../graphql-queries/queries'
 import RoleFilledUser from "./RoleFilledUser"
@@ -33,7 +33,7 @@ const Redbook = () => {
    }
 
    function handleClick(e) {
-    setCurrentPage(e.target.innerHTML)
+    setCurrentPage(Number(e.target.innerHTML))
    }
 
   return (
@@ -46,7 +46,8 @@ const Redbook = () => {
           )
         }
       </div>
-      <Pagination pages = {number_of_pages} handleClick = {handleClick} />
+      <div className = "hr"> </div>
+      <Pagination currentPage = {currentPage} pages = {number_of_pages} handleClick = {handleClick} />
     </div>
   );
 }

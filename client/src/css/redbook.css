@@ -125,14 +125,40 @@
   padding-top: 10px;
 }
 
+.hr {
+  border-bottom: 1px solid lightgrey;
+  max-width: 1024px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .redbook-pagination {
   display: flex;
   flex-flow: row;
+  justify-content: center;
 }
 
 .page-container {
-  border: 1px solid black;
+  border-right: 1px solid lightgrey;
   padding: 10px;
 }
+
+.page-container.active {
+  background-color: red;
+}
+
+.page {
+  margin: 0px;
+  color: black;
+  align-self: center;
+}
+
+
+.page.active {
+  color: white;
+}
+
+
 
 
