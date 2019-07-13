@@ -142,23 +142,22 @@
 .page-container {
   border-right: 1px solid lightgrey;
   padding: 10px;
+  color: black;
+  height: 45px;
 }
 
 .page-container.active {
   background-color: red;
-}
-
-.page {
-  margin: 0px;
-  color: black;
-  align-self: center;
-}
-
-
-.page.active {
   color: white;
 }
 
+.next {
+  padding: 10px;
+  height: 45px;
+}
 
-
+.back {
+  padding: 10px;
+  height: 45px;
+}
 

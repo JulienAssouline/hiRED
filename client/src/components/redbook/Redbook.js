@@ -32,9 +32,29 @@ const Redbook = () => {
      number_of_pages.push(i);
    }
 
+   console.log(number_of_pages)
+
+
+   const max_pages = Math.max.apply(null, number_of_pages)
+   const min_pages = Math.min.apply(null, number_of_pages)
+
    function handleClick(e) {
     setCurrentPage(Number(e.target.innerHTML))
    }
+
+   function handleNextClick(e, max) {
+    if (currentPage !== max) {
+      setCurrentPage(currentPage + 1)
+    }
+   }
+
+   function handleBackClick(e, min) {
+      if (currentPage !== min) {
+        setCurrentPage(currentPage - 1)
+      }
+   }
+
+
 
   return (
     <div className = "redbook-page-container">
@@ -47,7 +67,7 @@ const Redbook = () => {
         }
       </div>
       <div className = "hr"> </div>
-      <Pagination currentPage = {currentPage} pages = {number_of_pages} handleClick = {handleClick} />
+      <Pagination maxmin = {{max: max_pages, min: min_pages}} handleBackClick = {handleBackClick} handleNextClick = {handleNextClick} currentPage = {currentPage} pages = {number_of_pages} handleClick = {handleClick} />
     </div>
   );
 }
