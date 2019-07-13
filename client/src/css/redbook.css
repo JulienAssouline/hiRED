@@ -144,20 +144,39 @@
   padding: 10px;
   color: black;
   height: 45px;
+  cursor: pointer;
 }
 
 .page-container.active {
   background-color: red;
   color: white;
+  cursor: pointer;
 }
 
 .next {
   padding: 10px;
   height: 45px;
+  border-right: 1px solid lightgrey;
+  cursor: pointer;
 }
 
 .back {
   padding: 10px;
   height: 45px;
+  border-right: 1px solid lightgrey;
+  cursor: pointer;
+}
+
+.start{
+  padding: 10px;
+  height: 45px;
+  border-right: 1px solid lightgrey;
+  cursor: pointer;
+}
+
+.end {
+  padding: 10px;
+  height: 45px;
+  cursor: pointer;
 }
 

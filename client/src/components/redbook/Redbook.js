@@ -54,6 +54,14 @@ const Redbook = () => {
       }
    }
 
+   function handleEndClick(e, max) {
+    setCurrentPage(max)
+   }
+
+   function handleStartClick(e, min) {
+    setCurrentPage(min)
+   }
+
 
 
   return (
@@ -67,7 +75,15 @@ const Redbook = () => {
         }
       </div>
       <div className = "hr"> </div>
-      <Pagination maxmin = {{max: max_pages, min: min_pages}} handleBackClick = {handleBackClick} handleNextClick = {handleNextClick} currentPage = {currentPage} pages = {number_of_pages} handleClick = {handleClick} />
+      <Pagination
+        maxmin = {{max: max_pages, min: min_pages}}
+        handleBackClick = {handleBackClick}
+        handleNextClick = {handleNextClick}
+        currentPage = {currentPage}
+        pages = {number_of_pages}
+        handleClick = {handleClick}
+        handleEndClick ={handleEndClick}
+        handleStartClick = {handleStartClick} />
     </div>
   );
 }
