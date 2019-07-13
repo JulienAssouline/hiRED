@@ -82,7 +82,6 @@ const Redbook = (props) => {
         handleEndClick ={handleEndClick}
         handleStartClick = {handleStartClick}
          />
-        }
     </div>
   );
 }
