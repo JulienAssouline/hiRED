@@ -1,6 +1,5 @@
 import React from 'react'
-import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
+import { Card, Button, Avatar } from "@material-ui/core";
 
 const UnknownRoleUser = (props) => {
 
@@ -14,6 +13,12 @@ const UnknownRoleUser = (props) => {
       <Card className = "info-cards-container">
         <div className = "information-unknown-container">
           <h2 className = "name"> {d.fullname} </h2>
+          <Button
+            className= "message button unknown"
+            variant="contained"
+          >
+            Message
+          </Button>
         </div>
       </Card>
     </div>
