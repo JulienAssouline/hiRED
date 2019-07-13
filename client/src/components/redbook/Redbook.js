@@ -9,7 +9,7 @@ import Pagination from "./Pagination"
 
 
 
-const Redbook = () => {
+const Redbook = (props) => {
 
   const [currentPage, setCurrentPage] = useState(1)
   const cardsPerPage = 9
@@ -31,9 +31,6 @@ const Redbook = () => {
    for (let i = 1; i <= Math.ceil(data.getRedBookUsers.length / cardsPerPage); i++) {
      number_of_pages.push(i);
    }
-
-   console.log(number_of_pages)
-
 
    const max_pages = Math.max.apply(null, number_of_pages)
    const min_pages = Math.min.apply(null, number_of_pages)
@@ -70,7 +67,7 @@ const Redbook = () => {
       <div className = "redbook-cards-container">
         {
           paginatedData.map((d,i) =>
-              d.role ? <RoleFilledUser key = {i} data = {d} /> : <UnknownRoleUser key = {i} data = {d} />
+              d.role ? <RoleFilledUser history = {props.history} key = {i} data = {d} /> : <UnknownRoleUser key = {i} data = {d} />
           )
         }
       </div>
@@ -83,7 +80,8 @@ const Redbook = () => {
         pages = {number_of_pages}
         handleClick = {handleClick}
         handleEndClick ={handleEndClick}
-        handleStartClick = {handleStartClick} />
+        handleStartClick = {handleStartClick}
+         />
     </div>
   );
 }

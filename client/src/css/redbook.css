@@ -1,6 +1,6 @@
 
 .redbook-page-container {
-  --card-height: 400px;
+  --card-height: 480px;
   --avatar-overhang: 20px;
   --card-padding: 5px;
   margin: 20px;
@@ -190,5 +190,18 @@
   cursor: pointer;
   width: 3%;
   text-align: center;
+}
+
+.message.button {
+  bottom: 0;
+  background-color: #c22c28;
+  color: white;
+}
+
+.message.button.unknown {
+  margin: 20px;
+  top: 54px;
+  background-color: #c22c28;
+  color: white;
 }
 

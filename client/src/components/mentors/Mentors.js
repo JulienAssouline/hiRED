@@ -58,6 +58,7 @@ function Mentors(props){
       console.log(error)
     }}
     onCompleted = {(data) => {
+      console.log(data)
       // redirecting to conversation based on conversation_id
       props.history.push("/messages" + data.addConversation.id)
     }}
