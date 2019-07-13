@@ -23,7 +23,7 @@ const Filter = (props) => {
           value={value}
           onChange={(e) => console.log(e)}
         />
-        <div class="vl"></div>
+        <div className="vl"></div>
         <FontAwesomeIcon className='filter-icon' icon={faFilter} />
         <p className = "filter-text"> Filter </p>
 

@@ -125,7 +125,70 @@
   padding-top: 10px;
 }
 
-#Search {
+.hr {
+  border-bottom: 1px solid lightgrey;
+  max-width: 1024px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
+.redbook-pagination {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.page-container {
+  border-right: 1px solid lightgrey;
+  padding: 10px;
+  color: black;
+  height: 45px;
+  cursor: pointer;
+  width: 3%;
+  text-align: center;
+}
+
+.page-container.active {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  width: 3%;
+  text-align: center;
+}
+
+.next {
+  padding: 10px;
+  height: 45px;
+  border-right: 1px solid lightgrey;
+  cursor: pointer;
+  width: 3%;
+  text-align: center;
+}
+
+.back {
+  padding: 10px;
+  height: 45px;
+  border-right: 1px solid lightgrey;
+  cursor: pointer;
+  width: 3%;
+  text-align: center;
+}
+
+.start{
+  padding: 10px;
+  height: 45px;
+  border-right: 1px solid lightgrey;
+  cursor: pointer;
+  width: 3%;
+  text-align: center;
+}
+
+.end {
+  padding: 10px;
+  height: 45px;
+  cursor: pointer;
+  width: 3%;
+  text-align: center;
+}
 
