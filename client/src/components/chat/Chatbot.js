@@ -33,7 +33,6 @@ const Chatbot = props => {
 
         return (
 					<div>
-						<LeftNav />
 						<Card>
 							<CardContent>
 								<Typography variant="h5" component="h2">
