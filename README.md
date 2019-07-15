@@ -6,7 +6,7 @@ I built the mentors page and the filter. For the search filter, I'm using Fuse.j
 
 I built the chat which uses subscriptions to send results every time a particular event happens (exp. a message).
 
-Also built the redbook page, which is the page that contains a list of all the users. This page includes pagination and a filter.
+I Also built the redbook page, which is the page that contains a list of all the users. This page includes pagination and a filter.
 
 For all features, I was a part of I worked on both the frontend and backend. Every page I worked on contains hooks, and I am working on refactoring the queries and mutations so that they contain react-apollo-hooks.
 
