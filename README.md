@@ -11,4 +11,5 @@ I also built the redbook page, which is the page that contains a list of all the
 For all features, I was a part of I worked on both the frontend and backend. Every page I worked on contains hooks, and I am working on refactoring the queries and mutations so that they contain react-apollo-hooks.
 
 Starting server: NODE_ENV=development yarn start:dev
+
 Starting client: yarn start
