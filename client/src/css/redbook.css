@@ -150,7 +150,7 @@
 }
 
 .page-container.active {
-  background-color: red;
+  background-color: #c22c28;
   color: white;
   cursor: pointer;
   width: 3%;
