@@ -11,21 +11,23 @@ Profile Modal Styles
 }
 
 .edit-profile-modal .modal-card {
+	position: relative;
+
 	width: 50%;
 	max-width: 500px;
 	min-width: 300px;
 	padding: 2em 0;
 }
 
-.edit-profile-modal .modal-header{
+.edit-profile-modal .modal-header {
 	padding: 0;
-	padding-left: 4em;
 	text-align: center;
 }
 
 .edit-profile-modal .close-modal {
-	/* width: 1.2em; */
-	height: 1.2em;
+	position: absolute;
+	top: 1em;
+	right: 1em;
 }
 
 .edit-profile-modal .form-field {

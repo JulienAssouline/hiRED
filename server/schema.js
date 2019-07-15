@@ -186,7 +186,7 @@ module.exports = gql`
     login(input: LoginObject!): LoginResponse!
     addUserPortfolio(input: AddUserPortfolioInput!): Portfolio!
     updateUserPortfolio(input: UpdateUserPortfolioInput!): Portfolio!
-    deleteUserPortfolio(id: Int!): deleteUserPortfolioResponse!
+    deleteUserPortfolio(id: ID!): deleteUserPortfolioResponse!
     saveGithubCode(api_code: String): String
     addStatus(input: StatusInput): addStatusResponse!
     saveDribbbleCode (api_code: String): Boolean

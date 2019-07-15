@@ -129,3 +129,18 @@ export const GET_MESSAGES = gql`
     }
   `
 
+
+export const GET_PORTFOLIO_QUERY = gql`
+	query {
+		getUserPortfolio {
+			id
+			user_id
+			title
+			description
+			type
+			custom_link
+			api_link
+			thumbnail
+		}
+	}
+`

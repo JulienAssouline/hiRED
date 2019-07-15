@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { Avatar, Button, CardHeader, CardContent, Typography } from '@material-ui/core'
 
-import '../../css/profile/editProfileModal.css'
+// import '../../css/profile/editProfileModal.css'
 
 import ProfileInfoHeaderModal from './ProfileInfoHeaderModal'
 
@@ -15,6 +15,7 @@ const ProfileInfoHeader = props => {
 	}
 
 	const handleCloseModal = () => {
+		refetch()
 		setModalState(false)
 	}
 
@@ -44,7 +45,6 @@ const ProfileInfoHeader = props => {
 				fullname={fullname}
 				programName={programName}
 				description={description}
-				refetch={refetch}
 			/>
 		</>
 	)

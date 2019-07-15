@@ -256,9 +256,6 @@ COPY hired.program_users (user_id, program_id) FROM stdin;
 13	5
 14	1
 15	5
-17	6
-18	6
-19	6
 \.
 
 

@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+// import { }
+
 import Landing from "./components/landing/Landing";
 import Signup from "./components/signup/Signup";
 import MyDribbbles from "./components/signup/MyDribbbles";
@@ -27,21 +29,25 @@ const AppRouter = () => {
       {loggedIn ? <TopNavLoggedIn /> : <TopNavNotLoggedIn />}
 
       <Route path="/" exact component={Landing} />
+
       <Route path="/landing/" exact component={Landing} />
+
       <Route path="/signup/" exact component={Signup} />
       <Route path="/signup2/" exact component={SignupForm2} />
       <Route path="/signup3/" exact component={SignupForm3} />
-      <Route path="/mydribbbles/" exact component={MyDribbbles} />
       <Route path="/login/" exact component={Login} />
+      <Route path="/mydribbbles/" exact component={MyDribbbles} />
+
       <Route path="/Home/" exact component={Home} />
-      <Route path="/profile/" exact component={Profile} />
+      <Route path="/redbook/" exact component={Redbook} />
       <Route path="/mentors/" exact component={Mentors} />
-      <Route path="/skills/" exact component={Skills} />
       <Route path="/chatbot/" exact component={Chatbot} />
+      <Route path="/skills/" exact component={Skills} />
       <Route path="/messages:conversation/" exact component={Messages} />
+
+      <Route path="/profile/" exact component={Profile} />
       <Route path="/portfolio/" exact component={Portfolio} />
       <Route path="/addportfolioitem/" exact component={AddPortfolioItem} />
-      <Route path="/redbook/" exact component={Redbook} />
     </Router>
   );
 };

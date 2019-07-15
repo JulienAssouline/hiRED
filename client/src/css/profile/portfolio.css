@@ -1,0 +1,78 @@
+/* 
+=========================
+Portfolio Add Items
+=========================
+*/
+
+.portfolio-add-items-container {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+
+	padding: 0.25em;
+}
+
+.portfolio-add-items-container h3 {
+	margin: 0;
+	margin-left: .5em;
+}
+
+
+/* 
+=========================
+Portfolio Items
+=========================
+*/
+
+.portfolio-items-container .portfolio-card {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	grid-gap: 10px;
+	
+	margin: 14px 0;
+}
+
+.portfolio-items-container .portfolio-thumbnail {
+	object-fit: cover;
+}
+
+.portfolio-items-container .card-header {
+	padding: 0;
+	margin-bottom: 8px;
+}
+
+.portfolio-items-container .edit-portfolio-item {
+	font-size: .875em;
+}
+
+.portfolio-items-container .edit-portfolio-item:focus {
+	outline: 0;
+}
+
+/* 
+=========================
+Portfolio Delete Items
+=========================
+*/
+
+.card-header .delete-portfolio-item {
+	background-color: #C10909;
+	color: white;
+}
+
+.portfolio-item-title {
+	font-weight: bold;
+}
+
+.delete-modal-form-btns {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.delete-modal-form-btns button {
+	margin: 0 1em;
+	padding: 0.5em 3em;
+}

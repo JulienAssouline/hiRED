@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Formik } from 'formik'
 
@@ -13,7 +13,7 @@ import { programs as programsOptions, campus as campusOptions, studyCohort as st
 
 
 const ProfileRedAcademyModal = props => {
-	const { modalState, closeModal, refetch } = props
+	const { modalState, closeModal } = props
 	const { campus, programName, studyYear, studyCohort } = props
 
 	const updateProfile = useMutation(updateProfileMutation) 
@@ -37,17 +37,17 @@ const ProfileRedAcademyModal = props => {
 					title={
 						<h3>Edit Basic Information</h3>
 					}
-					action={
-						<Button onClick={closeModal}>
-							<FontAwesomeIcon className='close-modal' icon={faTimes} />
-						</Button>
-					}
 				/>
+
+				<Button className='close-modal' onClick={closeModal}>
+					<FontAwesomeIcon icon={faTimes} />
+				</Button>
+
 				<Formik
 					initialValues={initialFormValues}
 					onSubmit={async (values, { setSubmitting }) => {
 						try {
-							const result = await updateProfile({
+							await updateProfile({
 								variables: {input: {
 									campus: values.editCampus,
 									program_name: values.editProgramName,
@@ -55,7 +55,6 @@ const ProfileRedAcademyModal = props => {
 									study_cohort: values.editStudyCohort,
 								}}
 							})
-							refetch()
 							closeModal()
 						} catch(err) {
 							throw err

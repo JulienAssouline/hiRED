@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import { useQuery } from 'react-apollo-hooks'
 import { GET_FULL_PROFILE_QUERY } from '../../graphql-queries/profileQueries'
