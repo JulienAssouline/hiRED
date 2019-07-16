@@ -10,13 +10,18 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import Message from "@material-ui/icons/Message";
+import PermContactCalendar from "@material-ui/icons/PermContactCalendar";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
+    backgroundColor: 'white',
   },
   title: {
     flexGrow: 1
@@ -73,14 +78,29 @@ export default function TopNavLoggedIn() {
             <MenuItem component={Link} to="/login/" onClick={handleClose}>
               Login
             </MenuItem>
-            <MenuItem component={Link} to="/redbook/" onClick={handleClose}>
-              Redbook
-            </MenuItem>
           </Menu>
           <Typography variant="h6" className={classes.title}>
-            hiRED
+            Bazaar
           </Typography>
-          <AccountCircle />
+
+          <Button className={classes.menuButton} href='/chatbot' variant="contained">
+            <Message />
+            Message
+          </Button>
+          <Button  className={classes.menuButton} variant="contained">
+            <PermContactCalendar />
+            RedBook
+          </Button>
+
+          <Button className={classes.menuButton} href='/Profile' variant="contained">
+            <AccountCircle />
+            Profile
+          </Button>
+
+          <Button className={classes.menuButton} href='/mentors' variant="contained">
+              <FontAwesomeIcon icon={faGraduationCap} />
+              Mentors
+          </Button>
 
         </Toolbar>
       </AppBar>
