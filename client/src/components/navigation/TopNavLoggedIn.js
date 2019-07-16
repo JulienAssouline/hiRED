@@ -73,12 +73,15 @@ export default function TopNavLoggedIn() {
             <MenuItem component={Link} to="/login/" onClick={handleClose}>
               Login
             </MenuItem>
+            <MenuItem component={Link} to="/redbook/" onClick={handleClose}>
+              Redbook
+            </MenuItem>
           </Menu>
           <Typography variant="h6" className={classes.title}>
             hiRED
           </Typography>
           <AccountCircle />
-         
+
         </Toolbar>
       </AppBar>
     </div>

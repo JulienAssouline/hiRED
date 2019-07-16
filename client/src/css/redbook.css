@@ -1,6 +1,6 @@
 
 .redbook-page-container {
-  --card-height: 350px;
+  --card-height: 480px;
   --avatar-overhang: 20px;
   --card-padding: 5px;
   margin: 20px;
@@ -30,7 +30,7 @@
   top: calc(var(--avatar-overhang) * -1);
   transform: translate(-50%, 0);
 
-  width: 80%;
+  width: 90%;
   height: calc(var(--card-height) * 0.55);
 
   border-radius: 6px;
@@ -45,7 +45,7 @@
 
 .information-container {
   position: absolute;
-  bottom: 10px;
+  bottom: 30px;
   padding: 0 20px;
   width: calc(100% - 2 * var(--card-padding));
 }
@@ -76,8 +76,132 @@
   display: flex;
 
 }
-
 .redbook-role-icon {
   margin-right: 10px;
   margin-top: 5px;
 }
+
+
+.filter-container {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  border: 1px solid #ccc;
+  margin: auto;
+  margin-bottom: 20px;
+  justify-content: space-between;
+
+}
+
+.filter-icon {
+  margin: 10px;
+}
+
+.redbook-text {
+  margin: 6px;
+}
+
+.filter-icon-text-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-filter-container {
+  display: flex;
+  margin-right: 10px;
+  margin-top: 0px;
+  padding: 10px;
+  align-items: center;
+}
+
+.vl {
+  border-left: 1px solid lightgrey;
+  height: 100%;
+  margin-left: 20px;
+}
+
+.filter-text {
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.hr {
+  border-bottom: 1px solid lightgrey;
+  max-width: 1024px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.redbook-pagination {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.page-container {
+  border-right: 1px solid lightgrey;
+  padding: 10px;
+  color: black;
+  height: 45px;
+  cursor: pointer;
+  width: 3%;
+  text-align: center;
+}
+
+.page-container.active {
+  background-color: #c22c28;
+  color: white;
+  cursor: pointer;
+  width: 3%;
+  text-align: center;
+}
+
+.next {
+  padding: 10px;
+  height: 45px;
+  border-right: 1px solid lightgrey;
+  cursor: pointer;
+  width: 3%;
+  text-align: center;
+}
+
+.back {
+  padding: 10px;
+  height: 45px;
+  border-right: 1px solid lightgrey;
+  cursor: pointer;
+  width: 3%;
+  text-align: center;
+}
+
+.start{
+  padding: 10px;
+  height: 45px;
+  border-right: 1px solid lightgrey;
+  cursor: pointer;
+  width: 3%;
+  text-align: center;
+}
+
+.end {
+  padding: 10px;
+  height: 45px;
+  cursor: pointer;
+  width: 3%;
+  text-align: center;
+}
+
+.message.button {
+  bottom: 0;
+  background-color: #c22c28;
+  color: white;
+}
+
+.message.button.unknown {
+  margin: 20px;
+  top: 54px;
+  background-color: #c22c28;
+  color: white;
+}
+
