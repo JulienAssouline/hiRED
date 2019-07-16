@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import '../index.css';
 
 export const testConnection = gql`
   query {
@@ -37,6 +38,16 @@ export const isAuthenticated = gql`
 			fullname
 		}
 	}
+`
+
+export const AUTHENTICATION_STATUS = gql`
+  query {
+    checkAuthentication {
+      id
+      fullname
+      message
+    }
+  }
 `
 
 

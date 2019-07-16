@@ -18,9 +18,7 @@ function App() {
 			<ApolloHooksProvider client={apolloclient}>
 				<MuiThemeProvider theme={theme}>
 					<AppRouter> 
-					
 					</AppRouter>
-	
 				</MuiThemeProvider>
 			</ApolloHooksProvider>
     </ApolloProvider>
