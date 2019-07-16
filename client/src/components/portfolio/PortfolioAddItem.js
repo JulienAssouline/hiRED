@@ -15,8 +15,8 @@ const PortfolioAddItem = props => {
 	}
 
 	const handleCloseModal = () => {
-		refetch()
 		setModalState(false)
+		refetch()
 	}
 
 

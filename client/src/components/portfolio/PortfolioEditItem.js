@@ -47,9 +47,9 @@ const PortfolioEditItem = props => {
 				<Formik
 					initialValues={initialFormValues}
 					validationSchema={portfolioValidation}
-					onSubmit={(values, { setSubmitting }) => {
+					onSubmit={ async (values, { setSubmitting }) => {
 						try {
-							updatePortfolioItem({
+							await updatePortfolioItem({
 								variables: {input: {
 									id: id,
 									user_id: user_id,

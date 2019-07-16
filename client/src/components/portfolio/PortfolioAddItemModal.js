@@ -43,9 +43,9 @@ const PortfolioAddItemModal = props => {
 
 				<Formik
 					initialValues={initialFormValues}
-					onSubmit={(values, { setSubmitting }) => {
+					onSubmit={async (values, { setSubmitting }) => {
 						try {
-							addPortfolioItem({
+							await addPortfolioItem({
 								variables: {input: {
 									title: values.title,
 									description: values.description,
@@ -55,11 +55,11 @@ const PortfolioAddItemModal = props => {
 									thumbnail: values.thumbnail,
 								}}
 							})
-							closeModal()
 						} catch(err) {
 							throw err
 						}
 						setSubmitting(false)
+						closeModal()
 					}}
 				>
 					{formikProps => {

@@ -11,9 +11,9 @@ const PortfolioDeleteItemModal = props => {
 	const { modalState, closeModal } = props
 	const { id, title } = props
 
-	const handleDeletePortfolioItem = () => {
+	const handleDeletePortfolioItem = async () => {
 		try {
-			deletePortfolioItem({variables: {
+			await deletePortfolioItem({variables: {
 				id: id,
 			}})
 		} catch(err) {

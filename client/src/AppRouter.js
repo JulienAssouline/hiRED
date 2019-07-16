@@ -1,18 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-// import { }
+// import { useQuery } from 'react-apollo-hooks'
+// import { isAuthenticated } from './graphql-queries/queries'
 
 import Landing from "./components/landing/Landing";
+
 import Signup from "./components/signup/Signup";
 import MyDribbbles from "./components/signup/MyDribbbles";
 import Login from "./components/login/Login";
-import Profile from "./components/profile/Profile";
 import SignupForm2 from "./components/signup/SignupForm2";
 import SignupForm3 from "./components/signup/SignupForm3";
 import Mentors from "./components/mentors/Mentors";
-import Portfolio from "./components/portfolio/Portfolio";
-import AddPortfolioItem from "./components/portfolio/AddPortfolioItem";
 import Skills from "./components/skills/Skills";
 import Chatbot from "./components/chat/Chatbot";
 import Messages from "./components/chat/Messages";
@@ -21,7 +20,12 @@ import TopNavNotLoggedIn from "./components/navigation/TopNavNotLoggedIn";
 import Redbook from "./components/redbook/Redbook";
 import TopNavLoggedIn from "./components/navigation/TopNavLoggedIn";
 
+import Profile from './components/profile/Profile'
+import User from './components/user/User'
+
 const AppRouter = () => {
+	// const 
+
   let loggedIn = true;
 
   return (
@@ -45,9 +49,8 @@ const AppRouter = () => {
       <Route path="/skills/" exact component={Skills} />
       <Route path="/messages:conversation/" exact component={Messages} />
 
-      <Route path="/profile/" exact component={Profile} />
-      <Route path="/portfolio/" exact component={Portfolio} />
-      <Route path="/addportfolioitem/" exact component={AddPortfolioItem} />
+      <Route path='/profile/' exact component={Profile} />
+			<Route path='/user/:userId' exact component={User} />
     </Router>
   );
 };

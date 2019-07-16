@@ -5,13 +5,16 @@ import Card from '@material-ui/core/Card';
 
 
 const RoleFilledUser = (props) => {
+	const { handleGoToUser } = props
 
   const d = props.data
   let initials = d.fullname.match(/\b\w/g) || [];
   initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
 
+	console.log(d)
+
   return (
-    <div className = "overall-cards-container">
+    <div className = "overall-cards-container" onClick={() => handleGoToUser(d.id)}>
       <Avatar className = "avatar redbook"> {initials} </Avatar>
       <Card className = "info-cards-container">
         <div className = "information-container">

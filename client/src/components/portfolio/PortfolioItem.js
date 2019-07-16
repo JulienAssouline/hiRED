@@ -12,13 +12,12 @@ const PortfolioItemView = (props) => {
 	const [deleteModalState, setDeleteModalState] = useState(false)
 
 	const handleOpenEditModal = () => {
-		console.log(editModalState)
 		setEditModalState(true)
 	}
 
 	const handleCloseEditModal = () => {
-		refetch()
 		setEditModalState(false)
+		refetch()
 	}
 
 	const handleOpenDeleteModal = () => {
@@ -26,8 +25,8 @@ const PortfolioItemView = (props) => {
 	}
 
 	const handleCloseDeleteModal = () => {
-		refetch()
 		setDeleteModalState(false)
+		refetch()
 	}
 
   return (
@@ -71,20 +70,20 @@ const PortfolioItemView = (props) => {
 						API Link: {api_link}
 					</Typography>
         </CardContent>
-
-				<PortfolioEditItem
-					modalState={editModalState}
-					closeModal={handleCloseEditModal}
-					portfolioData={data}
-				/>
-
-				<PortfolioDeleteItemModal 
-					modalState={deleteModalState}
-					closeModal={handleCloseDeleteModal}
-					title={title}
-					id={id}
-				/>
     	</Card>
+
+			<PortfolioEditItem
+				modalState={editModalState}
+				closeModal={handleCloseEditModal}
+				portfolioData={data}
+			/>
+
+			<PortfolioDeleteItemModal 
+				modalState={deleteModalState}
+				closeModal={handleCloseDeleteModal}
+				title={title}
+				id={id}
+			/>
 		</>
   )
 }

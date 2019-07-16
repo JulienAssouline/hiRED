@@ -3,13 +3,14 @@ import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 
 const UnknownRoleUser = (props) => {
+	const { handleGoToUser } = props
 
   const d = props.data
   let initials = d.fullname.match(/\b\w/g) || [];
   initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
 
   return (
-    <div className = "overall-cards-container">
+    <div className = "overall-cards-container" onClick={() => handleGoToUser(d.id)}>
       <Avatar className = "avatar"> {initials} </Avatar>
       <Card className = "info-cards-container">
         <div className = "information-unknown-container">

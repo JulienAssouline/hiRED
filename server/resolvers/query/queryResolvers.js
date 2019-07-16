@@ -19,7 +19,11 @@ module.exports = {
 
 		async getUserProfile(parent, input, { req, app, postgres }){
       try {
-        const user_id = authenticate(app, req)
+				const user_id = input.user_id
+					? input.user_id 
+					: authenticate(app, req)
+
+					console.log(user_id)
 
         const selectColumns = [
           'id',
@@ -42,7 +46,7 @@ module.exports = {
       } catch (err) {
         throw err
       }
-    },
+		},
 
     async getUserPortfolio(parent, input, { req, app, postgres }) {
 			//input.user_id is an optional param. If it is undefined the query will use authenticated user
