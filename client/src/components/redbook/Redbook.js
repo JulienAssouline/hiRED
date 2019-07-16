@@ -16,7 +16,7 @@ const Redbook = props => {
   const {data, error, loading} = useQuery(GET_REDBOOK_USERS);
 
 	const handleGoToUser = userId => {
-		props.history.push(`/users${userId}`, userId)
+		props.history.push(`/user/${userId}`, userId)
 	}
 
   const [currentPage, setCurrentPage] = useState(1)
@@ -82,6 +82,7 @@ const Redbook = props => {
 							: <UnknownRoleUser
 								key = {i}
 								data = {d}
+                history = {props.history}
 								handleGoToUser={handleGoToUser}
 							/>
           )

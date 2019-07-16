@@ -20,11 +20,11 @@ const UserMentorStatus = props => {
 					<div className='mentor-item-label'>
 						<FontAwesomeIcon className='mentor-switch-icon' icon={faGraduationCap} />
 						<Typography className='mentor-switch-text'>
-							{fullname} {mentor.status ? 'is' : "isn't"} a mentor
+							{fullname} {mentor && mentor.status ? 'is' : "isn't"} a mentor
 						</Typography>
 					</div>
 					<Switch
-						checked={mentor.status}
+						checked={mentor && mentor.status}
 						color={'primary'}
 					/>
 				</div>
