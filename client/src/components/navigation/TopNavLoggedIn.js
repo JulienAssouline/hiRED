@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function TopNavLoggedIn() {
+export default function TopNavLoggedIn(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   function handleClick(event) {
@@ -45,40 +45,6 @@ export default function TopNavLoggedIn() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Menu"
-          >
-            <MenuIcon onClick={handleClick} />
-          </IconButton>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem component={Link} to="/" onClick={handleClose}>
-              Home
-            </MenuItem>
-            <MenuItem component={Link} to="/chatbot/" onClick={handleClose}>
-              Chat
-            </MenuItem>
-            <MenuItem component={Link} to="/profile/" onClick={handleClose}>
-              Profile
-            </MenuItem>
-            <MenuItem component={Link} to="/mentors/" onClick={handleClose}>
-              Mentors
-            </MenuItem>
-            <MenuItem component={Link} to="/signup/" onClick={handleClose}>
-              Signup
-            </MenuItem>
-            <MenuItem component={Link} to="/login/" onClick={handleClose}>
-              Login
-            </MenuItem>
-          </Menu>
           <Typography variant="h6" className={classes.title}>
             Bazaar
           </Typography>

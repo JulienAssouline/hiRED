@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Landing from "./components/landing/Landing";
@@ -18,23 +18,38 @@ import Home from "./components/feed/Home";
 import TopNavNotLoggedIn from "./components/navigation/TopNavNotLoggedIn";
 import Redbook from "./components/redbook/Redbook";
 import TopNavLoggedIn from "./components/navigation/TopNavLoggedIn";
-import { isAuthenticated } from './graphql-queries/queries'
-import { useQuery } from 'react-apollo-hooks'
+import { isAuthenticated } from "./graphql-queries/queries";
+import { useQuery } from "react-apollo-hooks";
 
-const AppRouter = props => {
-  let loggedIn = false;
+const AppRouter = () => {
+  const [loggedInStatus, setLoggedInStatus] = useState(false)
 
-  // const { data: viewerData } = useQuery(isAuthenticated)
+  const { data: viewerData, loading, error } = useQuery(isAuthenticated);
+  if (loading) return <div>Loading</div>;
+  if (error && error.message === "GraphQL error: jwt must be provided") {
+  } else if (error) {
+    return (
+      <div>Error! {console.log("Error in approuter: ", error.message)}</div>
+    );
+  }
 
-  // viewerData.getUserProfile === undefined ? loggedIn = false : loggedIn = true;
-
-  // console.log('viewer data in App router: ', viewerData)
+  if (loggedInStatus===false) {
+    return (
+      <Router>
+        <TopNavNotLoggedIn setLoggedInStatus={setLoggedInStatus}/>
+        <Route path="/" exact component={Landing} />
+        <Route path="/landing/" exact component={Landing} />
+        <Route path="/signup/" exact component={Signup} />
+        <Route path="/signup2/" exact component={SignupForm2} />
+        <Route path="/signup3/" exact component={SignupForm3} />
+        <Route path="/login/" exact component={Login} />
+      </Router>
+    );
+  } 
 
   return (
-
     <Router>
-      {loggedIn ? <TopNavLoggedIn /> : <TopNavNotLoggedIn />}
-
+      <TopNavLoggedIn />
       <Route path="/" exact component={Landing} />
       <Route path="/landing/" exact component={Landing} />
       <Route path="/signup/" exact component={Signup} />

@@ -5,6 +5,16 @@ const Fuse = require('fuse.js')
 
 module.exports = {
 	Query: {
+    async checkAuthentication(parent, input, { req, app, postgres }) {
+      try {
+        const user_id = authenticate(app, req)
+        // console.log("user_id in chekAuth", user_id)
+        return { message: 'Hi dude'}
+      } catch (error) {
+        throw error
+      }
+    },
+
 		async getUser(parent, input, { req, app, postgres }) {
 			try {
 				const selectAllUsers = {
@@ -13,7 +23,7 @@ module.exports = {
 				const allUsers = await postgres.query(selectAllUsers)
 				return allUsers.rows
 			} catch (error) {
-				throw err
+				throw error
 			}
 		},
 
@@ -22,8 +32,6 @@ module.exports = {
 				const user_id = input.user_id
 					? input.user_id 
 					: authenticate(app, req)
-
-					console.log(user_id)
 
         const selectColumns = [
           'id',

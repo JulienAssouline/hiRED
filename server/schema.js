@@ -17,6 +17,13 @@ module.exports = gql`
     getUserPortfolio(user_id: ID): [Portfolio]!
     getConversation(id:ID): ConversationRoom
     getRedBookUsers: [User!]
+    checkAuthentication: AuthenticationStatus
+  }
+
+  type AuthenticationStatus {
+    id: ID
+    fullname: String
+    message: String
   }
 
 
