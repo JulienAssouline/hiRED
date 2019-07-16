@@ -6,8 +6,10 @@ Profile General
 
 .profile .container {
 	display: grid;
-	grid-template-columns: 200px 4fr 3fr;
+	grid-template-columns: 1fr 2fr;
 	grid-gap: 20px;
+
+	margin-top: 24px;
 }
 
 /* 
@@ -30,13 +32,10 @@ Profile Info Section
   --card-width: 350px;
 }
 
-.profile-information {
-	padding: 20px;
-}
-
 .profile .profile-card {
   max-width: var(--card-width);
 }
+
 /* 
 =========================
 Profile Card
@@ -86,8 +85,11 @@ Profile Card
 
 .profile-card .edit-profile-card-info {
 	margin-top: 6px;
-	text-transform: lowercase;
 	justify-content: center;
+}
+
+.profile-card .edit-profile-card-info:focus {
+	outline: 0;
 }
 
 

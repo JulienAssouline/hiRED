@@ -8,13 +8,13 @@ module.exports = gql`
     getUser: User
     getMentors(fullnameSearch: String, getPrograms: String, getSkills: [userSkills]): [Mentors]!
     getAllSkills: [Skills]!
-    getUserPortfolio(user_id: Int): [Portfolio]!
     githubInfo: githubInfo
     getStatus(user_id: Int!): Status
     listMyDribbbles: [Dribbble_Items]
     getMessages(conversation_id:ID):[Messages]
     getConversations: [ConversationRooms]
-    getUserProfile: User
+    getUserProfile(user_id: ID): User
+    getUserPortfolio(user_id: ID): [Portfolio]!
     getConversation(id:ID): ConversationRoom
     getRedBookUsers: [User!]
   }
@@ -186,7 +186,7 @@ module.exports = gql`
     login(input: LoginObject!): LoginResponse!
     addUserPortfolio(input: AddUserPortfolioInput!): Portfolio!
     updateUserPortfolio(input: UpdateUserPortfolioInput!): Portfolio!
-    deleteUserPortfolio(id: Int!): deleteUserPortfolioResponse!
+    deleteUserPortfolio(id: ID!): deleteUserPortfolioResponse!
     saveGithubCode(api_code: String): String
     addStatus(input: StatusInput): addStatusResponse!
     saveDribbbleCode (api_code: String): Boolean

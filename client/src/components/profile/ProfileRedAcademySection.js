@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 
 import { Button, CardContent, CardHeader, Typography } from '@material-ui/core'
 
-import '../../css/profile/editProfileModal.css'
-
 import ProfileRedAcademyModal from './ProfileRedAcademyModal'
 
 const ProfileRedAcademySection = props => {
@@ -16,6 +14,7 @@ const ProfileRedAcademySection = props => {
 	}
 
 	const handleCloseModal = () => {
+		refetch()
 		setModalState(false)
 	}
 
@@ -54,7 +53,6 @@ const ProfileRedAcademySection = props => {
 				programName={programName}
 				studyYear={studyYear}
 				studyCohort={studyCohort}
-				refetch={refetch}
 			/>
 		</CardContent>
 	)

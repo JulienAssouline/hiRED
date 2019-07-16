@@ -6,6 +6,7 @@ import { ADD_CONVERSATION_MUTATION } from '../../graphql-queries/mutations'
 
 
 const RoleFilledUser = (props) => {
+	const { handleGoToUser } = props
 
   const addConversation = useMutation(ADD_CONVERSATION_MUTATION);
 
@@ -23,8 +24,10 @@ const RoleFilledUser = (props) => {
   let initials = d.fullname.match(/\b\w/g) || [];
   initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
 
+	console.log(d)
+
   return (
-    <div className = "overall-cards-container">
+    <div className = "overall-cards-container" onClick={() => handleGoToUser(d.id)}>
       <Avatar className = "avatar redbook"> {initials} </Avatar>
       <Card className = "info-cards-container">
         <div className = "information-container">

@@ -1,95 +1,91 @@
 import React, { useState } from 'react'
-import Button from '@material-ui/core/Button';
-import CardMedia from '@material-ui/core/CardMedia';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import PortfolioItemEdit from './PortfolioItemEdit'
 
-const styles = {
-  card: {
-    maxWidth: 500,
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    // justifyContent: 'center',
-    backgroundColor: 'F4FFFD'
-  },
-  media: {
-    height: 250,
-    width: 250
-  },
-};
+import { Button, Card, CardContent, CardHeader, CardMedia, Typography } from '@material-ui/core'
+
+import PortfolioEditItem from './PortfolioEditItem'
+import PortfolioDeleteItemModal from './PortfolioDeleteItemModal'
 
 const PortfolioItemView = (props) => {
+	const { data, refetch } = props
+	const { id, title, description, type, custom_link, api_link, thumbnail } = data
+	const [editModalState, setEditModalState] = useState(false)
+	const [deleteModalState, setDeleteModalState] = useState(false)
 
-  const [editFlag, setEditShow] = useState(false);
-  //let [, updateState] = useState();
+	const handleOpenEditModal = () => {
+		setEditModalState(true)
+	}
 
-  const { classes } = props;
-  const { title, description, type, custom_link, api_link, thumbnail } = props.data
+	const handleCloseEditModal = () => {
+		setEditModalState(false)
+		refetch()
+	}
 
-  const closeModal = () => {
-    setEditShow(false);
-  }
+	const handleOpenDeleteModal = () => {
+		setDeleteModalState(true)
+	}
 
-  const refreshPortfolioItem = () => {
-    setEditShow(false);
-    props.refetch();
-    //updateState();
-  }
+	const handleCloseDeleteModal = () => {
+		setDeleteModalState(false)
+		refetch()
+	}
 
   return (
-  <div className='pizza'>
-    <PortfolioItemEdit 
-      editFlag={editFlag}
-      closeModal={closeModal}
-      portfolioData = {props.data}
-      refreshPortfolioItem = {refreshPortfolioItem}
-    />
-    <Card className={classes.card}>
-      {/* <CardActionArea> */}
-      <CardMedia 
-        className={classes.media}
-        image={thumbnail}
-        title={title}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-          Title: {title}
-        </Typography>
+  	<>
+			<Card className='portfolio-card'>
+				<CardMedia 
+					className='portfolio-thumbnail'
+					image={thumbnail}
+					title={title}
+				/>
 
-        <Typography variant="subtitle1" color="textSecondary">
-          Description: {description}
-        </Typography>
+				<CardContent>
+					<CardHeader
+						className='card-header'
+						title={title}
+						action={
+							<div>
+								<Button className='edit-portfolio-item' onClick={handleOpenEditModal}>
+									edit
+								</Button>
+								<Button className='delete-portfolio-item' onClick={handleOpenDeleteModal}>
+									Delete
+								</Button>
+							</div>
+						}
+					/>
 
-        <Typography variant="subtitle1" color="textSecondary">
-          Type: {type}
-        </Typography>
-        
-        <Typography variant="subtitle1" color="textSecondary">
-          Custom Link: {custom_link}
-        </Typography>
+					<Typography variant="subtitle1" color="textSecondary">
+						Description: {description}
+					</Typography>
 
-        <Typography variant="subtitle1" color="textSecondary">
-          API Link: {api_link}
-        </Typography>
-        <Button
-          onClick={() => setEditShow(true)}
-          type="submit" variant="contained" size="small" color="primary">
-            Edit
-        </Button> 
-       
+					<Typography variant="subtitle1" color="textSecondary">
+						Type: {type}
+					</Typography>
+					
+					<Typography variant="subtitle1" color="textSecondary">
+						Custom Link: {custom_link}
+					</Typography>
 
+					<Typography variant="subtitle1" color="textSecondary">
+						API Link: {api_link}
+					</Typography>
         </CardContent>
-    {/* </CardActionArea> */}
-    
-    </Card>
-    <p></p>
-  </div>
+    	</Card>
+
+			<PortfolioEditItem
+				modalState={editModalState}
+				closeModal={handleCloseEditModal}
+				portfolioData={data}
+			/>
+
+			<PortfolioDeleteItemModal 
+				modalState={deleteModalState}
+				closeModal={handleCloseDeleteModal}
+				title={title}
+				id={id}
+			/>
+		</>
   )
 }
 
-export default withStyles(styles)(PortfolioItemView);
+export default PortfolioItemView;

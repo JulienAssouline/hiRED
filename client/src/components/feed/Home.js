@@ -6,6 +6,8 @@ import Status from './Status'
 import AdsColumn from './AdsColumn'
 import MainColumn from './MainColumn'
 
+import '../../css/profile/editProfileModal.css'
+
 import '../../css/home.css'
 function Home (){
   return(

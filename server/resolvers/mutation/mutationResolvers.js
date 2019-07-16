@@ -152,12 +152,26 @@ module.exports = {
 				const user_id = authenticate(app, req)
 				const { status } = input
 
-				const updateMentorObject = {
-					status: status,
-				}
-				const updateMentorQuery = createUpdateQuery(updateMentorObject, 'user_id', 'hired.mentors', user_id)
-				await postgres.query(updateMentorQuery)
+				const selectMentorColumns = [
+					'user_id',
+				]
+				const selectMentorQuery = createSelectQuery(selectMentorColumns, 'hired.mentors', 'user_id', user_id)
+				const selectMentorResult = await postgres.query(selectMentorQuery)
 
+				if (selectMentorResult.rows.length) {
+					const updateMentorObject = {
+						status: status,
+					}
+					const updateMentorQuery = createUpdateQuery(updateMentorObject, 'user_id', 'hired.mentors', user_id)
+					await postgres.query(updateMentorQuery)
+				} else {
+					const insertMentorObject = {
+						user_id: user_id,
+						status: true,
+					}
+					const insertMentorQuery = createInsertQuery(insertMentorObject, 'hired.mentors')
+					await postgres.query(insertMentorQuery)
+				}
 				return {
 					message: 'success'
 				}

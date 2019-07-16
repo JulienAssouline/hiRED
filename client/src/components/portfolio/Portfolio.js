@@ -3,9 +3,10 @@ import React from 'react'
 import { useQuery } from 'react-apollo-hooks'
 import { GET_PORTFOLIO_QUERY } from '../../graphql-queries/profileQueries'
 
+import '../../css/profile/portfolio.css'
+
 import PortfolioItem from './PortfolioItem'
-
-
+import PortfolioAddItem from './PortfolioAddItem'
 
 
 const Portfolio = () => {
@@ -24,8 +25,13 @@ const Portfolio = () => {
 	)
   return (
 		<div>
-			<h1>Portfolio</h1>      
-			{userPortfolioComponents}
+			{/* <h1>Portfolio</h1> */}
+			<PortfolioAddItem
+				refetch={refetch}
+			/>
+			<div className='portfolio-items-container'>
+				{userPortfolioComponents}
+			</div>
 		</div>
   )
 }

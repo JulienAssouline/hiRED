@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import { Formik } from 'formik'
 
@@ -12,7 +12,7 @@ import { Button, Card, CardHeader, FormHelperText, MenuItem, Modal, TextField } 
 import { programs as programsOptions } from '../../form-dropdown-values'
 
 const ProfileInfoHeaderModal = props => {
-	const { modalState, closeModal, refetch } = props
+	const { modalState, closeModal } = props
 	const { fullname, programName, description } = props
 
 	const updateProfile = useMutation(updateProfileMutation)
@@ -35,25 +35,24 @@ const ProfileInfoHeaderModal = props => {
 					title={
 						<h3>Edit Profile Overview</h3>
 					}
-					action={
-						<Button onClick={closeModal}>
-							<FontAwesomeIcon className='close-modal' icon={faTimes} />
-						</Button>
-					}
 				/>
+
+				<Button className='close-modal' onClick={closeModal}>
+					<FontAwesomeIcon icon={faTimes} />
+				</Button>
+
 				<Formik
 					initialValues={initialFormValues}
 					onSubmit={async (values, { setSubmitting }) => {
 						try {
 							console.log('values', values)
-							const result = await updateProfile({
+							await updateProfile({
 								variables: {input: {
 									fullname: values.editFullname,
 									program_name: values.editProgram,
 									description: values.editDescription,
 								}}
 							})
-							refetch()
 							closeModal()
 						} catch(err) {
 							throw err

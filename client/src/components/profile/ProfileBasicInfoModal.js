@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Formik } from 'formik'
 
@@ -10,7 +10,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { Button, Card, CardHeader, FormHelperText, Modal, TextField } from '@material-ui/core'
 
 const ProfileBasicInfoModal = props => {
-	const { modalState, closeModal, refetch } = props
+	const { modalState, closeModal } = props
 	const { email, currentJob, location } = props
 
 	const updateProfile = useMutation(updateProfileMutation)
@@ -33,24 +33,23 @@ const ProfileBasicInfoModal = props => {
 					title={
 						<h3>Edit Basic Information</h3>
 					}
-					action={
-						<Button onClick={closeModal}>
-							<FontAwesomeIcon className='close-modal' icon={faTimes}/>
-						</Button>
-					}
 				/>
+				
+				<Button className='close-modal' onClick={closeModal}>
+					<FontAwesomeIcon icon={faTimes} />
+				</Button>
+
 				<Formik
 					initialValues={initialFormValues}
 					onSubmit={async (values, { setSubmitting }) => {
 						try {
-							const result = await updateProfile({
+							await updateProfile({
 								variables: {input: {
 									email: values.editEmail,
 									current_job: values.editCurrentJob,
 									location: values.editLocation,
 								}}
 							})
-							refetch()
 							closeModal()
 						} catch(err) {
 							throw err

@@ -1,21 +1,26 @@
-import React, {useState} from 'react'
+
+import React, { useState } from 'react'
+
 import { useQuery } from 'react-apollo-hooks';
 import { GET_REDBOOK_USERS } from '../../graphql-queries/queries'
+
+import '../../css/redbook.css'
+
 import RoleFilledUser from "./RoleFilledUser"
 import UnknownRoleUser from "./UnknownRoleUser"
-import '../../css/redbook.css'
 import Filter from "./Filter"
 import Pagination from "./Pagination"
 
-
-
-const Redbook = (props) => {
-
-  const [currentPage, setCurrentPage] = useState(1)
-  const cardsPerPage = 9
+const Redbook = props => {
 
   const {data, error, loading} = useQuery(GET_REDBOOK_USERS);
 
+	const handleGoToUser = userId => {
+		props.history.push(`/users${userId}`, userId)
+	}
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const cardsPerPage = 9
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>I have an error</div>
@@ -67,7 +72,18 @@ const Redbook = (props) => {
       <div className = "redbook-cards-container">
         {
           paginatedData.map((d,i) =>
-              d.role ? <RoleFilledUser history = {props.history} key = {i} data = {d} /> : <UnknownRoleUser key = {i} data = {d} />
+						d.role
+							? <RoleFilledUser
+								key = {i}
+								data = {d}
+                history = {props.history}
+								handleGoToUser = {handleGoToUser}
+							/> 
+							: <UnknownRoleUser
+								key = {i}
+								data = {d}
+								handleGoToUser={handleGoToUser}
+							/>
           )
         }
       </div>

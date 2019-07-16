@@ -1,65 +1,56 @@
 import React from 'react'
 
 import { useQuery } from 'react-apollo-hooks'
-import { GET_FULL_PROFILE_QUERY } from '../../graphql-queries/profileQueries'
+import { GET_USER_PROFILE } from '../../graphql-queries/profileQueries'
 
 import { Card, Divider } from '@material-ui/core'
 
-import ProfileInfoheader from './ProfileInfoHeader'
-import ProfileBasicInfoSection from './ProfileBasicInfoSection'
-import ProfileRedAcademySection from './ProfileRedAcademySection'
-import ProfilePassword from './ProfilePassword'
-import ProfileMentorToggle from './ProfileMentorToggle'
-import SocialIntegrations from './SocialIntegrations'
-   
-const ProfileCard = props => {
-	const { data, loading, error, refetch } = useQuery(GET_FULL_PROFILE_QUERY)
+import UserInfoHeader from './userInfoCardComponents/UserInfoHeader'
+import UserBasicInfoSection from './userInfoCardComponents/UserBasicInfoSection'
+import UserRedAcademySection from './userInfoCardComponents/UserRedAcademySection'
+import UserMentorStatus from './userInfoCardComponents/UserMentorStatus'
+
+const UserInfo = props => {
+	const { data, loading, error } = useQuery(GET_USER_PROFILE, {
+		variables: {user_id: props.match.params.userId}
+	})
 
 	if (loading) return <div>Loading...</div>
 	if (error) return <div>Error!</div>
 
 	return (
 		<Card className='profile-card'>
-			<ProfileInfoheader
+			<UserInfoHeader
 				fullname={data.getUserProfile.fullname}
-				programName={data.getUserProfile.getPrograms.length
+				programName={	data.getUserProfile.getPrograms.length
 					? data.getUserProfile.getPrograms[0].name
 					: ''}
 				description={data.getUserProfile.description}
-				refetch={refetch}
 			/>
 
 			<Divider variant='middle' />
 
-			<ProfileBasicInfoSection
+			<UserBasicInfoSection
 				email={data.getUserProfile.email}
 				currentJob={data.getUserProfile.current_job}
 				location={data.getUserProfile.location}
-				refetch={refetch}
 			/>
 
-			<ProfileRedAcademySection
+			<UserRedAcademySection
 				campus={data.getUserProfile.campus}
 				programName={data.getUserProfile.getPrograms.length ? data.getUserProfile.getPrograms[0].name : ''}
 				studyYear={data.getUserProfile.study_year}
 				studyCohort={data.getUserProfile.study_cohort}
-				refetch={refetch}
 			/>
-
-			<ProfilePassword />
 
 			<Divider variant='middle' />
 
-			<ProfileMentorToggle
+			<UserMentorStatus
+				fullname={data.getUserProfile.fullname}
 				mentor={data.getUserProfile.getMentor}
 			/>
-
-			<Divider variant='middle' />
-
-			<SocialIntegrations />
-			
 		</Card>
 	)
 }
 
-export default ProfileCard
+export default UserInfo

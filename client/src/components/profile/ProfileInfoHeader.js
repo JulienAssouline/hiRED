@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 
 import { Avatar, Button, CardHeader, CardContent, Typography } from '@material-ui/core'
 
-import '../../css/profile/editProfileModal.css'
-
 import ProfileInfoHeaderModal from './ProfileInfoHeaderModal'
 
 const ProfileInfoHeader = props => {
@@ -15,6 +13,7 @@ const ProfileInfoHeader = props => {
 	}
 
 	const handleCloseModal = () => {
+		refetch()
 		setModalState(false)
 	}
 
@@ -27,7 +26,9 @@ const ProfileInfoHeader = props => {
 				title={ 
 					<h3>{fullname}</h3>
 				}
-				subheader={<h5>{programName}</h5>}
+				subheader={
+					<h5>{programName}</h5>
+				}
 				action={
 					<Button className='edit-profile-card-info' onClick={handleOpenModal}>
 						edit
@@ -35,7 +36,7 @@ const ProfileInfoHeader = props => {
 				}
 			/>
 			<CardContent className='profile-card-descript'>
-				<Typography paragraph align='center'>Maybe add a portfolio description of sorts here? To describe the person. We could implement a character or a word limit to prevent it from getting too long.</Typography>
+				<Typography paragraph align='center'>{description}</Typography>
 			</CardContent>
 
 			<ProfileInfoHeaderModal
@@ -44,7 +45,6 @@ const ProfileInfoHeader = props => {
 				fullname={fullname}
 				programName={programName}
 				description={description}
-				refetch={refetch}
 			/>
 		</>
 	)
