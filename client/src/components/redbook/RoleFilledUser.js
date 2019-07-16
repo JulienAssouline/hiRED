@@ -24,8 +24,6 @@ const RoleFilledUser = (props) => {
   let initials = d.fullname.match(/\b\w/g) || [];
   initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
 
-	console.log(d)
-
   return (
     <div className = "overall-cards-container" onClick={() => handleGoToUser(d.id)}>
       <Avatar className = "avatar redbook"> {initials} </Avatar>

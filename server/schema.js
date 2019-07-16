@@ -35,9 +35,10 @@ module.exports = gql`
   }
 
   type ConversationRooms{
-      id:Int
-      user_id_1: Int,
-      user_id_2: Int,
+      id:ID
+      user_id_1: ID,
+      user_id_2: ID,
+      fullname: String,
     }
 
   type Messages{
@@ -229,7 +230,7 @@ module.exports = gql`
     status: Boolean
   }
 
-	input UpdateMentorObject { 
+	input UpdateMentorObject {
 		status: Boolean
 	}
 

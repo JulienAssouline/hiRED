@@ -22,9 +22,10 @@ import TopNavLoggedIn from "./components/navigation/TopNavLoggedIn";
 
 import Profile from './components/profile/Profile'
 import User from './components/user/User'
+import Chat from "./components/chat/Chat"
 
 const AppRouter = () => {
-	// const 
+	// const
 
   let loggedIn = true;
 
@@ -45,7 +46,8 @@ const AppRouter = () => {
       <Route path="/Home/" exact component={Home} />
       <Route path="/redbook/" exact component={Redbook} />
       <Route path="/mentors/" exact component={Mentors} />
-      <Route path="/chatbot/" exact component={Chatbot} />
+      <Route path="/chatbot/" exact component={Chat} />
+      <Route path="/chat/" exact component={Chatbot} />
       <Route path="/skills/" exact component={Skills} />
       <Route path="/messages:conversation/" exact component={Messages} />
 

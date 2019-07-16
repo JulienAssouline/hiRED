@@ -29,8 +29,10 @@ const Redbook = props => {
   const indexOfLastCards = currentPage * cardsPerPage
   const indexOfFirstCards = indexOfLastCards - cardsPerPage
 
-  const paginatedData = data.getRedBookUsers.filter((d,i) => i <= indexOfLastCards && indexOfFirstCards < i)
-
+  const paginatedData = data.getRedBookUsers.filter((d,i) => {
+    return d.id < indexOfLastCards && indexOfFirstCards < d.id
+  })
+  console.log(paginatedData)
   const number_of_pages = [];
 
    for (let i = 1; i <= Math.ceil(data.getRedBookUsers.length / cardsPerPage); i++) {
@@ -78,7 +80,7 @@ const Redbook = props => {
 								data = {d}
                 history = {props.history}
 								handleGoToUser = {handleGoToUser}
-							/> 
+							/>
 							: <UnknownRoleUser
 								key = {i}
 								data = {d}

@@ -1,3 +1,8 @@
+.chat-container {
+  display: flex;
+  flex-flow: row;
+}
+
 .chat-box {
   width: 50%;
   justify-content: center;
@@ -7,6 +12,17 @@
   overflow-y: scroll;
   max-height: 80vh;
   margin-bottom: 10px;
+}
+
+.conversation-user-container {
+  display: flex;
+  flex-flow: row;
+  margin: 10px;
+  align-items: center;
+}
+
+.fullname-conversation {
+  margin-left: 10px;
 }
 
 .input-text {

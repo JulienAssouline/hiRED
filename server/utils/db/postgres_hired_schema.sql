@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.3
--- Dumped by pg_dump version 11.3
+-- Dumped from database version 9.6.14
+-- Dumped by pg_dump version 11.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -12,7 +12,6 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
-SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -35,8 +34,8 @@ SET default_with_oids = false;
 
 CREATE TABLE hired.conversations (
     id integer NOT NULL,
-    user_id_1 text,
-    user_id_2 text
+    user_id_1 integer,
+    user_id_2 integer
 );
 
 
