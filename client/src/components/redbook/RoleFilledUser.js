@@ -14,7 +14,7 @@ const RoleFilledUser = (props) => {
       let result;
       try {
         result = await addConversation({variables: {user_id_2: (+d.id)}});
-        props.history.push("/messages" + result.data.addConversation.id)
+        props.history.push("/chatbot")
       } catch (error) {
         // error handler
       }

@@ -22,7 +22,8 @@ const Chat = props => {
 
   return (
     <div className = "chat-container">
-     <Chatbot />
+     <Chatbot history = {props.history} />
+
      </div>
   );
 };
