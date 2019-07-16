@@ -485,7 +485,8 @@ CREATE TABLE hired.users (
     dribbble_connected text,
     description character varying(256),
     programs text,
-    job_location text
+    job_location text,
+    current_conversation_id integer
 );
 
 

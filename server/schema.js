@@ -131,6 +131,7 @@ module.exports = gql`
     job_location: String,
     current_job: String,
     avatar: String,
+    current_conversation_id: Int,
     study_year: String,
     study_cohort: String,
 		getMentor: Mentors,

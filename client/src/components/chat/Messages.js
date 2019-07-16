@@ -12,14 +12,15 @@ function Messages(props){
 
   let number = Number(props.conversation)
 
-  console.log(number)
-
     const {data: queryData, error, loading} = useQuery(GET_MESSAGES, {variables: { number } });
     const {data: conversationData} = useQuery(GET_CONVERSATION, {variables: { id: number }})
 
     const {data: viewerData} = useQuery(isAuthenticated);
 
-    if (conversationData.getConversation !== undefined && viewerData.getUserProfile !== undefined) {
+    console.log(conversationData.getConversation)
+    console.log(viewerData.getUserProfile)
+
+    if (conversationData.getConversation != undefined && viewerData.getUserProfile != undefined) {
       if (conversationData.getConversation.user_id_1 === viewerData.getUserProfile.id) {
         props.history.push("/mentors")
       }
@@ -46,6 +47,7 @@ function Messages(props){
 
       const addMessages = useMutation(ADD_MESSAGES);
 
+      if (number === 0)  return <div> Select a conversation </div>
       if (loading) return <div>Loading...</div>;
       if (error) return <div>I have an error</div>
 

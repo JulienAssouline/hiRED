@@ -19,10 +19,11 @@ const GET_CONVERSATIONS = gql`
 
 const Chatbot = props => {
 
-  const [conversationId, setConversationId] = useState(1)
+  const [conversationId, setConversationId] = useState(0)
 
   const {data: viewerData} = useQuery(isAuthenticated);
   const {data: Conversations, loading, errors} = useQuery(GET_CONVERSATIONS);
+
 
   if (loading) return <div> Loading...</div>;
   if (errors) return <div>I have and error</div>;
@@ -30,11 +31,11 @@ const Chatbot = props => {
 
   const viewer = Number(viewerData.getUserProfile.id)
 
+
+
   function handleClick(element) {
     setConversationId(element.id)
   }
-
-console.log(props)
 
   return (
 		<div>

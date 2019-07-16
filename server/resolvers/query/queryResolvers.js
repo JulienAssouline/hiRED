@@ -288,18 +288,14 @@ module.exports = {
         },
         async getConversations(parent, input, { req, app, postgres }) {
 
-          console.log(parent)
-
           const conversation = {
             text: `SELECT hired.conversations.id, hired.conversations.user_id_1,hired.conversations.user_id_2, hired.users.fullname AS fullname
                    FROM hired.conversations
                    INNER JOIN hired.users
-                   ON hired.conversations.user_id_1 = hired.users.id`,
+                   ON hired.conversations.user_id_2 = hired.users.id`,
           };
 
           const result = await postgres.query(conversation);
-
-          console.log(result)
 
           return result.rows
         },
