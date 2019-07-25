@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import gql from "graphql-tag";
-import { Card, CardContent, Avatar, Typography } from "@material-ui/core/";
+import { Avatar } from "@material-ui/core/";
 import { useQuery } from 'react-apollo-hooks';
 import { isAuthenticated } from '../../graphql-queries/queries'
 import Messages from "./Messages"
@@ -9,10 +9,12 @@ import Messages from "./Messages"
 const GET_CONVERSATIONS = gql`
   query {
     getConversations {
-      id
-      user_id_1
-      user_id_2
-      fullname
+        id
+        user_id_1
+        user_id_2
+        getUserName {
+          fullname
+       }
     }
   }
 `;
@@ -63,24 +65,42 @@ const Chatbot = props => {
 
   // rotLeft([1,2,3,4, 5], 4)
 
+  console.log(Conversations)
+
   return (
 		<div>
     <div className = "conversations-messages-container">
 			<div className = "user-info-card">
 				<div className = "card content container">
-					{Conversations.getConversations.map((d, i) => (
-            (Number(d.user_id_2) === viewer) || (Number(d.user_id_1) === viewer) ?
-            <div key ={i} className = "conversation-user-container">
-              <div className = "user-container"  onClick={ (e) => handleClick(e, d)}>
-                <Avatar
-                  className = "avatar"
-                >
-                  {d.user_id_2 === viewer ? d.user_id_1 : d.user_id_2}
-                </Avatar>
-                <h4 className = "fullname-conversation"> {d.fullname} </h4>
-              </div>
-            </div>: null
-					))}
+					{Conversations.getConversations.map((d, i) => {
+            if (Number(d.user_id_2) === viewer) {
+              return (
+                          <div key ={i} className = "conversation-user-container">
+                            <div className = "user-container"  onClick={ (e) => handleClick(e, d)}>
+                              <Avatar
+                                className = "avatar"
+                              >
+                                {d.user_id_1}
+                              </Avatar>
+                              <h4 className = "fullname-conversation"> {d.getUserName.fullname} </h4>
+                            </div>
+                          </div>)
+            }
+            else {
+              return (
+                        <div key ={i} className = "conversation-user-container">
+                          <div className = "user-container"  onClick={ (e) => handleClick(e, d)}>
+                            <Avatar
+                              className = "avatar"
+                            >
+                              {d.user_id_2}
+                            </Avatar>
+                            <h4 className = "fullname-conversation"> {d.getUserName.fullname} </h4>
+                          </div>
+                        </div>
+                  )
+            }
+					})}
 				</div>
 			</div>
        <Messages conversation = {conversationId}  />

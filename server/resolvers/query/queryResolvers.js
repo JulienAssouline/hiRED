@@ -23,8 +23,6 @@ module.exports = {
 					? input.user_id
 					: authenticate(app, req)
 
-					console.log(user_id)
-
         const selectColumns = [
           'id',
           'email',
@@ -288,11 +286,11 @@ module.exports = {
         },
         async getConversations(parent, input, { req, app, postgres }) {
 
+           let userId = authenticate(app, req);
+
           const conversation = {
-            text: `SELECT hired.conversations.id, hired.conversations.user_id_1,hired.conversations.user_id_2, hired.users.fullname AS fullname
-                   FROM hired.conversations
-                   INNER JOIN hired.users
-                   ON hired.conversations.user_id_2 = hired.users.id`,
+            text: `SELECT * FROM hired.conversations WHERE hired.conversations.user_id_1 = $1 OR hired.conversations.user_id_2 = $1`,
+            values: [userId]
           };
 
           const result = await postgres.query(conversation);

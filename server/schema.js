@@ -24,6 +24,7 @@ module.exports = gql`
     id:Int
     user_id_1: Int,
     user_id_2: Int,
+    fullname: String,
   }
 
   type Status {
@@ -38,8 +39,13 @@ module.exports = gql`
       id:ID
       user_id_1: ID,
       user_id_2: ID,
-      fullname: String,
+      getUserName: UserName
     }
+
+   type UserName {
+    id: Int,
+    fullname: String
+  }
 
   type Messages{
       from_user:Int,
