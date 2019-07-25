@@ -195,9 +195,14 @@ module.exports = gql`
     addSkills(input: [skillsTags]): addSkillsResponse!
     addConversation(user_id_2: Int): addConversationResponse!
     addMessages(content: String, conversation_id: Int): addMessagesResponse!
+    addSelectedConversation(current_conversation_id: Int, user_id_2: Int): addSelectedConversationResponse!
   }
 
   type addStatusResponse {
+    message: String
+  }
+
+  type addSelectedConversationResponse {
     message: String
   }
 

@@ -20,6 +20,7 @@ const GET_CONVERSATIONS = gql`
 const Chatbot = props => {
 
   const [conversationId, setConversationId] = useState(0)
+  const [activeUser, setActiveUser] = useState(false)
 
   const {data: viewerData} = useQuery(isAuthenticated);
   const {data: Conversations, loading, errors} = useQuery(GET_CONVERSATIONS);
@@ -31,32 +32,57 @@ const Chatbot = props => {
 
   const viewer = Number(viewerData.getUserProfile.id)
 
+  function handleClick(e, d) {
+    setConversationId(d.id)
 
+    // console.log(e.currentTarget.className)
+    console.log(conversationId)
+    console.log(d.user_id_2)
 
-  function handleClick(element) {
-    setConversationId(element.id)
+    if (!activeUser) {
+      e.currentTarget.className = "user-container active"
+      setActiveUser(true)
+    }
+    else {
+      e.currentTarget.className = "user-container"
+      setActiveUser(false)
+    }
+
   }
+
+  // function rotLeft(n, d) {
+
+  //   let counter = 0;
+  //   for(let i = 0; i < n.length; i++) {
+  //     if (counter <= d) {
+  //       console.log(n.shift())
+  //     }
+  //     counter++
+  //   }
+  // }
+
+  // rotLeft([1,2,3,4, 5], 4)
 
   return (
 		<div>
     <div className = "conversations-messages-container">
-			<Card>
-				<CardContent>
-					{Conversations.getConversations.map((element, i) => (
-            (Number(element.user_id_2) === viewer) || (Number(element.user_id_1) === viewer) ?
-
-              <div className = "conversation-user-container" key ={i}>
+			<div className = "user-info-card">
+				<div className = "card content container">
+					{Conversations.getConversations.map((d, i) => (
+            (Number(d.user_id_2) === viewer) || (Number(d.user_id_1) === viewer) ?
+            <div key ={i} className = "conversation-user-container">
+              <div className = "user-container"  onClick={ (e) => handleClick(e, d)}>
                 <Avatar
                   className = "avatar"
-                  onClick={ () => handleClick(element)}
                 >
-                  {element.user_id_2 === viewer ? element.user_id_1 : element.user_id_2}
+                  {d.user_id_2 === viewer ? d.user_id_1 : d.user_id_2}
                 </Avatar>
-                <h4 className = "fullname-conversation"> {element.fullname} </h4>
-              </div> : null
+                <h4 className = "fullname-conversation"> {d.fullname} </h4>
+              </div>
+            </div>: null
 					))}
-				</CardContent>
-			</Card>
+				</div>
+			</div>
        <Messages conversation = {conversationId}  />
       </div>
 		</div>

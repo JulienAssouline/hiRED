@@ -17,8 +17,8 @@ function Messages(props){
 
     const {data: viewerData} = useQuery(isAuthenticated);
 
-    console.log(conversationData.getConversation)
-    console.log(viewerData.getUserProfile)
+    // console.log(conversationData.getConversation)
+    // console.log(viewerData.getUserProfile)
 
     if (conversationData.getConversation != undefined && viewerData.getUserProfile != undefined) {
       if (conversationData.getConversation.user_id_1 === viewerData.getUserProfile.id) {
@@ -52,7 +52,7 @@ function Messages(props){
       if (error) return <div>I have an error</div>
 
   return(
-    <div>
+    <div className = "messages-container">
       <MessageInput viewerData = {viewerData} data = {queryData} addMessages = {addMessages} pageNumber = {number} />
     </div>
   )

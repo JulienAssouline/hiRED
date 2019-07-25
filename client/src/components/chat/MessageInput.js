@@ -13,11 +13,18 @@ function MessageInput(props) {
     function handleClick(e, addMessages) {
       setSubmit(value)
       addMessages({variables: {content: value, conversation_id: props.pageNumber}})
+      setValue("")
     }
 
     const viewer = props.viewerData.getUserProfile !== undefined ? props.viewerData.getUserProfile.id : null
 
     if (props.viewerData.getUserProfile === undefined) return <div> Loading... </div>
+
+    props.data.getMessages.forEach((d,i) => {
+      d.date_created = +d.date_created
+    })
+
+    props.data.getMessages.sort((a,b) => a.date_created - b.date_created)
 
     return (
       <>
@@ -26,7 +33,7 @@ function MessageInput(props) {
           <div  key = {i} className = {Number(viewer) === Number(d.from_user) ? "messages-active" : "messages"}>
             <h3> {d.fullname}  </h3>
             <div className = {Number(viewer) === Number(d.from_user) ? "from-bubble-active" : "from-bubble"}>
-              <p className = "from-message"> {d.content} </p>
+              <p key = {console.log(d)} className = "from-message"> {d.content} </p>
             </div>
           </div>
           )
