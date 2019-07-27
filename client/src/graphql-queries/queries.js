@@ -155,3 +155,35 @@ export const GET_PORTFOLIO_QUERY = gql`
 		}
 	}
 `
+
+
+export const GET_ALL_SKILLS = gql`
+    query {
+      getAllSkills{
+        id
+        label
+        value
+        }
+      }
+  `
+
+export const GET_MENTORS = gql`
+                  query($fullnameSearch: String, $getPrograms: String, $getSkills: [userSkills]) {
+                    getMentors(fullnameSearch: $fullnameSearch, getPrograms: $getPrograms, getSkills: $getSkills) {
+                      status
+                      user {
+                        id
+                        email
+                        password
+                        fullname
+                        campus
+                        mentor
+                        location
+                        role
+                        programs
+                        current_job
+                        avatar
+                      }
+                    }
+                  }
+                `

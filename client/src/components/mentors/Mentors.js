@@ -1,17 +1,16 @@
 import React, { useState} from "react"
-import { Query, Mutation } from "react-apollo"
 import { TextField, Button, MenuItem} from '@material-ui/core'
-import gql from "graphql-tag"
 import '../../css/mentor.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { programs } from '../../form-dropdown-values'
 import Select from 'react-select';
 import { ADD_CONVERSATION_MUTATION } from '../../graphql-queries/mutations'
+import { GET_ALL_SKILLS, GET_MENTORS } from '../../graphql-queries/queries'
 
-import LeftNav from '../navigation/LeftNav'
+import { useQuery, useMutation } from 'react-apollo-hooks';
 
-let options;
+
 function Mentors(props){
   const [value, setValue] = useState("")
   const [dropdown, setDropdown] = useState("")
@@ -20,6 +19,14 @@ function Mentors(props){
   const [dropdownSubmit, setDropdownSubmit] = useState("")
   const [skillsSubmit, setSkillsSubmit] = useState([])
 
+  const {data: options} = useQuery(GET_ALL_SKILLS);
+  const {data: mentors, error, loading} = useQuery(GET_MENTORS, {variables: {fullnameSearch: valueSubmit, getPrograms: dropdownSubmit, getSkills: skillsSubmit}});
+
+  const addConversation = useMutation(ADD_CONVERSATION_MUTATION)
+
+
+  if (loading) return <div> Loading...</div>;
+  if (error) return <div>I have and error</div>;
 
   function handleChange(e) {
     setValue(e.target.value)
@@ -51,71 +58,7 @@ function Mentors(props){
   return (
     <div className = "mentors-page">
     <h1> Mentors </h1>
-    <Mutation
-    mutation = {ADD_CONVERSATION_MUTATION}
-    onError = {(error) => {
-      console.log(error)
-    }}
-    onCompleted = {(data) => {
-      console.log(data)
-      // redirecting to conversation based on conversation_id
-      props.history.push("/messages" + data.addConversation.id)
-    }}
-    >
-    {
-      (addConversation, {dataMutation}) => (
         <div>
-        <Query query = {gql`
-                    query {
-                      getAllSkills{
-                        id
-                        label
-                        value
-                        }
-                      }
-                  `}>
-                  {
-                    ({loading, errors, data}) => {
-                      if(loading) return <div> Loading</div>
-                      if(errors) return <div> Errors {JSON.stringify(errors)} </div>
-
-                      options = data.getAllSkills
-
-                      return (
-                        null
-                        )
-                    }
-                  }
-                </Query>
-              <Query
-              query={gql`
-                  query($fullnameSearch: String, $getPrograms: String, $getSkills: [userSkills]) {
-                    getMentors(fullnameSearch: $fullnameSearch, getPrograms: $getPrograms, getSkills: $getSkills) {
-                      status
-                      user {
-                        id
-                        email
-                        password
-                        fullname
-                        campus
-                        mentor
-                        location
-                        role
-                        programs
-                        current_job
-                        avatar
-                      }
-                    }
-                  }
-                `
-              }
-              variables ={{fullnameSearch: valueSubmit, getPrograms: dropdownSubmit, getSkills: skillsSubmit}}
-              >
-              {
-                ({loading, errors, data}) => {
-                  if(loading) return <div> Loading</div>
-                  if(errors) return <div> Errors {JSON.stringify(errors)} </div>
-                  return(
                     <div className='mentor-content-container'>
                     <div className = "form-search">
                     <form onSubmit={handleSubmit}>
@@ -146,7 +89,7 @@ function Mentors(props){
                       <Select
                           isMulti
                           name="colors"
-                          options={options}
+                          options={options.getAllSkills}
                           className="basic-multi-select"
                           classNamePrefix="select"
                           onChange = {handleSelectChange}
@@ -159,7 +102,7 @@ function Mentors(props){
                               type="submit"> Search </Button>
                     </form>
                     </div>
-                    {data.getMentors.map((d,i) =>
+                    {mentors.getMentors.map((d,i) =>
                       d.user ? <div key = {i} className = "mentor">
                          <div className = "mentor_wrapper">
                            <p className = "mentor_fullname"> {d.user.fullname} </p>
@@ -177,24 +120,15 @@ function Mentors(props){
                               className = "chat mentors button"
                               variant='contained'
                               onClick = {() => {
-                                addConversation({
-                                  variables: {user_id_2: (+d.user.id)}
-                                })
-
+                                addConversation({variables: {user_id_2: (+d.user.id)}});
+                                props.history.push("/chatbot")
                               }}
                               color='primary'> Chat </Button>
                        </div> : null
                        )
                       }
                       </div>
-                    )
-                }
-              }
-              </Query>
               </div>
-          )
-      }
-    </Mutation>
     </div>
     )
 }
