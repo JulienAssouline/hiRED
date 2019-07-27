@@ -42,15 +42,13 @@ const useStyles = makeStyles({
     marginRight: 10,
     width: 100,
     height: 40,
-  }
+    backgroundColor: 'white',
+  },
 });
 
-const LoginForm = () => {
-  const [redirecting, setRedirecting] = useState(false);
+const LoginForm = (props) => {
 
   const classes = useStyles();
-
-  if (redirecting) return <Redirect to="/profile/" />;
 
   return (
     <Mutation
@@ -59,18 +57,15 @@ const LoginForm = () => {
         console.log(error);
       }}
       onCompleted={response => {
-        console.log("Response: ", response);
-        console.log('redirecting!!!!!!!')
-        if (response.login.message === "Login Successful!") {
-          setRedirecting(true);
-        }
+        props.history.push('/profile')
+        props.setLoggedInStatus(true)
       }}
     >
       {login => (
         <Formik
           initialValues={initialFormValues}
           onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
+            // console.log(values);
             login({
               variables: {
                 input: {

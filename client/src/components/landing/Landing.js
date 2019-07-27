@@ -13,17 +13,37 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles= makeStyles({
   root: {
 
-  }
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    // alignContent: 'center',
+    // justifyContent: 'center',
+    // margin: 20
+    // marginLeft: '5%',
+    // marginRight: '25%',
+    marginTop: '5%'
+  },
+  leftColumn: {
+    marginLeft: '5%',
+    paddingLeft: '5%',
+    paddingRight: '5%',
+    backgroundColor: 'red',
+    width: '40%'
+  },
+  rightColumn: {
+    marginRight: '5%',
+    paddingLeft: '5%',
+    paddingRight: '5%',
+    backgroundColor: 'grey',
+    width: '60%'
+  },
 })
 
 const Landing = () => {
 
 
   const classes = useStyles()
-
-  // Next to code:
-  // if user is logged in, then route to a different page
-  // if user is not logged in, return below
 
   return (
     <Query query={testConnection}>
@@ -33,7 +53,15 @@ const Landing = () => {
 
         return (
           <div className="App">
-            <h1>Welecome to hiRED!</h1>
+            <div className={classes.container}>
+              <div className={classes.leftColumn}>
+                <h1>Welecome to hiRED!</h1>
+                <p>This is some text so is this</p>
+              </div>
+              <div className={classes.rightColumn}>
+                <h1 >Test</h1>
+              </div>
+            </div>
           </div>
         );
       }}
