@@ -34,8 +34,6 @@ const AppRouter = () => {
     );
   }
 
-  console.log(viewerData)
-
   if (viewerData.getUserProfile === undefined) {
     return (
       <Router>
