@@ -24,7 +24,8 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'white',
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+    cursor: "pointer",
   }
 }));
 
@@ -46,14 +47,16 @@ export default function TopNavLoggedIn(props) {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Bazaar
+            <Button style = {{color: "white", fontSize: 20, fontWeight: "bold"}} href='/'>
+              hiRED
+            </Button>
           </Typography>
 
           <Button className={classes.menuButton} href='/chatbot' variant="contained">
             <Message />
             Message
           </Button>
-          <Button  className={classes.menuButton} variant="contained">
+          <Button  className={classes.menuButton} href='/redbook' variant="contained">
             <PermContactCalendar />
             RedBook
           </Button>

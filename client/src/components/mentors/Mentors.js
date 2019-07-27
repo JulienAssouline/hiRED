@@ -51,7 +51,6 @@ function Mentors(props){
   return (
     <div className = "mentors-page">
     <h1> Mentors </h1>
-		<LeftNav />
     <Mutation
     mutation = {ADD_CONVERSATION_MUTATION}
     onError = {(error) => {

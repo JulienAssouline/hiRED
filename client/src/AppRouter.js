@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Landing from "./components/landing/Landing";
@@ -33,6 +33,8 @@ const AppRouter = () => {
       <div>Error! {console.log("Error in approuter: ", error.message)}</div>
     );
   }
+
+  console.log(viewerData)
 
   if (viewerData.getUserProfile === undefined) {
     return (
