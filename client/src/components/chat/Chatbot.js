@@ -58,44 +58,44 @@ const Chatbot = props => {
  const current_conversation_id = currentConversationData[0].id
 
   return (
-		<div>
-    <div className = "conversations-messages-container">
-			<div className = "user-info-card">
-				<div className = "card content container">
-					{Conversations.getConversations.map((d, i) => {
-            if (Number(d.user_id_2) === viewer) {
-              return (
+    <div className = "conversation-container">
+      <div className = "conversations-messages-container">
+  			<div className = "user-info-card">
+  				<div className = "card content container">
+  					{Conversations.getConversations.map((d, i) => {
+              if (Number(d.user_id_2) === viewer) {
+                return (
+                            <div key ={i} className = "conversation-user-container">
+                              <div className = {d.getUserName.current_conversation ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
+                                <Avatar
+                                  className = "avatar"
+                                >
+                                  {d.user_id_1}
+                                </Avatar>
+                                <h4 className = "fullname-conversation"> {d.getUserName.fullname} </h4>
+                              </div>
+                            </div>)
+              }
+              else {
+                return (
                           <div key ={i} className = "conversation-user-container">
                             <div className = {d.getUserName.current_conversation ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
                               <Avatar
                                 className = "avatar"
                               >
-                                {d.user_id_1}
+                                {d.user_id_2}
                               </Avatar>
                               <h4 className = "fullname-conversation"> {d.getUserName.fullname} </h4>
                             </div>
-                          </div>)
-            }
-            else {
-              return (
-                        <div key ={i} className = "conversation-user-container">
-                          <div className = {d.getUserName.current_conversation ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
-                            <Avatar
-                              className = "avatar"
-                            >
-                              {d.user_id_2}
-                            </Avatar>
-                            <h4 className = "fullname-conversation"> {d.getUserName.fullname} </h4>
                           </div>
-                        </div>
-                  )
-            }
-					})}
-				</div>
-			</div>
-       <Messages current_conversation_id = {current_conversation_id}  />
+                    )
+              }
+  					})}
+  				</div>
+  			</div>
+         <Messages current_conversation_id = {current_conversation_id}  />
+        </div>
       </div>
-		</div>
     );
 };
 
