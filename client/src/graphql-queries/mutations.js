@@ -75,3 +75,11 @@ export const updateMentorMutation = gql`
 		}
 	}
 `
+
+export const UPDATE_SELECTED_CONVERSATION = gql`
+  mutation updateSelectedConversationMutation($current_conversation: Boolean, $user_id: Int) {
+    updateSelectedConversation(current_conversation: $current_conversation, user_id: $user_id) {
+      message
+    }
+  }
+`

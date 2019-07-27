@@ -6,6 +6,7 @@ module.exports = {
     async getPrograms(parent, input, { req, app, postgres }){
       const { id: user_id } = parent
 
+
       // Search program_users table for program ids assocaited with user
       const selectProgramUsersColumns = [
         'user_id',

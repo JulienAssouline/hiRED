@@ -33,7 +33,7 @@ function MessageInput(props) {
           <div  key = {i} className = {Number(viewer) === Number(d.from_user) ? "messages-active" : "messages"}>
             <h3> {d.fullname}  </h3>
             <div className = {Number(viewer) === Number(d.from_user) ? "from-bubble-active" : "from-bubble"}>
-              <p key = {console.log(d)} className = "from-message"> {d.content} </p>
+              <p className = "from-message"> {d.content} </p>
             </div>
           </div>
           )

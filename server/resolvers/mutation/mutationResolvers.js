@@ -563,13 +563,29 @@ async addConversation(parent, input, {req, app, postgres}) {
         throw e;
       }
     },
-    async addSelectedConversation(parent,  input, { req, app, postgres }) {
+    async updateSelectedConversation(parent,  input, { req, app, postgres }) {
 
-      let current_conversation_id = input.current_conversation_id
-      let user_id = input.user_id_2
+      let current_conversation = input.current_conversation
+      let user_id = input.user_id
+
+      const makeAllConversationsFalse = {
+        text: 'UPDATE hired.users SET current_conversation= $1 RETURNING *',
+        values: [false]
+      }
+
+      const result_false = await postgres.query(makeAllConversationsFalse)
 
 
+      const selectedConversation = {
+        text: 'UPDATE hired.users SET current_conversation= $1 WHERE id=$2 RETURNING *',
+        values: [current_conversation, user_id]
+      }
 
+      const result = await postgres.query(selectedConversation)
+
+      return {
+        message: "yes"
+      }
 
     },
 	}

@@ -19,7 +19,7 @@ module.exports = {
       }
 
       const userNameQuery = {
-        text: `SELECT fullname FROM hired.users WHERE hired.users.id = $1`,
+        text: `SELECT fullname, current_conversation FROM hired.users WHERE hired.users.id = $1`,
         values: user_id_array
       };
 

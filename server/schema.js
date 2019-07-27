@@ -44,7 +44,8 @@ module.exports = gql`
 
    type UserName {
     id: Int,
-    fullname: String
+    fullname: String,
+    current_conversation: Boolean
   }
 
   type Messages{
@@ -137,7 +138,6 @@ module.exports = gql`
     job_location: String,
     current_job: String,
     avatar: String,
-    current_conversation_id: Int,
     study_year: String,
     study_cohort: String,
 		getMentor: Mentors,
@@ -201,7 +201,7 @@ module.exports = gql`
     addSkills(input: [skillsTags]): addSkillsResponse!
     addConversation(user_id_2: Int): addConversationResponse!
     addMessages(content: String, conversation_id: Int): addMessagesResponse!
-    addSelectedConversation(current_conversation_id: Int, user_id_2: Int): addSelectedConversationResponse!
+    updateSelectedConversation(current_conversation: Boolean, user_id: Int): addSelectedConversationResponse!
   }
 
   type addStatusResponse {

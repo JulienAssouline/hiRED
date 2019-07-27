@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import gql from "graphql-tag";
 import { Avatar } from "@material-ui/core/";
-import { useQuery } from 'react-apollo-hooks';
+import { useQuery, useMutation } from 'react-apollo-hooks';
 import { isAuthenticated } from '../../graphql-queries/queries'
+import { UPDATE_SELECTED_CONVERSATION } from '../../graphql-queries/mutations'
 import Messages from "./Messages"
 
 
@@ -14,6 +15,7 @@ const GET_CONVERSATIONS = gql`
         user_id_2
         getUserName {
           fullname
+          current_conversation
        }
     }
   }
@@ -21,51 +23,39 @@ const GET_CONVERSATIONS = gql`
 
 const Chatbot = props => {
 
-  const [conversationId, setConversationId] = useState(0)
-  const [activeUser, setActiveUser] = useState(false)
-
   const {data: viewerData} = useQuery(isAuthenticated);
   const {data: Conversations, loading, errors} = useQuery(GET_CONVERSATIONS);
+
+   const updateConversation = useMutation(UPDATE_SELECTED_CONVERSATION)
 
 
   if (loading) return <div> Loading...</div>;
   if (errors) return <div>I have and error</div>;
   if (viewerData.getUserProfile === undefined) return <div> Loading... </div>
 
+
   const viewer = Number(viewerData.getUserProfile.id)
 
   function handleClick(e, d) {
-    setConversationId(d.id)
 
-    // console.log(e.currentTarget.className)
-    console.log(conversationId)
-    console.log(d.user_id_2)
-
-    if (!activeUser) {
-      e.currentTarget.className = "user-container active"
-      setActiveUser(true)
+    if (Number(d.user_id_2) === viewer) {
+      updateConversation({
+        variables: {current_conversation: true, user_id: Number(d.user_id_1)},
+        refetchQueries: [{ query: GET_CONVERSATIONS }]
+        },
+      )
     }
     else {
-      e.currentTarget.className = "user-container"
-      setActiveUser(false)
+      updateConversation({
+        variables: {current_conversation: true, user_id: Number(d.user_id_2)},
+        refetchQueries: [{ query: GET_CONVERSATIONS }]
+      })
     }
 
   }
 
-  // function rotLeft(n, d) {
-
-  //   let counter = 0;
-  //   for(let i = 0; i < n.length; i++) {
-  //     if (counter <= d) {
-  //       console.log(n.shift())
-  //     }
-  //     counter++
-  //   }
-  // }
-
-  // rotLeft([1,2,3,4, 5], 4)
-
-  console.log(Conversations)
+ const currentConversationData = Conversations.getConversations.filter((d,i) => d.getUserName.current_conversation)
+ const current_conversation_id = currentConversationData[0].id
 
   return (
 		<div>
@@ -76,7 +66,7 @@ const Chatbot = props => {
             if (Number(d.user_id_2) === viewer) {
               return (
                           <div key ={i} className = "conversation-user-container">
-                            <div className = "user-container"  onClick={ (e) => handleClick(e, d)}>
+                            <div className = {d.getUserName.current_conversation ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
                               <Avatar
                                 className = "avatar"
                               >
@@ -89,7 +79,7 @@ const Chatbot = props => {
             else {
               return (
                         <div key ={i} className = "conversation-user-container">
-                          <div className = "user-container"  onClick={ (e) => handleClick(e, d)}>
+                          <div className = {d.getUserName.current_conversation ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
                             <Avatar
                               className = "avatar"
                             >
@@ -103,7 +93,7 @@ const Chatbot = props => {
 					})}
 				</div>
 			</div>
-       <Messages conversation = {conversationId}  />
+       <Messages current_conversation_id = {current_conversation_id}  />
       </div>
 		</div>
     );

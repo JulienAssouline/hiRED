@@ -10,7 +10,9 @@ import '../../css/chat.css'
 function Messages(props){
   // let number = +props.match.params.conversation
 
-  let number = Number(props.conversation)
+
+
+  let number = Number(props.current_conversation_id)
 
     const {data: queryData, error, loading} = useQuery(GET_MESSAGES, {variables: { number } });
     const {data: conversationData} = useQuery(GET_CONVERSATION, {variables: { id: number }})
