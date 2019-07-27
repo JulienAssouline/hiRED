@@ -8,9 +8,6 @@ import '../../css/chat.css'
 
 
 function Messages(props){
-  // let number = +props.match.params.conversation
-
-
 
   let number = Number(props.current_conversation_id)
 
@@ -18,9 +15,6 @@ function Messages(props){
     const {data: conversationData} = useQuery(GET_CONVERSATION, {variables: { id: number }})
 
     const {data: viewerData} = useQuery(isAuthenticated);
-
-    // console.log(conversationData.getConversation)
-    // console.log(viewerData.getUserProfile)
 
     if (conversationData.getConversation != undefined && viewerData.getUserProfile != undefined) {
       if (conversationData.getConversation.user_id_1 === viewerData.getUserProfile.id) {
