@@ -26,6 +26,8 @@ const Chatbot = props => {
   const {data: viewerData} = useQuery(isAuthenticated);
   const {data: Conversations, loading, errors} = useQuery(GET_CONVERSATIONS);
 
+  console.log(Conversations)
+
    const updateConversation = useMutation(UPDATE_SELECTED_CONVERSATION)
 
 

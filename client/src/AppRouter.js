@@ -34,7 +34,7 @@ const AppRouter = () => {
     );
   }
 
-  if (loggedInStatus===false) {
+  if (viewerData.getUserProfile === undefined) {
     return (
       <Router>
         <TopNavNotLoggedIn setLoggedInStatus={setLoggedInStatus}/>
@@ -46,7 +46,7 @@ const AppRouter = () => {
         <Route path="/login/" exact component={Login} />
       </Router>
     );
-  } 
+  }
 
   return (
     <Router>
