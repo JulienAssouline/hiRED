@@ -22,6 +22,7 @@ import { isAuthenticated } from "./graphql-queries/queries";
 import { useQuery } from "react-apollo-hooks";
 
 const AppRouter = () => {
+
   const [loggedInStatus, setLoggedInStatus] = useState(false)
 
   const { data: viewerData, loading, error } = useQuery(isAuthenticated);

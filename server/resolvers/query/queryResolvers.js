@@ -30,7 +30,7 @@ module.exports = {
 		async getUserProfile(parent, input, { req, app, postgres }){
       try {
 				const user_id = input.user_id
-					? input.user_id 
+					? input.user_id
 					: authenticate(app, req)
 
         const selectColumns = [
@@ -296,9 +296,13 @@ module.exports = {
         },
         async getConversations(parent, input, { req, app, postgres }) {
 
+           let userId = authenticate(app, req);
+
           const conversation = {
-            text: "SELECT * FROM hired.conversations"
+            text: `SELECT * FROM hired.conversations WHERE hired.conversations.user_id_1 = $1 OR hired.conversations.user_id_2 = $1`,
+            values: [userId]
           };
+
           const result = await postgres.query(conversation);
 
           return result.rows

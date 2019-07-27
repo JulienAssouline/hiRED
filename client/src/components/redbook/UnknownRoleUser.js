@@ -9,11 +9,10 @@ const UnknownRoleUser = (props) => {
 
   const addConversation = useMutation(ADD_CONVERSATION_MUTATION);
 
-   async function myHandler() {
-     let result;
+   function myHandler() {
      try {
-       result = await addConversation({variables: {user_id_2: (+d.id)}});
-       props.history.push("/messages" + result.data.addConversation.id)
+       addConversation({variables: {user_id_2: (+d.id)}});
+       props.history.push("/chatbot")
      } catch (error) {
        // error handler
      }

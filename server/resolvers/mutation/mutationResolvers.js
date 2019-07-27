@@ -485,6 +485,8 @@ async addConversation(parent, input, {req, app, postgres}) {
         values: [start_convo, receive_convo]
       }
 
+      console.log(user_id_1, user_id_2)
+
       const results = await postgres.query(checkConversation)
       // check if conversation exists. If it does return conversation id, if not then create a conversation
 			if(results.rows.length > 0) {
@@ -494,7 +496,6 @@ async addConversation(parent, input, {req, app, postgres}) {
 				}
 			}
 			else {
-
 				const newConversation = {
 					text: 'INSERT INTO hired.conversations (user_id_1, user_id_2) VALUES ($1, $2) RETURNING *',
 					values: [user_id_1, user_id_2],
@@ -561,6 +562,31 @@ async addConversation(parent, input, {req, app, postgres}) {
     } catch (e) {
         throw e;
       }
+    },
+    async updateSelectedConversation(parent,  input, { req, app, postgres }) {
+
+      let current_conversation = input.current_conversation
+      let user_id = input.user_id
+
+      const makeAllConversationsFalse = {
+        text: 'UPDATE hired.users SET current_conversation= $1 RETURNING *',
+        values: [false]
+      }
+
+      const result_false = await postgres.query(makeAllConversationsFalse)
+
+
+      const selectedConversation = {
+        text: 'UPDATE hired.users SET current_conversation= $1 WHERE id=$2 RETURNING *',
+        values: [current_conversation, user_id]
+      }
+
+      const result = await postgres.query(selectedConversation)
+
+      return {
+        message: "yes"
+      }
+
     },
 	}
 }

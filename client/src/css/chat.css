@@ -1,7 +1,12 @@
+
+.chat-container {
+  display: flex;
+  flex-flow: row;
+}
+
 .chat-box {
-  width: 50%;
+  width: 100%;
   justify-content: center;
-  border: 1px solid black;
   padding: 20px;
   margin: auto;
   overflow-y: scroll;
@@ -9,15 +14,68 @@
   margin-bottom: 10px;
 }
 
+.conversation-container {
+  position: relative;
+    overflow: hidden;
+}
+
+.conversations-messages-container {
+  display: flex;
+  flex-flow: row;
+  margin: 20px;
+  border: 1px solid lightgrey;
+}
+
+.user-info-card {
+  width: 30%;
+}
+
+.messages-container {
+  width: 70%;
+  border-left: 1px solid lightgrey;
+}
+
+.conversation-user-container {
+  padding: 5px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.user-container {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.user-container.active {
+  background-color: #c22c28
+}
+
+
+.fullname-conversation {
+  margin-left: 10px;
+}
+
+.user-container.active > .fullname-conversation {
+  color: white;
+}
+
+.card.content.container {
+  padding: 0px;
+}
+
 .input-text {
   display: flex;
-  width: 50%;
+  width: 100%;
   align-self: center;
   margin: auto;
   padding: 5px;
   padding-left: 10px;
-  background-color: lightgrey;
-  border-radius: 10px;
+  border-top: 1px solid lightgrey;
+  background-color: white;
 }
 
 .input-base {

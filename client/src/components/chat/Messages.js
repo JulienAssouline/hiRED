@@ -8,14 +8,21 @@ import '../../css/chat.css'
 
 
 function Messages(props){
-  let number = +props.match.params.conversation
+  // let number = +props.match.params.conversation
+
+
+
+  let number = Number(props.current_conversation_id)
 
     const {data: queryData, error, loading} = useQuery(GET_MESSAGES, {variables: { number } });
     const {data: conversationData} = useQuery(GET_CONVERSATION, {variables: { id: number }})
 
     const {data: viewerData} = useQuery(isAuthenticated);
 
-    if (conversationData.getConversation !== undefined && viewerData.getUserProfile !== undefined) {
+    // console.log(conversationData.getConversation)
+    // console.log(viewerData.getUserProfile)
+
+    if (conversationData.getConversation != undefined && viewerData.getUserProfile != undefined) {
       if (conversationData.getConversation.user_id_1 === viewerData.getUserProfile.id) {
         props.history.push("/mentors")
       }
@@ -42,11 +49,12 @@ function Messages(props){
 
       const addMessages = useMutation(ADD_MESSAGES);
 
+      if (number === 0)  return <div> Select a conversation </div>
       if (loading) return <div>Loading...</div>;
       if (error) return <div>I have an error</div>
 
   return(
-    <div>
+    <div className = "messages-container">
       <MessageInput viewerData = {viewerData} data = {queryData} addMessages = {addMessages} pageNumber = {number} />
     </div>
   )

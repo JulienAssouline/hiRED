@@ -11,7 +11,7 @@ import ProfileRedAcademySection from './ProfileRedAcademySection'
 import ProfilePassword from './ProfilePassword'
 import ProfileMentorToggle from './ProfileMentorToggle'
 import SocialIntegrations from './SocialIntegrations'
-   
+
 const ProfileCard = props => {
 	const { data, loading, error, refetch } = useQuery(GET_FULL_PROFILE_QUERY)
 
@@ -57,7 +57,7 @@ const ProfileCard = props => {
 			<Divider variant='middle' />
 
 			<SocialIntegrations />
-			
+
 		</Card>
 	)
 }

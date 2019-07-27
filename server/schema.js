@@ -31,6 +31,7 @@ module.exports = gql`
     id:Int
     user_id_1: Int,
     user_id_2: Int,
+    fullname: String,
   }
 
   type Status {
@@ -42,10 +43,17 @@ module.exports = gql`
   }
 
   type ConversationRooms{
-      id:Int
-      user_id_1: Int,
-      user_id_2: Int,
+      id:ID
+      user_id_1: ID,
+      user_id_2: ID,
+      getUserName: UserName
     }
+
+   type UserName {
+    id: Int,
+    fullname: String,
+    current_conversation: Boolean
+  }
 
   type Messages{
       from_user:Int,
@@ -200,9 +208,14 @@ module.exports = gql`
     addSkills(input: [skillsTags]): addSkillsResponse!
     addConversation(user_id_2: Int): addConversationResponse!
     addMessages(content: String, conversation_id: Int): addMessagesResponse!
+    updateSelectedConversation(current_conversation: Boolean, user_id: Int): addSelectedConversationResponse!
   }
 
   type addStatusResponse {
+    message: String
+  }
+
+  type addSelectedConversationResponse {
     message: String
   }
 
@@ -236,7 +249,7 @@ module.exports = gql`
     status: Boolean
   }
 
-	input UpdateMentorObject { 
+	input UpdateMentorObject {
 		status: Boolean
 	}
 

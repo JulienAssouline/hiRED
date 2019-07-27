@@ -13,11 +13,18 @@ function MessageInput(props) {
     function handleClick(e, addMessages) {
       setSubmit(value)
       addMessages({variables: {content: value, conversation_id: props.pageNumber}})
+      setValue("")
     }
 
     const viewer = props.viewerData.getUserProfile !== undefined ? props.viewerData.getUserProfile.id : null
 
     if (props.viewerData.getUserProfile === undefined) return <div> Loading... </div>
+
+    props.data.getMessages.forEach((d,i) => {
+      d.date_created = +d.date_created
+    })
+
+    props.data.getMessages.sort((a,b) => a.date_created - b.date_created)
 
     return (
       <>
