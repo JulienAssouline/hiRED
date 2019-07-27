@@ -1,0 +1,52 @@
+.mainContainer {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	align-items: flex-start;
+	justify-content: center;
+	justify-items: center;
+	grid-template-areas: 
+		'empty signupcard';
+
+	min-height: 100vh;
+
+	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://redacademy.com/content/uploads/2017/09/RedAcademy_.jpg') top center no-repeat;
+	background-size: cover;
+
+	--desktop-top-margin: 15%;
+}
+
+/* .container {
+	width: 100%;
+	max-width: 1024px;
+	margin: 0 auto;
+
+
+	height: 100px;
+	background-color: white;
+} */
+
+.message {
+	margin-top: var(--desktop-top-margin);
+	margin-left: 20%;
+
+	color: white;
+}
+
+.message h1 {
+	font-weight: 400;
+}
+
+.signupCard {
+	grid-area: signupcard;
+
+	margin-top: var(--desktop-top-margin);
+	width: 60%;
+	max-width: 400px;
+	padding: 2em 3em;
+
+	color: white;
+}
+
+.signupCard h4 {
+	font-weight: bolder;
+}

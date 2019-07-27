@@ -1,0 +1,23 @@
+.form .formField div {
+	width: 100%;
+}
+
+.form .formHelper {
+	margin-top: 0;
+}
+
+.form .formError {
+	margin-top: 0;
+	color: red;
+}
+
+.formButtons {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.formButtons button {
+	margin: 1em 2em 0;
+}
