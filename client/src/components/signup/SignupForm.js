@@ -5,9 +5,13 @@ import { signupValidation } from '../../validationSchemas'
 
 import { Mutation } from 'react-apollo'
 import { signupMutation } from '../../graphql-queries/mutations'
+import { useMutation } from 'react-apollo-hooks'
+import { SIGNUP } from '../../graphql-queries/signupLoginQueries'
 import { withRouter } from 'react-router'
 
 import { TextField, Button, FormHelperText } from '@material-ui/core'
+
+import signupForm from '../../css/landing/signup.module.css'
 
 const initialFormValues = {
 	userEmail: '',
@@ -17,144 +21,139 @@ const initialFormValues = {
 	inviteCode: '',
 }
 
-function SignupForm(props) {
+const SignupForm = props => {
+	const signup = useMutation(SIGNUP)
+
+
+
 	return (
-		<Mutation
-			mutation={signupMutation}
-			onError={error => {
-				console.log('regular signup error: ', error)
-			}}
-			onCompleted={response => {
-				props.history.push('/signup2')
-
-				console.log('Signup response:', response)
-			}}
-		>
-			{signup => (
-				<Formik
-					initialValues={initialFormValues}
-					onSubmit={(values, { setSubmitting }) => {
-						console.log(values)
-						signup({
-							variables: {
-								input: {
-									email: values.userEmail,
-									fullname: values.userFullname,
-									password: values.password,
-								},
+		<Formik
+			initialValues={initialFormValues}
+			onSubmit={async (values, { setSubmitting }) => {
+				try {
+					const result = await signup({
+						variables: {
+							input: {
+								email: values.userEmail,
+								fullname: values.userFullname,
+								password: values.password,
 							},
-						})
-						setSubmitting(false)
-					}}
-					validationSchema={signupValidation}
-				>
-					{formikProps => {
-						const {
-							values,
-							touched,
-							errors,
-							dirty,
-							isSubmitting,
-							handleChange,
-							handleBlur,
-							handleSubmit,
-							handleReset,
-						} = formikProps
+						},
+					})
+					if (result.data.signup.message === 'success') {
+						window.location.reload()
+					}
+					console.log(result)
+				} catch(error) {
+					throw error
+				}
 
-						return (
-							<form className='material-form' onSubmit={handleSubmit}>
-								<div className='form-field'>
-									<TextField
-										type='text'
-										id='userEmail'
-										name='userEmail'
-										label='Email'
-										value={values.userEmail}
-										onChange={handleChange}
-										onBlur={handleBlur}
-										margin='normal'
-									/>
-									{errors.userEmail && touched.userEmail ? (
-										<FormHelperText className='form-helper form-error'>{errors.userEmail}</FormHelperText>
-									) : (
-										<FormHelperText className='form-helper' />
-									)}
-								</div>
+				setSubmitting(false)
+			}}
+			validationSchema={signupValidation}
+		>
+			{formikProps => {
+				const {
+					values,
+					touched,
+					errors,
+					dirty,
+					isSubmitting,
+					handleChange,
+					handleBlur,
+					handleSubmit,
+					handleReset,
+				} = formikProps
 
-								<div className='form-field'>
-									<TextField
-										type='text'
-										id='userFullname'
-										name='userFullname'
-										label='Full Name'
-										value={values.userFullname}
-										onChange={handleChange}
-										onBlur={handleBlur}
-										margin='normal'
-									/>
-									{errors.userFullname && touched.userFullname ? (
-										<FormHelperText className='form-helper form-error'>{errors.userFullname}</FormHelperText>
-									) : (
-										<FormHelperText className='form-helper' />
-									)}
-								</div>
+				return (
+					<form className={signupForm.form} onSubmit={handleSubmit}>
+						<div className={signupForm.formField}>
+							<TextField
+								type='text'
+								name='userEmail'
+								label='Email'
+								value={values.userEmail}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								margin='normal'
+							/>
+							{errors.userEmail && touched.userEmail 
+								?	<FormHelperText className={signupForm.formError}>
+									{errors.userEmail}
+								</FormHelperText>
+								:	<FormHelperText className={signupForm.formHelper} />
+							}
+						</div>
 
-								<div className='form-field'>
-									<TextField
-										type='password'
-										id='password'
-										name='password'
-										label='Password'
-										value={values.password}
-										onChange={handleChange}
-										onBlur={handleBlur}
-										margin='normal'
-									/>
-									{errors.password && touched.password ? (
-										<FormHelperText className='form-helper form-error'>{errors.password}</FormHelperText>
-									) : (
-										<FormHelperText className='form-helper' />
-									)}
-								</div>
+						<div className={signupForm.formField}>
+							<TextField
+								type='text'
+								name='userFullname'
+								label='Full Name'
+								value={values.userFullname}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								margin='normal'
+							/>
+							{errors.userFullname && touched.userFullname ? (
+								<FormHelperText className={signupForm.formError}>{errors.userFullname}</FormHelperText>
+							) : (
+								<FormHelperText className={signupForm.formHelper} />
+							)}
+						</div>
 
-								<div className='form-field'>
-									<TextField
-										type='password'
-										id='confirmPassword'
-										name='confirmPassword'
-										label='Confirm Password'
-										value={values.confirmPassword}
-										onChange={handleChange}
-										onBlur={handleBlur}
-										margin='normal'
-									/>
-									{errors.confirmPassword && touched.confirmPassword ? (
-										<FormHelperText className='form-helper form-error'>{errors.confirmPassword}</FormHelperText>
-									) : (
-										<FormHelperText className='form-helper' />
-									)}
-								</div>
+						<div className={signupForm.formField}>
+							<TextField
+								type='password'
+								name='password'
+								label='Password'
+								value={values.password}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								margin='normal'
+							/>
+							{errors.password && touched.password ? (
+								<FormHelperText className={signupForm.formError}>{errors.password}</FormHelperText>
+							) : (
+								<FormHelperText className={signupForm.formHelper} />
+							)}
+						</div>
 
-								<section className='signup-form-btns'>
-									<Button
-										className='btn-submit'
-										type='submit'
-										variant='contained'
-										color='primary'
-										disabled={isSubmitting}
-									>
-										Sign Up
-									</Button>
-									<Button className='btn-reset' type='button' disabled={!dirty || isSubmitting} onClick={handleReset}>
-										Reset
-									</Button>
-								</section>
-							</form>
-						)
-					}}
-				</Formik>
-			)}
-		</Mutation>
+						<div className={signupForm.formField}>
+							<TextField
+								type='password'
+								name='confirmPassword'
+								label='Confirm Password'
+								value={values.confirmPassword}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								margin='normal'
+							/>
+							{errors.confirmPassword && touched.confirmPassword ? (
+								<FormHelperText className={signupForm.formError}>{errors.confirmPassword}</FormHelperText>
+							) : (
+								<FormHelperText className={signupForm.formHelper} />
+							)}
+						</div>
+
+						<section className={signupForm.formButtons}>
+							<Button
+								className='btn-submit'
+								type='submit'
+								variant='contained'
+								color='primary'
+								disabled={isSubmitting}
+							>
+								Sign Up
+							</Button>
+							<Button className='btn-reset' type='button' disabled={!dirty || isSubmitting} onClick={handleReset}>
+								Reset
+							</Button>
+						</section>
+					</form>
+				)
+			}}
+		</Formik>
 	)
 }
 
