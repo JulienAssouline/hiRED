@@ -77,8 +77,8 @@ export const updateMentorMutation = gql`
 `
 
 export const UPDATE_SELECTED_CONVERSATION = gql`
-  mutation updateSelectedConversationMutation($current_conversation: Boolean, $user_id: Int) {
-    updateSelectedConversation(current_conversation: $current_conversation, user_id: $user_id) {
+  mutation updateSelectedConversationMutation($conversation_id: Int, $current_conversation: Boolean) {
+    updateSelectedConversation(conversation_id: $conversation_id, current_conversation: $current_conversation) {
       message
     }
   }

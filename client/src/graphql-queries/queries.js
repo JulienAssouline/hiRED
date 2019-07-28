@@ -136,6 +136,12 @@ export const GET_MESSAGES = gql`
         study_year
         study_cohort
         job_location
+        getUserConversation {
+          id
+          user_id_1
+          user_id_2
+          current_conversation
+      }
       }
     }
   `
@@ -183,6 +189,12 @@ export const GET_MENTORS = gql`
                         programs
                         current_job
                         avatar
+                        getUserConversation {
+                          id
+                          user_id_1
+                          user_id_2
+                          current_conversation
+                        }
                       }
                     }
                   }
@@ -194,9 +206,9 @@ export const GET_CONVERSATIONS = gql`
             id
             user_id_1
             user_id_2
+            current_conversation
             getUserName {
               fullname
-              current_conversation
            }
         }
       }

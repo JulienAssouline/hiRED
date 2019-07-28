@@ -19,12 +19,13 @@ SET row_security = off;
 -- Data for Name: conversations; Type: TABLE DATA; Schema: hired; Owner: postgres
 --
 
-COPY hired.conversations (id, user_id_1, user_id_2) FROM stdin;
-1	2	1
-2	3	1
-3	3	2
-5	4	3
-6	4	1
+COPY hired.conversations (id, user_id_1, user_id_2, current_conversation) FROM stdin;
+5	4	3	f
+6	4	1	f
+1	2	1	f
+3	3	2	f
+7	4	2	t
+2	3	1	f
 \.
 
 
@@ -130,11 +131,11 @@ COPY hired.programs (id, name) FROM stdin;
 -- Data for Name: users; Type: TABLE DATA; Schema: hired; Owner: postgres
 --
 
-COPY hired.users (id, fullname, email, password, role, campus, location, current_job, avatar, date_created, study_year, study_cohort, github_access_token, github_api_code, dribbble_access_token, dribbble_api_code, dribbble_connected, description, programs, job_location, current_conversation) FROM stdin;
-2	user2	user2@gmail.com	$2b$12$i1Sk.vBn1me3Gg67pX6uXua6Hg/OanajZ2nEj/ZvyFOduUPJgUDVm	STUDENT	TOR	vancouver	web dev	\N	2019-07-16 13:24:01.856357	2019	Q3	\N	\N	\N	\N	\N	\N	WEB	red academy	f
-4	user4	user4@hotmail.ca	$2b$12$fNnGo60D/19iB6U0yKg8H.jzp.vlKR3oAQNUVJsX3uKz9qeihZSyC	ALUMNI	TOR	Wayne Towers	app developer	\N	2019-07-27 18:02:20.578856	2015	Q2	\N	\N	\N	\N	\N	\N	WEB	rogers	f
-3	user3	user3@cool.com	$2b$12$m2LQjNXYwnTZKXfql66Nb.H4OUheGewIaUc9E/z5mWsxbeBKphnja	STUDENT	TOR	vancouver	app developer	\N	2019-07-16 13:59:09.010325	2014	Q2	\N	\N	\N	\N	\N	\N	UI	Rangle.io	f
-1	user1	user1@hotmail.ca	$2b$12$DCl99TG3c6szNo0p.vVPZeWYl4qmV8rthpL/d846gziWC.oPVmyiW	ALUMNI	TOR	vancouver	app developer	\N	2019-07-16 13:21:38.940956	2014	Q2	\N	\N	\N	\N	\N	\N	APP	Rangle.io	t
+COPY hired.users (id, fullname, email, password, role, campus, location, current_job, avatar, date_created, study_year, study_cohort, github_access_token, github_api_code, dribbble_access_token, dribbble_api_code, dribbble_connected, description, programs, job_location) FROM stdin;
+2	user2	user2@gmail.com	$2b$12$i1Sk.vBn1me3Gg67pX6uXua6Hg/OanajZ2nEj/ZvyFOduUPJgUDVm	STUDENT	TOR	vancouver	web dev	\N	2019-07-16 13:24:01.856357	2019	Q3	\N	\N	\N	\N	\N	\N	WEB	red academy
+4	user4	user4@hotmail.ca	$2b$12$fNnGo60D/19iB6U0yKg8H.jzp.vlKR3oAQNUVJsX3uKz9qeihZSyC	ALUMNI	TOR	Wayne Towers	app developer	\N	2019-07-27 18:02:20.578856	2015	Q2	\N	\N	\N	\N	\N	\N	WEB	rogers
+1	user1	user1@hotmail.ca	$2b$12$DCl99TG3c6szNo0p.vVPZeWYl4qmV8rthpL/d846gziWC.oPVmyiW	ALUMNI	TOR	vancouver	app developer	\N	2019-07-16 13:21:38.940956	2014	Q2	\N	\N	\N	\N	\N	\N	APP	Rangle.io
+3	user3	user3@cool.com	$2b$12$m2LQjNXYwnTZKXfql66Nb.H4OUheGewIaUc9E/z5mWsxbeBKphnja	STUDENT	TOR	vancouver	app developer	\N	2019-07-16 13:59:09.010325	2014	Q2	\N	\N	\N	\N	\N	\N	UI	Rangle.io
 \.
 
 
@@ -174,7 +175,7 @@ COPY hired.users_tags (user_id, tag_id) FROM stdin;
 -- Name: conversations_id_seq; Type: SEQUENCE SET; Schema: hired; Owner: postgres
 --
 
-SELECT pg_catalog.setval('hired.conversations_id_seq', 6, true);
+SELECT pg_catalog.setval('hired.conversations_id_seq', 7, true);
 
 
 --

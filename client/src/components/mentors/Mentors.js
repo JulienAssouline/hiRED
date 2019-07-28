@@ -48,14 +48,29 @@ function Mentors(props){
     setSkills(skills_array)
   }
 
+  function handleChat(d) {
+    let current_conversation = d.user.getUserConversation.filter((d) => {
+      if (Number(d.user_id_2) === Number(viewerData.getUserProfile.id)) {
+        return Number(d.user_id_2) === Number(viewerData.getUserProfile.id)
+      }
+      else {
+        return Number(d.user_id_1) === Number(viewerData.getUserProfile.id)
+      }
+    })
+
+    addConversation({variables: {user_id_2: (+d.user.id)}});
+    updateConversation({variables: {conversation_id: current_conversation[0].id, current_conversation: true},
+      refetchQueries: [{ query: GET_CONVERSATIONS }]
+    })
+    props.history.push("/chatbot")
+  }
+
  function handleSubmit(event) {
   setValueSubmit(value)
   setDropdownSubmit(dropdown)
   setSkillsSubmit(skills)
       event.preventDefault()
   }
-
-
 
   return (
     <div className = "mentors-page">
@@ -121,13 +136,7 @@ function Mentors(props){
                          <Button
                               className = "chat mentors button"
                               variant='contained'
-                              onClick = {() => {
-                                addConversation({variables: {user_id_2: (+d.user.id)}});
-                                updateConversation({variables: {current_conversation: true, user_id: Number(d.user.id)},
-                                  refetchQueries: [{ query: GET_CONVERSATIONS }]
-                                })
-                                props.history.push("/chatbot")
-                              }}
+                              onClick = {() => { handleChat(d) }}
                               color='primary'> Chat </Button>
                        </div> : null
                        )

@@ -35,7 +35,8 @@ SET default_with_oids = false;
 CREATE TABLE hired.conversations (
     id integer NOT NULL,
     user_id_1 integer,
-    user_id_2 integer
+    user_id_2 integer,
+    current_conversation boolean
 );
 
 
@@ -485,8 +486,7 @@ CREATE TABLE hired.users (
     dribbble_connected text,
     description character varying(256),
     programs text,
-    job_location text,
-    current_conversation boolean
+    job_location text
 );
 
 
