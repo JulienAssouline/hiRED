@@ -1,8 +1,99 @@
-.mainContainer {
+/* .mainContainer {
 	position: absolute;
 	height: 80px;
+} */
+
+/*
+=========================
+Main
+=========================
+*/
+
+.container {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: space-between;
+}
+
+/*
+=========================
+Home Button
+=========================
+*/
+
+.mainContainer .links {
+	text-decoration: none;
 }
 
 .mainContainer .links:hover {
 	text-decoration: none;
+}
+
+.links .home {
+	font-size: 1.5em;
+	font-weight: bolder;
+	letter-spacing: 2px;
+}
+
+.links .home span {
+	margin-left: 2px;
+	padding: 2px 4px;
+	
+	background-color: white;
+	border-radius: 4px;
+	color: #c10909;
+}
+
+/*
+=========================
+Nav
+=========================
+*/
+
+.navContainer {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	
+	font-size: 1.25em;
+}
+
+.navContainer > a {
+	margin: 0 .5em;
+}
+
+.navContainer > a:hover {
+	text-decoration: none;
+}
+
+.navContainer > div {
+	margin: 0 .75em;
+}
+
+.redbook, .mentor {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+
+	background-color: white;
+	border-radius: 10px;
+	color: #c10909;
+	text-transform: uppercase;
+}
+
+.mentor svg {
+	margin-left: 0.075em;
+}
+
+.navContainer h6 {
+	font-size: .75em;
+	margin-right: 0.5em;
+}
+
+.navContainer .icon {
+	color: #c10909;
+	background-color: white;
+	font-size: 1.25em;
+
 }

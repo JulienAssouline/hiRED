@@ -23,6 +23,7 @@ import Messages from './components/chat/Messages'
 import TopNavNotLoggedIn from './components/navigation/TopNavNotLoggedIn'
 import TopNavLoggedIn from './components/navigation/TopNavLoggedIn'
 import TempTopNavNonAuth from './components/navigation/TempTopNavNonAuth'
+import TempTopNavAuth from './components/navigation/TempTopNavAuth'
 
 import { isAuthenticated } from './graphql-queries/queries'
 import { useQuery } from 'react-apollo-hooks'
@@ -37,6 +38,7 @@ const AppRouter = () => {
 		return <div>Error! {console.log('Error in approuter: ', error.message)}</div>
 	}
 
+	
 	if (viewerData.getUserProfile === undefined) {
 		return (
 			<Router>
@@ -53,10 +55,10 @@ const AppRouter = () => {
 			</Router>
 		)
 	}
-
+	
 	return (
 		<Router>
-			<TopNavLoggedIn />
+			<TempTopNavAuth userData={viewerData.getUserProfile}/>
 			<Switch>
 				{/* <Route path='/signup/' exact component={Signup} /> */}
 				<Route path='/signup2/' exact component={SignupForm2} />
