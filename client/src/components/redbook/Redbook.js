@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 import { useQuery } from 'react-apollo-hooks';
-import { GET_REDBOOK_USERS } from '../../graphql-queries/queries'
+import { GET_REDBOOK_USERS, isAuthenticated } from '../../graphql-queries/queries'
 
 import '../../css/redbook.css'
 
@@ -14,6 +14,9 @@ import Pagination from "./Pagination"
 const Redbook = props => {
 
   const {data, error, loading} = useQuery(GET_REDBOOK_USERS);
+  const {data: viewerData} = useQuery(isAuthenticated);
+
+  const viewer = Number(viewerData.getUserProfile.id)
 
 	const handleGoToUser = userId => {
 		props.history.push(`/user/${userId}`, userId)
@@ -78,12 +81,14 @@ const Redbook = props => {
 							? <RoleFilledUser
 								key = {i}
 								data = {d}
+                viewer = {viewer}
                 history = {props.history}
 								handleGoToUser = {handleGoToUser}
 							/>
 							: <UnknownRoleUser
 								key = {i}
 								data = {d}
+                viewer = {viewer}
                 history = {props.history}
 								handleGoToUser={handleGoToUser}
 							/>

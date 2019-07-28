@@ -30,6 +30,11 @@
   width: 30%;
 }
 
+.no-conversations {
+  padding: 40px;
+  margin: auto;
+}
+
 .messages-container {
   width: 70%;
   border-left: 1px solid lightgrey;

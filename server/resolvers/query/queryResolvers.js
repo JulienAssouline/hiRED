@@ -170,21 +170,14 @@ module.exports = {
 
         if (program_name) {
 
-          const getProgram = {
-            text: "SELECT * FROM hired.programs WHERE name = $1",
-            values: [program_name]
-          }
-
-          const programs = await postgres.query(getProgram)
-
           const userProgram = {
-                text: "SELECT * FROM hired.program_users WHERE program_id = $1",
-                values: [programs.rows[0].id]
+                text: "SELECT * FROM hired.users WHERE programs = $1",
+                values: [program_name]
               }
 
           const users = await postgres.query(userProgram)
 
-          let user_id = users.rows.map(d=> d.user_id)
+          let user_id = users.rows.map(d=> d.id)
 
            getAllMentors = {
                   text: `SELECT fullname, email, role, campus, location, current_job, avatar, status, user_id, hired.mentors.id AS mentor_id
