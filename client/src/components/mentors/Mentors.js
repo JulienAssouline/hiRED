@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBriefcase, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { programs } from '../../form-dropdown-values'
 import Select from 'react-select';
-import { ADD_CONVERSATION_MUTATION } from '../../graphql-queries/mutations'
-import { GET_ALL_SKILLS, GET_MENTORS } from '../../graphql-queries/queries'
+import { ADD_CONVERSATION_MUTATION, UPDATE_SELECTED_CONVERSATION } from '../../graphql-queries/mutations'
+import { GET_ALL_SKILLS, GET_MENTORS, GET_CONVERSATIONS, isAuthenticated } from '../../graphql-queries/queries'
 
 import { useQuery, useMutation } from 'react-apollo-hooks';
 
@@ -21,8 +21,10 @@ function Mentors(props){
 
   const {data: options} = useQuery(GET_ALL_SKILLS);
   const {data: mentors, error, loading} = useQuery(GET_MENTORS, {variables: {fullnameSearch: valueSubmit, getPrograms: dropdownSubmit, getSkills: skillsSubmit}});
+  const {data: viewerData} = useQuery(isAuthenticated);
 
   const addConversation = useMutation(ADD_CONVERSATION_MUTATION)
+  const updateConversation = useMutation(UPDATE_SELECTED_CONVERSATION)
 
 
   if (loading) return <div> Loading...</div>;
@@ -104,7 +106,7 @@ function Mentors(props){
                     </div>
                   <div className = "mentors-container">
                     {mentors.getMentors.map((d,i) =>
-                      d.user ? <div key = {i} className = "mentor">
+                      d.user.id !== viewerData.getUserProfile.id ? <div key = {i} className = "mentor">
                          <div className = "mentor_wrapper">
                            <p className = "mentor_fullname"> {d.user.fullname} </p>
                            <svg width = "30" height = "30"> <circle r={6} cx = {15} cy={15} style={{fill: d.status ? "#26a69a" : "grey"}}> </circle> </svg>
@@ -122,6 +124,9 @@ function Mentors(props){
                               variant='contained'
                               onClick = {() => {
                                 addConversation({variables: {user_id_2: (+d.user.id)}});
+                                updateConversation({variables: {current_conversation: true, user_id: Number(d.user.id)},
+                                  refetchQueries: [{ query: GET_CONVERSATIONS }]
+                                })
                                 props.history.push("/chatbot")
                               }}
                               color='primary'> Chat </Button>

@@ -45,7 +45,7 @@ const RoleFilledUser = (props) => {
             className= "message button"
             variant="contained"
           >
-            Message
+            Chat
           </Button>
         </div>
       </Card>

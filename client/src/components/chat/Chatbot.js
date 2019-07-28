@@ -41,8 +41,6 @@ const Chatbot = props => {
 
  const currentConversationData = Conversations.getConversations.filter((d,i) => d.getUserName.current_conversation)
 
- console.log(Conversations.getConversations)
-
  if (currentConversationData[0] === undefined) {
   return (
     <div className = "conversation-container">

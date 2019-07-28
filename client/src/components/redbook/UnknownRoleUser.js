@@ -40,7 +40,7 @@ const UnknownRoleUser = (props) => {
             className= "message button unknown"
             variant="contained"
           >
-            Message
+            Chat
           </Button>
         </div>
       </Card>
