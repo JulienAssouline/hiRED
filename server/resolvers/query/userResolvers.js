@@ -42,6 +42,19 @@ module.exports = {
       const getMentorQueryResult = await postgres.query(getMentorQuery)
 
       return getMentorQueryResult.rows[0]
-    }
+    },
+    async getUserConversation(parent, input, { req, app, postgres }) {
+        const { id: user_id } = parent
+
+          const conversation = {
+            text: `SELECT * FROM hired.conversations WHERE hired.conversations.user_id_1 = $1 OR hired.conversations.user_id_2 = $1`,
+            values: [user_id]
+          };
+
+      const result = await postgres.query(conversation)
+
+      return result.rows
+
+    },
   }
 }

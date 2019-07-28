@@ -31,7 +31,7 @@ module.exports = gql`
     id:Int
     user_id_1: Int,
     user_id_2: Int,
-    fullname: String,
+    current_conversation: Boolean,
   }
 
   type Status {
@@ -46,13 +46,13 @@ module.exports = gql`
       id:ID
       user_id_1: ID,
       user_id_2: ID,
+      current_conversation: Boolean,
       getUserName: UserName
     }
 
    type UserName {
     id: Int,
     fullname: String,
-    current_conversation: Boolean
   }
 
   type Messages{
@@ -148,6 +148,7 @@ module.exports = gql`
     study_year: String,
     study_cohort: String,
 		getMentor: Mentors,
+    getUserConversation: [ConversationRoom]
     getPrograms: [Programs]
     dribbble_connected: Boolean,
     dribbble_api_code: String,
@@ -208,7 +209,7 @@ module.exports = gql`
     addSkills(input: [skillsTags]): addSkillsResponse!
     addConversation(user_id_2: Int): addConversationResponse!
     addMessages(content: String, conversation_id: Int): addMessagesResponse!
-    updateSelectedConversation(current_conversation: Boolean, user_id: Int): addSelectedConversationResponse!
+    updateSelectedConversation(conversation_id: Int, current_conversation: Boolean): addSelectedConversationResponse!
   }
 
   type addStatusResponse {

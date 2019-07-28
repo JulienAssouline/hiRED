@@ -13,9 +13,18 @@ const UnknownRoleUser = (props) => {
    function myHandler(e) {
     e.stopPropagation()
 
+    let current_conversation = d.getUserConversation.filter((d) => {
+      if (Number(d.user_id_2) === Number(props.viewer)) {
+        return Number(d.user_id_2) === Number(props.viewer)
+      }
+      else {
+        return Number(d.user_id_1) === Number(props.viewer)
+      }
+    })
+
      try {
        addConversation({variables: {user_id_2: (+d.id)}});
-       updateConversation({variables: {current_conversation: true, user_id: Number(d.id)},
+       updateConversation({variables: {conversation_id: current_conversation[0].id, current_conversation: true},
           refetchQueries: [{ query: GET_CONVERSATIONS }]
         })
        props.history.push("/chatbot")
@@ -36,7 +45,7 @@ const UnknownRoleUser = (props) => {
         <div className = "information-unknown-container">
           <h2 className = "name"> {d.fullname} </h2>
           <Button
-            onClick = {myHandler}
+            onClick = {(e) => myHandler(e, d)}
             className= "message button unknown"
             variant="contained"
           >
