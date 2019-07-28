@@ -1,12 +1,4 @@
 .mainContainer {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	align-items: flex-start;
-	justify-content: center;
-	justify-items: center;
-	grid-template-areas: 
-		'empty signupcard';
-
 	min-height: 100vh;
 
 	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://redacademy.com/content/uploads/2017/09/RedAcademy_.jpg') top center no-repeat;
@@ -15,15 +7,50 @@
 	--desktop-top-margin: 15%;
 }
 
-/* .container {
-	width: 100%;
-	max-width: 1024px;
-	margin: 0 auto;
 
 
-	height: 100px;
-	background-color: white;
-} */
+/*
+=========================
+Top Nav
+=========================
+*/
+
+.topNav {
+	display: flex;
+	flex-flow: row-reverse nowrap;
+
+	padding: 1.5em;
+	padding-right: 5%;
+}
+
+.topNav a {
+	display: inline-block;
+	margin: 0 1em;
+}
+
+.topNav a p {
+	font-size: 1.5em;
+}
+
+.topNav a svg {
+	margin-left: 0.25em;
+}
+
+/*
+=========================
+Main Content
+=========================
+*/
+
+.container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	align-items: flex-start;
+	justify-content: center;
+	justify-items: center;
+	grid-template-areas: 
+		'empty signupcard';
+}
 
 .message {
 	margin-top: var(--desktop-top-margin);
@@ -40,8 +67,8 @@
 	grid-area: signupcard;
 
 	margin-top: var(--desktop-top-margin);
-	width: 60%;
-	max-width: 400px;
+	width: 50%;
+	max-width: 350px;
 	padding: 2em 3em;
 
 	color: white;
@@ -49,4 +76,9 @@
 
 .signupCard h4 {
 	font-weight: bolder;
+}
+
+.signupCard .formSwap {
+	margin-top: 2em;
+	margin-bottom: 0;
 }
