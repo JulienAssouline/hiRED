@@ -102,6 +102,7 @@ function Mentors(props){
                               type="submit"> Search </Button>
                     </form>
                     </div>
+                  <div className = "mentors-container">
                     {mentors.getMentors.map((d,i) =>
                       d.user ? <div key = {i} className = "mentor">
                          <div className = "mentor_wrapper">
@@ -127,7 +128,8 @@ function Mentors(props){
                        </div> : null
                        )
                       }
-                      </div>
+                    </div>
+                  </div>
               </div>
     </div>
     )

@@ -2,17 +2,26 @@ import React from 'react'
 import Role from "./Role"
 import { Card, Button, Avatar } from "@material-ui/core";
 import { useMutation } from 'react-apollo-hooks';
-import { ADD_CONVERSATION_MUTATION } from '../../graphql-queries/mutations'
+import { ADD_CONVERSATION_MUTATION, UPDATE_SELECTED_CONVERSATION } from '../../graphql-queries/mutations'
+import { GET_CONVERSATIONS } from '../../graphql-queries/queries'
+
+
 
 
 const RoleFilledUser = (props) => {
 	const { handleGoToUser } = props
 
   const addConversation = useMutation(ADD_CONVERSATION_MUTATION);
+  const updateConversation = useMutation(UPDATE_SELECTED_CONVERSATION)
 
-    function myHandler() {
+
+    function myHandler(e) {
+      e.stopPropagation()
       try {
-        addConversation({variables: {user_id_2: (+d.id)}});
+        addConversation({variables: {user_id_2: Number(d.id)}});
+        updateConversation({variables: {current_conversation: true, user_id: Number(d.id)},
+          refetchQueries: [{ query: GET_CONVERSATIONS }]
+        })
         props.history.push("/chatbot")
       } catch (error) {
         // error handler
@@ -24,6 +33,7 @@ const RoleFilledUser = (props) => {
   initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
 
   return (
+    Number(d.id) !== props.viewer ?
     <div className = "overall-cards-container" onClick={() => handleGoToUser(d.id)}>
       <Avatar className = "avatar redbook"> {initials} </Avatar>
       <Card className = "info-cards-container">
@@ -39,7 +49,7 @@ const RoleFilledUser = (props) => {
           </Button>
         </div>
       </Card>
-    </div>
+    </div> : null
   );
 }
 

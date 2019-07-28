@@ -187,3 +187,17 @@ export const GET_MENTORS = gql`
                     }
                   }
                 `
+
+export const GET_CONVERSATIONS = gql`
+      query {
+        getConversations {
+            id
+            user_id_1
+            user_id_2
+            getUserName {
+              fullname
+              current_conversation
+           }
+        }
+      }
+    `;

@@ -2,22 +2,29 @@
   text-align: center;
 }
 
+.mentors-container {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  justify-content: center;
+}
+
 .mentor {
-  display: flex;
-  flex-flow: column nowrap;
-  width: 40%;
+  width: 90%;
   margin: 10px auto;
   border: 0px solid grey;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px #ccc;
+  background-color: white;
 }
 
 .mentor_fullname {
   font-size: 20px;
   font-weight: bold;
   align-self: left;
-  color: #8947e6;
+  color: #c22c28;
   text-align: left;
 }
 
@@ -68,6 +75,8 @@ form .btn-search-submit {
 .search-filter > div {
   width: 20%;
   margin: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .chat.mentors.button {

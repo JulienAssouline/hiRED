@@ -1,25 +1,10 @@
 import React from "react";
-import gql from "graphql-tag";
 import { Avatar } from "@material-ui/core/";
 import { useQuery, useMutation } from 'react-apollo-hooks';
-import { isAuthenticated } from '../../graphql-queries/queries'
+import { isAuthenticated, GET_CONVERSATIONS } from '../../graphql-queries/queries'
 import { UPDATE_SELECTED_CONVERSATION } from '../../graphql-queries/mutations'
 import Messages from "./Messages"
 
-
-const GET_CONVERSATIONS = gql`
-  query {
-    getConversations {
-        id
-        user_id_1
-        user_id_2
-        getUserName {
-          fullname
-          current_conversation
-       }
-    }
-  }
-`;
 
 const Chatbot = props => {
 
@@ -55,6 +40,19 @@ const Chatbot = props => {
   }
 
  const currentConversationData = Conversations.getConversations.filter((d,i) => d.getUserName.current_conversation)
+
+ console.log(Conversations.getConversations)
+
+ if (currentConversationData[0] === undefined) {
+  return (
+    <div className = "conversation-container">
+      <div className = "conversations-messages-container">
+            <h1 className = "no-conversations"> No conversations have been started </h1>
+      </div>
+    </div>
+    )
+ }
+
  const current_conversation_id = currentConversationData[0].id
 
   return (
