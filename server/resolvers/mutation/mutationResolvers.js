@@ -201,7 +201,7 @@ module.exports = {
 				setCookie('hiRED_app', myJWTToken, req.res)
 
 				return {
-					message: 'Login Successful!',
+					message: 'success',
 				}
 			} catch (err) {
 				throw err

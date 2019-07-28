@@ -22,6 +22,7 @@ import Messages from './components/chat/Messages'
 
 import TopNavNotLoggedIn from './components/navigation/TopNavNotLoggedIn'
 import TopNavLoggedIn from './components/navigation/TopNavLoggedIn'
+import TempTopNavNonAuth from './components/navigation/TempTopNavNonAuth'
 
 import { isAuthenticated } from './graphql-queries/queries'
 import { useQuery } from 'react-apollo-hooks'
@@ -39,7 +40,7 @@ const AppRouter = () => {
 	if (viewerData.getUserProfile === undefined) {
 		return (
 			<Router>
-				<TopNavNotLoggedIn setLoggedInStatus={setLoggedInStatus} />
+				{/* <TempTopNavNonAuth setLoggedInStatus={setLoggedInStatus} /> */}
 				<Switch>
 					<Route path='/' exact component={LandingTemp} />
 					<Route path='/landing/' exact component={LandingTemp} />

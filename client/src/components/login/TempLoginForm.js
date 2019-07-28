@@ -1,26 +1,21 @@
 import React from 'react'
 
 import { Formik } from 'formik'
-import { signupValidation } from '../../validationSchemas'
+import { loginValidation } from '../../validationSchemas'
 
 import { useMutation } from 'react-apollo-hooks'
-import { SIGNUP } from '../../graphql-queries/signupLoginQueries'
-import { withRouter } from 'react-router'
+import { LOGIN } from '../../graphql-queries/signupLoginQueries'
 
 import { TextField, Button, FormHelperText } from '@material-ui/core'
 
 import signupForm from '../../css/landing/signup.module.css'
 
+const TempLoginForm = () => {
+	const login = useMutation(LOGIN)
 
-const SignupForm = props => {
-	const signup = useMutation(SIGNUP)
-	
 	const initialValues = {
 		userEmail: '',
-		userFullname: '',
 		password: '',
-		confirmPassword: '',
-		inviteCode: '',
 	}
 
 	return (
@@ -28,16 +23,15 @@ const SignupForm = props => {
 			initialValues={initialValues}
 			onSubmit={async (values, { setSubmitting }) => {
 				try {
-					const result = await signup({
+					const result = await login({
 						variables: {
 							input: {
 								email: values.userEmail,
-								fullname: values.userFullname,
 								password: values.password,
 							},
 						},
 					})
-					if (result.data.signup.message === 'success') {
+					if (result.data.login.message === 'success') {
 						window.location.reload()
 					}
 				} catch(error) {
@@ -46,7 +40,7 @@ const SignupForm = props => {
 
 				setSubmitting(false)
 			}}
-			validationSchema={signupValidation}
+			validationSchema={loginValidation}
 		>
 			{formikProps => {
 				const {
@@ -83,23 +77,6 @@ const SignupForm = props => {
 
 						<div className={signupForm.formField}>
 							<TextField
-								type='text'
-								name='userFullname'
-								label='Full Name'
-								value={values.userFullname}
-								onChange={handleChange}
-								onBlur={handleBlur}
-								margin='normal'
-							/>
-							{errors.userFullname && touched.userFullname ? (
-								<FormHelperText className={signupForm.formError}>{errors.userFullname}</FormHelperText>
-							) : (
-								<FormHelperText className={signupForm.formHelper} />
-							)}
-						</div>
-
-						<div className={signupForm.formField}>
-							<TextField
 								type='password'
 								name='password'
 								label='Password'
@@ -115,23 +92,6 @@ const SignupForm = props => {
 							)}
 						</div>
 
-						<div className={signupForm.formField}>
-							<TextField
-								type='password'
-								name='confirmPassword'
-								label='Confirm Password'
-								value={values.confirmPassword}
-								onChange={handleChange}
-								onBlur={handleBlur}
-								margin='normal'
-							/>
-							{errors.confirmPassword && touched.confirmPassword ? (
-								<FormHelperText className={signupForm.formError}>{errors.confirmPassword}</FormHelperText>
-							) : (
-								<FormHelperText className={signupForm.formHelper} />
-							)}
-						</div>
-
 						<section className={signupForm.formButtons}>
 							<Button
 								className='btn-submit'
@@ -140,7 +100,7 @@ const SignupForm = props => {
 								color='primary'
 								disabled={isSubmitting}
 							>
-								Sign Up
+								Login
 							</Button>
 							<Button className='btn-reset' type='button' disabled={!dirty || isSubmitting} onClick={handleReset}>
 								Reset
@@ -153,4 +113,4 @@ const SignupForm = props => {
 	)
 }
 
-export default withRouter(SignupForm)
+export default TempLoginForm

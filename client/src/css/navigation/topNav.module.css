@@ -1,0 +1,8 @@
+.mainContainer {
+	position: absolute;
+	height: 80px;
+}
+
+.mainContainer .links:hover {
+	text-decoration: none;
+}

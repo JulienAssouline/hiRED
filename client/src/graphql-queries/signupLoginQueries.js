@@ -7,3 +7,11 @@ export const SIGNUP = gql`
 		}
 	}
 `
+
+export const LOGIN = gql`
+  mutation loginVars($input: LoginObject!){
+    login(input: $input) {
+      message
+    }
+  }
+`
