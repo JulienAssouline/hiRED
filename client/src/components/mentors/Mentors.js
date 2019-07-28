@@ -59,7 +59,6 @@ function Mentors(props){
 
   return (
     <div className = "mentors-page">
-    <h1> Mentors </h1>
         <div>
                     <div className='mentor-content-container'>
                     <div className = "form-search">
