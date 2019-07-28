@@ -486,7 +486,7 @@ CREATE TABLE hired.users (
     description character varying(256),
     programs text,
     job_location text,
-    current_conversation_id integer
+    current_conversation boolean
 );
 
 
