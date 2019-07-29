@@ -45,15 +45,20 @@
 
 .information-container {
   position: absolute;
-  bottom: 30px;
-  padding: 0 20px;
+  bottom: 20px;
+  box-sizing: border-box;
   width: calc(100% - 2 * var(--card-padding));
+}
+
+.user-info-container {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .information-unknown-container {
   position: absolute;
   height: 40%;
-  bottom: 0;
+  bottom: 13px;
   width: calc(100% - 2 * var(--card-padding));
 }
 
@@ -74,6 +79,7 @@
 
 .role-icon-container {
   display: flex;
+  align-items: center;
 
 }
 .redbook-role-icon {
@@ -137,15 +143,16 @@
   display: flex;
   flex-flow: row;
   justify-content: center;
+  align-items: center;
 }
 
 .page-container {
   border-right: 1px solid lightgrey;
   padding: 10px;
   color: black;
-  height: 45px;
   cursor: pointer;
-  width: 3%;
+  height: 20px;
+  width: 20px;
   text-align: center;
 }
 
@@ -153,42 +160,42 @@
   background-color: #c22c28;
   color: white;
   cursor: pointer;
-  width: 3%;
+  width: 20px;
   text-align: center;
 }
 
 .next {
   padding: 10px;
-  height: 45px;
   border-right: 1px solid lightgrey;
   cursor: pointer;
-  width: 3%;
+  height: 20px;
+  width: 20px;
   text-align: center;
 }
 
 .back {
   padding: 10px;
-  height: 45px;
   border-right: 1px solid lightgrey;
   cursor: pointer;
-  width: 3%;
+  height: 20px;
+  width: 20px;
   text-align: center;
 }
 
 .start{
   padding: 10px;
-  height: 45px;
   border-right: 1px solid lightgrey;
   cursor: pointer;
-  width: 3%;
+  height: 20px;
+  width: 20px;
   text-align: center;
 }
 
 .end {
   padding: 10px;
-  height: 45px;
   cursor: pointer;
-  width: 3%;
+  height: 20px;
+  width: 20px;
   text-align: center;
 }
 

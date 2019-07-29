@@ -49,6 +49,7 @@ const RoleFilledUser = (props) => {
       <Card className = "info-cards-container">
         <div className = "information-container">
           <h2 className = "name"> {d.fullname} </h2>
+          <div className = "user-info-container">
           <Role d = {d} />
           <Button
             onClick = {(e) => myHandler(e, d)}
@@ -57,6 +58,7 @@ const RoleFilledUser = (props) => {
           >
             Chat
           </Button>
+          </div>
         </div>
       </Card>
     </div> : null

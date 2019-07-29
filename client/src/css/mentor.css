@@ -10,9 +10,9 @@
   justify-content: center;
 }
 
-.mentor {
-  width: 90%;
-  margin: 10px auto;
+.mentors-container > .mentor {
+  width: 80%;
+  margin-left: 10px;
   border: 0px solid grey;
   padding: 20px;
   border-radius: 10px;
@@ -32,6 +32,7 @@
 .mentor_wrapper {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
 }
 
 .mentor_job {
