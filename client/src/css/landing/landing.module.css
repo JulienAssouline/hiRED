@@ -60,16 +60,53 @@ Main Content
 }
 
 .message h1 {
+	font-size: 2.5em;
 	font-weight: 400;
 }
+
+@media screen and (min-width: 800px) {
+	.message h1 {
+		font-size: 3em;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.message h1 {
+		font-size: 3.25em;
+	}
+}
+
+@media screen and (min-width: 1240px) {
+	.message h1 {
+		font-size: 4em;
+	}
+}
+
+@media screen and (min-width: 1500px) {
+	.message h1 {
+		font-size: 4.5em;
+	}
+}
+
+@media screen and (min-width: 1900px) {
+	.message h1 {
+		font-size: 6em;
+	}
+}
+
+/*
+=========================
+Main Content Signup/Login Card
+=========================
+*/
 
 .signupCard {
 	grid-area: signupcard;
 
 	margin-top: var(--desktop-top-margin);
-	width: 50%;
-	max-width: 350px;
-	padding: 2em 3em;
+	width: 80%;
+	max-width: 300px;
+	padding: 1.5em 2em;
 
 	color: white;
 }
@@ -79,6 +116,20 @@ Main Content
 }
 
 .signupCard .formSwap {
-	margin-top: 2em;
+	margin-top: 1.5em;
 	margin-bottom: 0;
+}
+
+@media screen and (min-width: 1240px) {
+	.signupCard {
+		grid-area: signupcard;
+
+		width: 50%;
+		max-width: 350px;
+		padding: 2em 3em;
+	}
+
+	.signupCard .formSwap {
+		margin-top: 2em;
+	}
 }
