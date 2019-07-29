@@ -37,6 +37,8 @@ export const isAuthenticated = gql`
 			id
 			fullname
       current_conversation_id
+			avatar
+
 		}
 	}
 `
