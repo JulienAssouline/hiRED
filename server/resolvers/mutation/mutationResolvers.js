@@ -486,8 +486,6 @@ async addConversation(parent, input, {req, app, postgres}) {
         values: [start_convo, receive_convo]
       }
 
-      console.log(user_id_1, user_id_2)
-
       const results = await postgres.query(checkConversation)
       // check if conversation exists. If it does return conversation id, if not then create a conversation
 			if(results.rows.length > 0) {
@@ -497,21 +495,22 @@ async addConversation(parent, input, {req, app, postgres}) {
 				}
 			}
 			else {
-        const makeAllUserConversationsFalse = {
-          text: 'UPDATE hired.conversations SET current_conversation= $2 WHERE user_id_1 = $1 OR user_id_2 = $1 RETURNING *',
-          values: [user_id_1, false]
-        }
-
-        const resultUserConvo = await postgres.query(makeAllUserConversationsFalse)
 
 				const newConversation = {
-					text: 'INSERT INTO hired.conversations (user_id_1, user_id_2, current_conversation) VALUES ($1, $2, $3) RETURNING *',
-					values: [user_id_1, user_id_2, true],
+					text: 'INSERT INTO hired.conversations (user_id_1, user_id_2) VALUES ($1, $2, $3) RETURNING *',
+					values: [user_id_1, user_id_2],
 				}
 
 				const result = await postgres.query(newConversation)
 
 				const new_conversation_id = result.rows[0].id
+
+        const usersSelectedConversation = {
+          text: 'UPDATE hired.users SET current_conversation_id= $2 WHERE id=$1 RETURNING *',
+          values: [user_id_1, new_conversation_id]
+        }
+
+        const resultUsers = await postgres.query(usersSelectedConversation)
 
 				return {
 					id: new_conversation_id
@@ -573,22 +572,16 @@ async addConversation(parent, input, {req, app, postgres}) {
     },
     async updateSelectedConversation(parent,  input, { req, app, postgres }) {
       let logged_in_user = authenticate(app, req)
-      let current_conversation = input.current_conversation
       let conversation_id = input.conversation_id
 
-      const makeAllConversationsFalse = {
-        text: 'UPDATE hired.conversations SET current_conversation= $2 WHERE user_id_1 = $1 OR user_id_2 = $1 RETURNING *',
-        values: [logged_in_user, false]
+
+      const usersSelectedConversation = {
+        text: 'UPDATE hired.users SET current_conversation_id= $2 WHERE id=$1 RETURNING *',
+        values: [logged_in_user, conversation_id]
       }
 
-      const result_false = await postgres.query(makeAllConversationsFalse)
+      const resultUsers = await postgres.query(usersSelectedConversation)
 
-      const selectedConversation = {
-        text: 'UPDATE hired.conversations SET current_conversation= $1 WHERE id=$2 RETURNING *',
-        values: [current_conversation, conversation_id]
-      }
-
-      const result = await postgres.query(selectedConversation)
 
       return {
         message: "yes"

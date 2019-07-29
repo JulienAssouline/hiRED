@@ -36,7 +36,9 @@ export const isAuthenticated = gql`
 		getUserProfile {
 			id
 			fullname
+      current_conversation_id
 			avatar
+
 		}
 	}
 `

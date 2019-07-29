@@ -19,13 +19,34 @@ SET row_security = off;
 -- Data for Name: conversations; Type: TABLE DATA; Schema: hired; Owner: postgres
 --
 
-COPY hired.conversations (id, user_id_1, user_id_2, current_conversation) FROM stdin;
-5	4	3	f
-6	4	1	f
-1	2	1	f
-3	3	2	f
-7	4	2	t
-2	3	1	f
+COPY hired.conversations (id, user_id_1, user_id_2) FROM stdin;
+17	6	3
+9	5	3
+16	6	5
+14	6	4
+5	4	3
+10	5	4
+24	8	4
+21	7	4
+29	9	4
+3	3	2
+7	4	2
+27	8	7
+31	9	2
+28	8	5
+8	5	2
+13	6	2
+18	7	2
+26	8	2
+22	7	1
+30	9	1
+12	5	1
+1	2	1
+2	3	1
+6	4	1
+15	6	1
+25	8	1
+23	7	5
 \.
 
 
@@ -108,6 +129,7 @@ COPY hired.messages (id, conversation_id, content, date_created, from_user) FROM
 6	2	no way 	2019-07-24 20:49:02.146934	3
 7	2	yeah way 	2019-07-25 14:35:14.394881	1
 8	2	we're talking a lot aren't we	2019-07-27 14:11:46.448052	3
+9	31	hey how are you omg this is really cool were totally talking to each other right now	2019-07-28 21:01:41.44775	9
 \.
 
 
@@ -131,11 +153,16 @@ COPY hired.programs (id, name) FROM stdin;
 -- Data for Name: users; Type: TABLE DATA; Schema: hired; Owner: postgres
 --
 
-COPY hired.users (id, fullname, email, password, role, campus, location, current_job, avatar, date_created, study_year, study_cohort, github_access_token, github_api_code, dribbble_access_token, dribbble_api_code, dribbble_connected, description, programs, job_location) FROM stdin;
-2	user2	user2@gmail.com	$2b$12$i1Sk.vBn1me3Gg67pX6uXua6Hg/OanajZ2nEj/ZvyFOduUPJgUDVm	STUDENT	TOR	vancouver	web dev	\N	2019-07-16 13:24:01.856357	2019	Q3	\N	\N	\N	\N	\N	\N	WEB	red academy
-4	user4	user4@hotmail.ca	$2b$12$fNnGo60D/19iB6U0yKg8H.jzp.vlKR3oAQNUVJsX3uKz9qeihZSyC	ALUMNI	TOR	Wayne Towers	app developer	\N	2019-07-27 18:02:20.578856	2015	Q2	\N	\N	\N	\N	\N	\N	WEB	rogers
-1	user1	user1@hotmail.ca	$2b$12$DCl99TG3c6szNo0p.vVPZeWYl4qmV8rthpL/d846gziWC.oPVmyiW	ALUMNI	TOR	vancouver	app developer	\N	2019-07-16 13:21:38.940956	2014	Q2	\N	\N	\N	\N	\N	\N	APP	Rangle.io
-3	user3	user3@cool.com	$2b$12$m2LQjNXYwnTZKXfql66Nb.H4OUheGewIaUc9E/z5mWsxbeBKphnja	STUDENT	TOR	vancouver	app developer	\N	2019-07-16 13:59:09.010325	2014	Q2	\N	\N	\N	\N	\N	\N	UI	Rangle.io
+COPY hired.users (id, fullname, email, password, role, campus, location, current_job, avatar, date_created, study_year, study_cohort, github_access_token, github_api_code, dribbble_access_token, dribbble_api_code, dribbble_connected, description, programs, job_location, current_conversation_id) FROM stdin;
+4	user4	user4@hotmail.ca	$2b$12$fNnGo60D/19iB6U0yKg8H.jzp.vlKR3oAQNUVJsX3uKz9qeihZSyC	ALUMNI	TOR	Wayne Towers	app developer	\N	2019-07-27 18:02:20.578856	2015	Q2	\N	\N	\N	\N	\N	\N	WEB	rogers	14
+5	user5	user5@homtail.ca	$2b$12$rglqSuxQbiGZJJy/DtKwbuDsEv55RzpcTw2iDmd9ccy8vIrukCCrK	\N	\N	\N	\N	\N	2019-07-28 18:34:49.635519	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	16
+3	user3	user3@cool.com	$2b$12$m2LQjNXYwnTZKXfql66Nb.H4OUheGewIaUc9E/z5mWsxbeBKphnja	STUDENT	TOR	vancouver	app developer	\N	2019-07-16 13:59:09.010325	2014	Q2	\N	\N	\N	\N	\N	\N	UI	Rangle.io	2
+1	user1	user1@hotmail.ca	$2b$12$DCl99TG3c6szNo0p.vVPZeWYl4qmV8rthpL/d846gziWC.oPVmyiW	ALUMNI	TOR	vancouver	app developer	\N	2019-07-16 13:21:38.940956	2014	Q2	\N	\N	\N	\N	\N	\N	APP	Rangle.io	6
+6	user6	user6@gmail.com	$2b$12$m6cHqipa/opvB.U/r5DGD.vFk.Deub/pXsfbo5.xXeoltZHqZ8bfK	\N	\N	\N	\N	\N	2019-07-28 19:10:55.545755	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+7	user7	user7@gmail.com	$2b$12$Qog0seifVTJKVdZWC74tFegTHxrOaiP2zHu98vc/M1rHEG1aU9NcO	\N	\N	\N	\N	\N	2019-07-28 19:46:02.526421	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+8	user8	user8@gmail.com	$2b$12$gxq3cEfV6NYuoHGcX4HObOVl./JgztQYW71UcRVKFjFQv/55rP2rm	\N	\N	\N	\N	\N	2019-07-28 19:52:21.918691	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+9	user9	user9@gmail.com	$2b$12$QKaZ7Ov/oTlVGtwRUxFRIu6YYmOhLtjMQShtjQELXrnQ2vMYGquJi	\N	\N	\N	\N	\N	2019-07-28 20:47:42.577908	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+2	user2	user2@gmail.com	$2b$12$i1Sk.vBn1me3Gg67pX6uXua6Hg/OanajZ2nEj/ZvyFOduUPJgUDVm	STUDENT	TOR	vancouver	web dev	\N	2019-07-16 13:24:01.856357	2019	Q3	\N	\N	\N	\N	\N	\N	WEB	red academy	1
 \.
 
 
@@ -175,7 +202,7 @@ COPY hired.users_tags (user_id, tag_id) FROM stdin;
 -- Name: conversations_id_seq; Type: SEQUENCE SET; Schema: hired; Owner: postgres
 --
 
-SELECT pg_catalog.setval('hired.conversations_id_seq', 7, true);
+SELECT pg_catalog.setval('hired.conversations_id_seq', 31, true);
 
 
 --
@@ -224,7 +251,7 @@ SELECT pg_catalog.setval('hired.mentors_id_seq', 2, true);
 -- Name: messages_id_seq; Type: SEQUENCE SET; Schema: hired; Owner: postgres
 --
 
-SELECT pg_catalog.setval('hired.messages_id_seq', 8, true);
+SELECT pg_catalog.setval('hired.messages_id_seq', 9, true);
 
 
 --
@@ -259,7 +286,7 @@ SELECT pg_catalog.setval('hired.tags_id_seq', 1, false);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: hired; Owner: postgres
 --
 
-SELECT pg_catalog.setval('hired.users_id_seq', 4, true);
+SELECT pg_catalog.setval('hired.users_id_seq', 9, true);
 
 
 --

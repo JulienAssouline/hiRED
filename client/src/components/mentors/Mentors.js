@@ -58,18 +58,15 @@ function Mentors(props){
       }
     })
 
-    console.log(current_conversation)
-    console.log(d.user)
-
     if (current_conversation.length === 0) {
       addConversation({variables: {user_id_2: Number(d.user.id)},
-        refetchQueries: [{ query: GET_CONVERSATIONS }]
+        refetchQueries: [{ query: GET_CONVERSATIONS }, {query: isAuthenticated}]
       });
       props.history.push("/chatbot")
     }
     else {
       updateConversation({variables: {conversation_id: current_conversation[0].id, current_conversation: true},
-        refetchQueries: [{ query: GET_CONVERSATIONS }]
+        refetchQueries: [{ query: GET_CONVERSATIONS }, {query: isAuthenticated}]
       })
       props.history.push("/chatbot")
     }
