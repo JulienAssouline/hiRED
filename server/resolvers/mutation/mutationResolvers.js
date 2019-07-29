@@ -496,9 +496,16 @@ async addConversation(parent, input, {req, app, postgres}) {
 				}
 			}
 			else {
+        const makeAllUserConversationsFalse = {
+          text: 'UPDATE hired.conversations SET current_conversation= $2 WHERE user_id_1 = $1 OR user_id_2 = $1 RETURNING *',
+          values: [user_id_1, false]
+        }
+
+        const resultUserConvo = await postgres.query(makeAllUserConversationsFalse)
+
 				const newConversation = {
-					text: 'INSERT INTO hired.conversations (user_id_1, user_id_2) VALUES ($1, $2) RETURNING *',
-					values: [user_id_1, user_id_2],
+					text: 'INSERT INTO hired.conversations (user_id_1, user_id_2, current_conversation) VALUES ($1, $2, $3) RETURNING *',
+					values: [user_id_1, user_id_2, true],
 				}
 
 				const result = await postgres.query(newConversation)
