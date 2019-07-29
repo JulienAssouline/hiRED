@@ -20,8 +20,11 @@ const Chatbot = props => {
 
 
   const viewer = Number(viewerData.getUserProfile.id)
+  const current_conversation_id = viewerData.getUserProfile.current_conversation_id
 
   function handleClick(e, d) {
+
+    console.log(viewerData.getUserProfile.current_conversation_id)
       updateConversation({
         variables: {conversation_id: Number(d.id), current_conversation: true},
         refetchQueries: [{ query: GET_CONVERSATIONS }]
@@ -44,7 +47,6 @@ const Chatbot = props => {
     )
  }
 
- const current_conversation_id = currentConversationData[0].id
 
   return (
     <div className = "conversation-container">
@@ -55,7 +57,7 @@ const Chatbot = props => {
               if (Number(d.user_id_2) === viewer) {
                 return (
                             <div key ={i} className = "conversation-user-container">
-                              <div className = {d.current_conversation ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
+                              <div key = {console.log(d)} className = {Number(d.id) === current_conversation_id ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
                                 <Avatar
                                   className = "avatar"
                                 >
@@ -68,7 +70,7 @@ const Chatbot = props => {
               else {
                 return (
                           <div key ={i} className = "conversation-user-container">
-                            <div className = {d.current_conversation ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
+                            <div className = {Number(d.id === current_conversation_id) ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
                               <Avatar
                                 className = "avatar"
                               >

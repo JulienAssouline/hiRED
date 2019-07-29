@@ -53,6 +53,7 @@ module.exports = gql`
    type UserName {
     id: Int,
     fullname: String,
+    current_conversation_id: Int,
   }
 
   type Messages{
@@ -147,6 +148,7 @@ module.exports = gql`
     avatar: String,
     study_year: String,
     study_cohort: String,
+    current_conversation_id: Int,
 		getMentor: Mentors,
     getUserConversation: [ConversationRoom]
     getPrograms: [Programs]

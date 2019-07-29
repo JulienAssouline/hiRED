@@ -589,6 +589,14 @@ async addConversation(parent, input, {req, app, postgres}) {
 
       const result = await postgres.query(selectedConversation)
 
+      const usersSelectedConversation = {
+        text: 'UPDATE hired.users SET current_conversation_id= $2 WHERE id=$1 RETURNING *',
+        values: [logged_in_user, conversation_id]
+      }
+
+      const resultUsers = await postgres.query(usersSelectedConversation)
+
+
       return {
         message: "yes"
       }

@@ -44,7 +44,8 @@ module.exports = {
           'current_job',
           'avatar',
           'study_year',
-          'study_cohort'
+          'study_cohort',
+          "current_conversation_id",
         ]
 
         const getUserProfileQuery = createSelectQuery(selectColumns, 'hired.users', 'id', user_id)

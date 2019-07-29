@@ -36,6 +36,7 @@ export const isAuthenticated = gql`
 		getUserProfile {
 			id
 			fullname
+      current_conversation_id
 		}
 	}
 `
@@ -209,6 +210,7 @@ export const GET_CONVERSATIONS = gql`
             current_conversation
             getUserName {
               fullname
+              current_conversation_id
            }
         }
       }
