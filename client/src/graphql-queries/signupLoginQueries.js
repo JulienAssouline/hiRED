@@ -8,6 +8,14 @@ export const SIGNUP = gql`
 	}
 `
 
+export const SIGNUP2 = gql`
+	mutation signupForm2Vars($input: SignupForm2Object!) {
+		signupForm2(input: $input) {
+			message
+		}
+	}
+`
+
 export const LOGIN = gql`
   mutation loginVars($input: LoginObject!){
     login(input: $input) {

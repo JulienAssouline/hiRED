@@ -85,6 +85,7 @@ module.exports = {
 					const insertProgramsUsersQuery = createInsertQuery(insertProgramsUsersObject, 'hired.program_users', true)
 					await postgres.query(insertProgramsUsersQuery)
 				}
+				
 				return {
 					message: 'success',
 				}

@@ -7,7 +7,7 @@ import '../../css/profile/portfolio.css'
 
 import PortfolioItem from './PortfolioItem'
 import PortfolioAddItem from './PortfolioAddItem'
-
+import PortfolioNoItems from './PortfolioNoItems'
 
 const Portfolio = () => {
 	const { data, loading, error, refetch } = useQuery(GET_PORTFOLIO_QUERY)
@@ -16,21 +16,23 @@ const Portfolio = () => {
 
 	if (error) return <div>Error!</div>
 
-	let userPortfolioComponents = data.getUserPortfolio.map(portfolioItem => 
-		<PortfolioItem 
-			key={portfolioItem.id}
-			data={portfolioItem}
-			refetch={refetch}
-		/>
-	)
+	console.log(data)
+
   return (
 		<div>
-			{/* <h1>Portfolio</h1> */}
 			<PortfolioAddItem
 				refetch={refetch}
 			/>
 			<div className='portfolio-items-container'>
-				{userPortfolioComponents}
+				{ data.getUserPortfolio.length
+					?	data.getUserPortfolio.map (portfolioItem => 
+						<PortfolioItem 
+							key={portfolioItem.id}
+							data={portfolioItem}
+							refetch={refetch}
+						/>)
+					: <PortfolioNoItems />
+				}
 			</div>
 		</div>
   )
