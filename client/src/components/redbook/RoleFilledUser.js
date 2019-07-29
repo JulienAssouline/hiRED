@@ -18,24 +18,33 @@ const RoleFilledUser = (props) => {
 
       e.stopPropagation()
 
-      let current_conversation = d.getUserConversation.filter((d) => {
-        if (Number(d.user_id_2) === Number(props.viewer)) {
-          return Number(d.user_id_2) === Number(props.viewer)
+      try {
+
+        let current_conversation = d.getUserConversation.filter((d) => {
+          if (Number(d.user_id_2) === Number(props.viewer)) {
+            return Number(d.user_id_2) === Number(props.viewer)
+          }
+          else {
+            return Number(d.user_id_1) === Number(props.viewer)
+          }
+        })
+
+        if (current_conversation.length === 0) {
+          addConversation({variables: {user_id_2: Number(d.id)},
+            refetchQueries: [{ query: GET_CONVERSATIONS }]
+          });
+          props.history.push("/chatbot")
         }
         else {
-          return Number(d.user_id_1) === Number(props.viewer)
+            updateConversation({variables: {conversation_id: current_conversation[0].id, current_conversation: true},
+              refetchQueries: [{ query: GET_CONVERSATIONS }]
+            })
+            props.history.push("/chatbot")
         }
-      })
 
-      try {
-        addConversation({variables: {user_id_2: Number(d.id)}});
-        updateConversation({variables: {conversation_id: current_conversation[0].id, current_conversation: true},
-          refetchQueries: [{ query: GET_CONVERSATIONS }]
-        })
-        props.history.push("/chatbot")
-      } catch (error) {
-        // error handler
-      }
+        } catch (error) {
+          // error handler
+        }
    }
 
   const d = props.data

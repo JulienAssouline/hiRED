@@ -69,8 +69,6 @@ const Redbook = props => {
     setCurrentPage(min)
    }
 
-
-
   return (
     <div className = "redbook-page-container">
       <Filter />
