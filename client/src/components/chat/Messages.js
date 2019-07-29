@@ -1,11 +1,14 @@
 import React from 'react'
+
 import { useQuery, useMutation, useSubscription } from 'react-apollo-hooks';
 import { ADD_MESSAGES } from '../../graphql-queries/mutations'
 import { GET_MESSAGES, isAuthenticated, GET_CONVERSATION } from '../../graphql-queries/queries'
 import { COMMENTS_SUBSCRIPTION } from '../../graphql-queries/subscription'
-import MessageInput from "./MessageInput"
-import '../../css/chat.css'
 
+import MessageInput from "./MessageInput"
+
+// import '../../css/chat.css'
+import chatStyles from '../../css/chat/chat.module.css'
 
 function Messages(props){
 
@@ -48,7 +51,7 @@ function Messages(props){
       if (error) return <div>I have an error</div>
 
   return(
-    <div className = "messages-container">
+    <div className={chatStyles.chatContainer}>
       <MessageInput viewerData = {viewerData} data = {queryData} addMessages = {addMessages} pageNumber = {number} />
     </div>
   )
