@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Formik } from 'formik'
 import { signupValidation } from '../../validationSchemas'
@@ -7,13 +7,13 @@ import { useMutation } from 'react-apollo-hooks'
 import { SIGNUP } from '../../graphql-queries/signupLoginQueries'
 import { withRouter } from 'react-router'
 
-import { TextField, Button, FormHelperText } from '@material-ui/core'
+import { TextField, Button, FormHelperText, Typography } from '@material-ui/core'
 
 import signupForm from '../../css/landing/signup.module.css'
 
-
 const SignupForm = props => {
 	const signup = useMutation(SIGNUP)
+	const [emailTaken, setEmailTaken] = useState(false)
 	
 	const initialValues = {
 		userEmail: '',
@@ -38,12 +38,15 @@ const SignupForm = props => {
 						},
 					})
 					if (result.data.signup.message === 'success') {
-						window.location.reload()
+						props.history.push('/signup2')
 					}
 				} catch(error) {
+					setSubmitting(false)
+					if (error.message === 'GraphQL error: This email has already been taken') {
+						setEmailTaken(true)
+					}
 					throw error
 				}
-
 				setSubmitting(false)
 			}}
 			validationSchema={signupValidation}
@@ -131,6 +134,12 @@ const SignupForm = props => {
 								<FormHelperText className={signupForm.formHelper} />
 							)}
 						</div>
+
+						{ emailTaken &&
+							<Typography className={signupForm.emailTaken} paragraph>
+								* Sorry, this email has been taken
+							</Typography>
+						}
 
 						<section className={signupForm.formButtons}>
 							<Button

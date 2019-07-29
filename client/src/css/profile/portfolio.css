@@ -10,7 +10,8 @@ Portfolio Add Items
 	justify-content: center;
 	align-items: center;
 
-	padding: 0.25em;
+	padding: 0.5em;
+	margin-bottom: 1em;
 }
 
 .portfolio-add-items-container h3 {
@@ -30,7 +31,11 @@ Portfolio Items
 	grid-template-columns: 1fr 2fr;
 	grid-gap: 10px;
 	
-	margin: 14px 0;
+	margin: 1em 0;
+}
+
+.portfolio-items-container .portfolio-card:first-of-type {
+	margin-top: 0;
 }
 
 .portfolio-items-container .portfolio-thumbnail {

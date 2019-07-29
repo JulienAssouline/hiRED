@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Landing from './components/landing/Landing'
 import LandingTemp from './components/landing/LandingTemp'
+import Signup2 from './components/landing/Signup2'
 
 import Login from './components/login/Login'
 import Signup from './components/signup/Signup'
@@ -46,10 +47,7 @@ const AppRouter = () => {
 				<Switch>
 					<Route path='/' exact component={LandingTemp} />
 					<Route path='/landing/' exact component={LandingTemp} />
-					<Route path='/signup/' exact component={Signup} />
-					<Route path='/signup2/' exact component={SignupForm2} />
-					<Route path='/signup3/' exact component={SignupForm3} />
-					<Route path='/login/' exact component={Login} />
+					<Route path='/signup2/' exact component={Signup2} />
 					<Route component={LandingTemp} />
 				</Switch>
 			</Router>
@@ -60,12 +58,6 @@ const AppRouter = () => {
 		<Router>
 			<TempTopNavAuth userData={viewerData.getUserProfile}/>
 			<Switch>
-				{/* <Route path='/signup/' exact component={Signup} /> */}
-				<Route path='/signup2/' exact component={SignupForm2} />
-				<Route path='/signup3/' exact component={SignupForm3} />
-				<Route path='/login/' exact component={Login} />
-				<Route path='/mydribbbles/' exact component={MyDribbbles} />
-
 				<Route path='/Home/' exact component={Home} />
 				<Route path='/redbook/' exact component={Redbook} />
 				<Route path='/mentors/' exact component={Mentors} />

@@ -1,4 +1,10 @@
-.form .formField div {
+/*
+=========================
+General
+=========================
+*/
+
+.form .formField > div {
 	width: 100%;
 }
 
@@ -11,6 +17,12 @@
 	color: red;
 }
 
+/*
+=========================
+Form Button
+=========================
+*/
+
 .formButtons {
 	display: flex;
 	flex-flow: row nowrap;
@@ -20,4 +32,16 @@
 
 .formButtons button {
 	margin: 2em 2em 0;
+}
+
+/*
+=========================
+Submit Errors
+=========================
+*/
+
+.form .emailTaken {
+	margin-bottom: 0;
+
+	color: red;
 }

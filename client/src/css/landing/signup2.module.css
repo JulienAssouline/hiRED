@@ -1,0 +1,63 @@
+/*
+=========================
+General
+=========================
+*/
+
+.mainContainer {
+	position: relative;
+
+	width: 50%;
+	margin: 0 auto;
+	margin-top: calc(var(--desktop-top-margin) / 2);
+	padding: 2em 3em 3em;
+}
+
+.mainContainer h2 {
+	margin-bottom: 0.75em;
+
+	font-size: 2.5em;
+	font-weight: bolder;
+}
+
+.mainContainer h3 {
+	font-size: 1.5em;
+}
+
+/*
+=========================
+Form
+=========================
+*/
+
+.formContainer {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-column-gap: 2em;
+}
+
+.formSection > div:first-of-type > div {
+	margin-top: 4px;
+}
+
+.mentor {
+	margin-top: 2em;
+}
+
+.studyTime {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-column-gap: 2em;
+}
+
+/*
+=========================
+Skip Signup2
+=========================
+*/
+
+.skipSignup2 {
+	position: absolute;
+	bottom: 0;
+	right: 1em;
+}
