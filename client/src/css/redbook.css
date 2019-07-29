@@ -205,10 +205,18 @@
   color: white;
 }
 
+.message.button:hover {
+  background-color: darkred;
+}
+
 .message.button.unknown {
   margin: 20px;
   top: 54px;
   background-color: #c22c28;
   color: white;
+}
+
+.message.button.unknown:hover {
+  background-color: darkred;
 }
 
