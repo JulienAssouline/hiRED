@@ -3,7 +3,7 @@ import Role from "./Role"
 import { Card, Button, Avatar } from "@material-ui/core";
 import { useMutation } from 'react-apollo-hooks';
 import { ADD_CONVERSATION_MUTATION, UPDATE_SELECTED_CONVERSATION } from '../../graphql-queries/mutations'
-import { GET_CONVERSATIONS } from '../../graphql-queries/queries'
+import { GET_CONVERSATIONS, isAuthenticated } from '../../graphql-queries/queries'
 
 
 
@@ -31,13 +31,13 @@ const RoleFilledUser = (props) => {
 
         if (current_conversation.length === 0) {
           addConversation({variables: {user_id_2: Number(d.id)},
-            refetchQueries: [{ query: GET_CONVERSATIONS }]
+            refetchQueries: [{ query: GET_CONVERSATIONS }, {query: isAuthenticated}]
           });
           props.history.push("/chatbot")
         }
         else {
             updateConversation({variables: {conversation_id: current_conversation[0].id, current_conversation: true},
-              refetchQueries: [{ query: GET_CONVERSATIONS }]
+              refetchQueries: [{ query: GET_CONVERSATIONS }, {query: isAuthenticated}]
             })
             props.history.push("/chatbot")
         }

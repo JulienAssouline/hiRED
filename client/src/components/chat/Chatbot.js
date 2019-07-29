@@ -23,21 +23,16 @@ const Chatbot = props => {
   const current_conversation_id = viewerData.getUserProfile.current_conversation_id
 
   function handleClick(e, d) {
-
-    console.log(viewerData.getUserProfile.current_conversation_id)
       updateConversation({
         variables: {conversation_id: Number(d.id), current_conversation: true},
-        refetchQueries: [{ query: GET_CONVERSATIONS }]
+        refetchQueries: [{ query: GET_CONVERSATIONS }, {query: isAuthenticated}]
         },
       )
   }
 
   Conversations.getConversations.sort((a,b) => Number(a.id) - Number(b.id))
 
- const currentConversationData = Conversations.getConversations.filter((d,i) => d.current_conversation)
-
-
- if (currentConversationData[0] === undefined) {
+ if (current_conversation_id == undefined) {
   return (
     <div className = "conversation-container">
       <div className = "conversations-messages-container">
@@ -46,7 +41,6 @@ const Chatbot = props => {
     </div>
     )
  }
-
 
   return (
     <div className = "conversation-container">
@@ -57,7 +51,7 @@ const Chatbot = props => {
               if (Number(d.user_id_2) === viewer) {
                 return (
                             <div key ={i} className = "conversation-user-container">
-                              <div key = {console.log(d)} className = {Number(d.id) === current_conversation_id ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
+                              <div  className = {Number(d.id) === current_conversation_id ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
                                 <Avatar
                                   className = "avatar"
                                 >
@@ -70,7 +64,7 @@ const Chatbot = props => {
               else {
                 return (
                           <div key ={i} className = "conversation-user-container">
-                            <div className = {Number(d.id === current_conversation_id) ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
+                            <div className = {Number(d.id) === current_conversation_id ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
                               <Avatar
                                 className = "avatar"
                               >

@@ -210,7 +210,6 @@ export const GET_CONVERSATIONS = gql`
             current_conversation
             getUserName {
               fullname
-              current_conversation_id
            }
         }
       }
