@@ -47,13 +47,10 @@ const Chatbot = props => {
 		)
 	}
 
-
   return (
 		<Card className={chatStyles.mainContainer}>
 			<List className={chatStyles.conversationsList}>
 				{Conversations.getConversations.map((d, i) => {
-					console.log(+d.id)
-					console.log(current_conversation_id)
 					// if (Number(d.user_id_2) === viewer) {
 						return (
 							<div key={i}>
@@ -62,7 +59,7 @@ const Chatbot = props => {
 										<Avatar
 											className = "avatar"
 										>
-											{d.user_id_1}
+											{d.getUserName.fullname.substring(0, 2)}
 										</Avatar>
 									</ListItemAvatar>
 									<ListItemText primary={d.getUserName.fullname} />

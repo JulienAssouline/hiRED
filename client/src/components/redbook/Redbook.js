@@ -32,8 +32,10 @@ const Redbook = props => {
   const indexOfLastCards = currentPage * cardsPerPage
   const indexOfFirstCards = indexOfLastCards - cardsPerPage
 
-  const paginatedData = data.getRedBookUsers.filter((d,i) => {
-    return d.id < indexOfLastCards && indexOfFirstCards < d.id
+   const dataFiltered = data.getRedBookUsers.filter((d,i) => Number(d.id) !== Number(viewer))
+
+  let paginatedData = dataFiltered.filter((d,i) => {
+    return i <= indexOfLastCards && indexOfFirstCards <= i
   })
 
   const number_of_pages = [];

@@ -52,7 +52,6 @@ const RoleFilledUser = (props) => {
   initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
 
   return (
-    Number(d.id) !== props.viewer ?
     <div className = "overall-cards-container" onClick={() => handleGoToUser(d.id)}>
       <Avatar className = "avatar redbook"> {initials} </Avatar>
       <Card className = "info-cards-container">
@@ -70,7 +69,7 @@ const RoleFilledUser = (props) => {
           </div>
         </div>
       </Card>
-    </div> : null
+    </div>
   );
 }
 
