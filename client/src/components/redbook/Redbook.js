@@ -35,7 +35,7 @@ const Redbook = props => {
    const dataFiltered = data.getRedBookUsers.filter((d,i) => Number(d.id) !== Number(viewer))
 
   let paginatedData = dataFiltered.filter((d,i) => {
-    return i <= indexOfLastCards && indexOfFirstCards <= i
+    return i < indexOfLastCards && indexOfFirstCards <= i
   })
 
   const number_of_pages = [];
