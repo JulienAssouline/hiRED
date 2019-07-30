@@ -1,0 +1,75 @@
+/*
+=========================
+General Styles
+=========================
+*/
+
+.mainContainer {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+
+	width: 90%;
+	max-width: 1240px;
+	height: 80vh;
+	margin: 1em auto;
+}
+
+/*
+=========================
+Conversations Styles
+=========================
+*/
+
+.mainContainer .conversationsList {
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: scroll;
+
+	padding: 0;
+}
+
+.conversationsList .conversationItem {
+	padding: 1em;
+}
+
+.conversationsList .activeConversationItem {
+	padding: 1em;
+
+	background-color: #c10909;
+	color: white;
+}
+
+/*
+=========================
+Chat Styles
+=========================
+*/
+
+.chatContainer {
+	box-sizing: content-box;
+	display: flex;
+	flex-flow: column nowrap;
+
+}
+
+.mainContainer .messagesContainer {
+	display: flex;
+	flex-flow: column-reverse;
+
+	box-sizing: content-box;
+	height: calc(80vh - 80px);
+	overflow-y: scroll;
+}
+
+.inputInnerContainer {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: space-between;
+	justify-items: flex-start;
+}
+
+.input {
+	width: 100%;
+	padding: 1em;
+}

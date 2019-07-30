@@ -1,9 +1,14 @@
 import React from "react";
-import { Avatar } from "@material-ui/core/";
+
 import { useQuery, useMutation } from 'react-apollo-hooks';
 import { isAuthenticated, GET_CONVERSATIONS } from '../../graphql-queries/queries'
 import { UPDATE_SELECTED_CONVERSATION } from '../../graphql-queries/mutations'
+
+import { Avatar, Card, Divider, List, ListItem, ListItemText, ListItemAvatar } from "@material-ui/core/";
+
 import Messages from "./Messages"
+
+import chatStyles from '../../css/chat/chat.module.css'
 
 
 const Chatbot = props => {
@@ -23,65 +28,69 @@ const Chatbot = props => {
   const current_conversation_id = viewerData.getUserProfile.current_conversation_id
 
   function handleClick(e, d) {
-      updateConversation({
-        variables: {conversation_id: Number(d.id), current_conversation: true},
-        refetchQueries: [{ query: GET_CONVERSATIONS }, {query: isAuthenticated}]
-        },
-      )
+		updateConversation({
+			variables: {conversation_id: Number(d.id), current_conversation: true},
+			refetchQueries: [{ query: GET_CONVERSATIONS }, {query: isAuthenticated}]
+			},
+		)
   }
 
   Conversations.getConversations.sort((a,b) => Number(a.id) - Number(b.id))
 
- if (current_conversation_id == undefined) {
-  return (
-    <div className = "conversation-container">
-      <div className = "conversations-messages-container">
-            <h1 className = "no-conversations"> No conversations have been started </h1>
-      </div>
-    </div>
-    )
- }
+	if (current_conversation_id == undefined) {
+		return (
+			<div className = "conversation-container">
+				<div className = "conversations-messages-container">
+					<h1 className = "no-conversations"> No conversations have been started </h1>
+				</div>
+			</div>
+		)
+	}
+
 
   return (
-    <div className = "conversation-container">
-      <div className = "conversations-messages-container">
-  			<div className = "user-info-card">
-  				<div className = "card content container">
-  					{Conversations.getConversations.map((d, i) => {
-              if (Number(d.user_id_2) === viewer) {
-                return (
-                            <div key ={i} className = "conversation-user-container">
-                              <div  className = {Number(d.id) === current_conversation_id ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
-                                <Avatar
-                                  className = "avatar"
-                                >
-                                  {d.user_id_1}
-                                </Avatar>
-                                <h4 className = "fullname-conversation"> {d.getUserName.fullname} </h4>
-                              </div>
-                            </div>)
-              }
-              else {
-                return (
-                          <div key ={i} className = "conversation-user-container">
-                            <div className = {Number(d.id) === current_conversation_id ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
-                              <Avatar
-                                className = "avatar"
-                              >
-                                {d.user_id_2}
-                              </Avatar>
-                              <h4 className = "fullname-conversation"> {d.getUserName.fullname} </h4>
-                            </div>
-                          </div>
-                    )
-              }
-  					})}
-  				</div>
-  			</div>
-         <Messages current_conversation_id = {current_conversation_id}  />
-        </div>
-      </div>
-    );
+		<Card className={chatStyles.mainContainer}>
+			<List className={chatStyles.conversationsList}>
+				{Conversations.getConversations.map((d, i) => {
+					console.log(+d.id)
+					console.log(current_conversation_id)
+					// if (Number(d.user_id_2) === viewer) {
+						return (
+							<div key={i}>
+								<ListItem className={+d.id === current_conversation_id ? chatStyles.activeConversationItem : chatStyles.conversationItem} onClick={e => handleClick(e, d)}>
+									<ListItemAvatar>
+										<Avatar
+											className = "avatar"
+										>
+											{d.user_id_1}
+										</Avatar>
+									</ListItemAvatar>
+									<ListItemText primary={d.getUserName.fullname} />
+								</ListItem>
+								<Divider variant='fullWidth' component='li' />
+							</div>
+						)
+					// } else {
+						// console.log(d)
+						// return (
+						// 	<div key={i} className = "conversation-user-container">
+						// 		<div className = {Number(d.id) === current_conversation_id ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
+						// 			<Avatar
+						// 				className = "avatar"
+						// 			>
+						// 				{d.user_id_2}
+						// 			</Avatar>
+						// 			<h4 className = "fullname-conversation"> {d.getUserName.fullname} </h4>
+						// 		</div>
+						// 	</div>
+						// )
+					// }
+				})}
+			</List>
+
+			<Messages current_conversation_id = {current_conversation_id}  />
+		</Card>
+	);
 };
 
 export default Chatbot;
