@@ -200,6 +200,7 @@ module.exports = gql`
     updateProfile(input: UpdateProfileObject!): MessageResponse!
 		updateMentor(input: UpdateMentorObject): MessageResponse!
     login(input: LoginObject!): LoginResponse!
+    logout: LogoutRespose!
     addUserPortfolio(input: AddUserPortfolioInput!): Portfolio!
     updateUserPortfolio(input: UpdateUserPortfolioInput!): Portfolio!
     deleteUserPortfolio(id: ID!): deleteUserPortfolioResponse!
@@ -310,6 +311,10 @@ module.exports = gql`
   }
 
   type LoginResponse {
+    message: String
+  }
+
+  type LogoutRespose {
     message: String
   }
 

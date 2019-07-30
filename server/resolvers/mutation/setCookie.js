@@ -6,8 +6,7 @@ module.exports.createCookie = (data, expHours) => {
     data: data,
     exp: exp
   }, 'secret')
-}
-
+} 
 
 module.exports.setCookie = (tokenName, token, res) => {
   res.cookie(tokenName, token, {

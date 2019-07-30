@@ -25,6 +25,7 @@ import TopNavNotLoggedIn from './components/navigation/TopNavNotLoggedIn'
 import TopNavLoggedIn from './components/navigation/TopNavLoggedIn'
 import TempTopNavNonAuth from './components/navigation/TempTopNavNonAuth'
 import TempTopNavAuth from './components/navigation/TempTopNavAuth'
+import Logout from './components/logout/Logout'
 
 import { isAuthenticated } from './graphql-queries/queries'
 import { useQuery } from 'react-apollo-hooks'
@@ -67,6 +68,8 @@ const AppRouter = () => {
 
 				<Route path='/profile/' exact component={Profile} />
 				<Route path='/user/:userId' exact component={User} />
+
+				<Route path='/logout/' exact component={Logout} />
 
 				<Route component={Redbook} />
 			</Switch>

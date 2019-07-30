@@ -209,6 +209,18 @@ module.exports = {
 			}
 		},
 
+		async logout(parent, { input }, { app, req, postgres }) {
+			try {
+				// TODO - Remove cookie or blacklist it
+				return {
+					message: 'logout successful'
+				}
+			}
+			catch (err) {
+				throw err
+			}
+		},
+
 		async addUserPortfolio(parent, { input }, { req, app, postgres}){
       try {
 
