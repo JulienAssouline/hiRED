@@ -20,10 +20,7 @@ export const GET_FULL_PROFILE_QUERY = gql`
       avatar
       study_year
       study_cohort
-      getPrograms {
-        id
-        name
-      }
+			programs
       getMentor {
         status
         # disabled
@@ -46,10 +43,7 @@ export const GET_USER_PROFILE = gql`
 			avatar
 			study_year
 			study_cohort
-			getPrograms {
-        id
-        name
-      }
+			programs
 			getMentor {
         status
         # disabled

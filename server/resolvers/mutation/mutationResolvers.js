@@ -71,21 +71,6 @@ module.exports = {
 					await postgres.query(insertMentorQuery)
 				}
 
-				if (program_name) {
-					const selectProgramColumns = ['id']
-					const programIdQuery = createSelectQuery(selectProgramColumns, 'hired.programs', 'name', program_name)
-					const programIdQueryResult = await postgres.query(programIdQuery)
-
-					if (!programIdQueryResult.rows.length) throw 'There is no program of that name'
-
-					const insertProgramsUsersObject = {
-						user_id: user_id,
-						program_id: programIdQueryResult.rows[0].id,
-					}
-					const insertProgramsUsersQuery = createInsertQuery(insertProgramsUsersObject, 'hired.program_users', true)
-					await postgres.query(insertProgramsUsersQuery)
-				}
-				
 				return {
 					message: 'success',
 				}

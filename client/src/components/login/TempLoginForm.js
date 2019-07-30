@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Formik } from 'formik'
 import { loginValidation } from '../../validationSchemas'
@@ -6,12 +6,13 @@ import { loginValidation } from '../../validationSchemas'
 import { useMutation } from 'react-apollo-hooks'
 import { LOGIN } from '../../graphql-queries/signupLoginQueries'
 
-import { TextField, Button, FormHelperText } from '@material-ui/core'
+import { TextField, Button, FormHelperText, Typography } from '@material-ui/core'
 
 import signupForm from '../../css/landing/signup.module.css'
 
 const TempLoginForm = () => {
 	const login = useMutation(LOGIN)
+	const [incorrectLogin, setIncorrectLogin] = useState(false)
 
 	const initialValues = {
 		userEmail: '',
@@ -35,6 +36,8 @@ const TempLoginForm = () => {
 						window.location.reload()
 					}
 				} catch(error) {
+					setIncorrectLogin(true)
+					setSubmitting(false)
 					throw error
 				}
 
@@ -91,6 +94,12 @@ const TempLoginForm = () => {
 								<FormHelperText className={signupForm.formHelper} />
 							)}
 						</div>
+
+						{incorrectLogin &&
+							<Typography className={signupForm.emailTaken} paragraph>
+								Incorrect Login Information
+							</Typography>
+						}
 
 						<section className={signupForm.formButtons}>
 							<Button
