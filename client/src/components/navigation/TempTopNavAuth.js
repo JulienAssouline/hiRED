@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Link as RouterLink } from 'react-router-dom'
-import { AppBar, Avatar, Link, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Avatar, Link, Toolbar, Typography, Button } from '@material-ui/core'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBook, faComments, faGraduationCap, faUser } from '@fortawesome/free-solid-svg-icons'
@@ -56,6 +56,20 @@ const TempTopNavAuth = props => {
 							<FontAwesomeIcon icon={faUser} />
 						</Avatar>
 					</Link>
+
+
+					{/* TODO - FIX STYLING AND UNCOMMENT WHEN READY */}
+					{/* <Link to='/logout' component={RouterLink}>
+						<div className={topNav.mentor}>
+							<Avatar className={topNav.icon}>
+								<FontAwesomeIcon icon={faGraduationCap} />
+							</Avatar>
+							<Typography variant='h6'>
+								Logout
+							</Typography>
+						</div>
+					</Link> */}
+
 				</div>
 			</Toolbar>
 		</AppBar>
