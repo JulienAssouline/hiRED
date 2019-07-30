@@ -52,8 +52,6 @@ const Chatbot = props => {
 		<Card className={chatStyles.mainContainer}>
 			<List className={chatStyles.conversationsList}>
 				{Conversations.getConversations.map((d, i) => {
-					console.log(+d.id)
-					console.log(current_conversation_id)
 					// if (Number(d.user_id_2) === viewer) {
 						return (
 							<div key={i}>

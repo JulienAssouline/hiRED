@@ -112,6 +112,20 @@
   color: white;
 }
 
+.MuiTypography-body1 {
+  font-weight: 900;
+}
+
+.new.date {
+  display: block;
+  opacity: 1;
+  text-align: center;
+}
+
+.old.date{
+  display: none;
+  opacity: 0;
+}
 .messages {
   display: flex;
   flex-flow: column nowrap;
