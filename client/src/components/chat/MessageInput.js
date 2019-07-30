@@ -53,7 +53,13 @@ function MessageInput(props) {
 
 			<div className={chatStyles.inputOuterContainer}>
 				<Divider variant='fullWidth' />
-				<div className={chatStyles.inputInnerContainer}>
+				<form
+					className={chatStyles.inputInnerContainer}
+					onSubmit={e => {
+						e.preventDefault()
+						handleClick(e, props.addMessages)
+					}}
+				>
 					<InputBase
 						className={chatStyles.input}
 						placeholder="Send Message"
@@ -62,7 +68,7 @@ function MessageInput(props) {
 					<IconButton onClick={(e) => handleClick(e, props.addMessages)} className={"submit-chat-button"} aria-label="Search">
 						<SendIcon />
 					</IconButton>
-				</div>
+				</form>
 			</div>
 		</>
 	)

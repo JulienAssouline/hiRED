@@ -47,15 +47,17 @@ const Chatbot = props => {
 		)
 	}
 
+
   return (
 		<Card className={chatStyles.mainContainer}>
 			<List className={chatStyles.conversationsList}>
 				{Conversations.getConversations.map((d, i) => {
-					if (Number(d.user_id_2) === viewer) {
+					console.log(+d.id)
+					console.log(current_conversation_id)
+					// if (Number(d.user_id_2) === viewer) {
 						return (
 							<div key={i}>
-								<ListItem className={chatStyles.conversationItem} onClick={e => handleClick(e, d)}>
-									{/* <div  className = {Number(d.id) === current_conversation_id ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}> */}
+								<ListItem className={+d.id === current_conversation_id ? chatStyles.activeConversationItem : chatStyles.conversationItem} onClick={e => handleClick(e, d)}>
 									<ListItemAvatar>
 										<Avatar
 											className = "avatar"
@@ -64,26 +66,25 @@ const Chatbot = props => {
 										</Avatar>
 									</ListItemAvatar>
 									<ListItemText primary={d.getUserName.fullname} />
-										{/* <h4 className = "fullname-conversation"> {d.getUserName.fullname} </h4> */}
-									{/* </div> */}
 								</ListItem>
 								<Divider variant='fullWidth' component='li' />
 							</div>
 						)
-					} else {
-						return (
-							<div key={i} className = "conversation-user-container">
-								<div className = {Number(d.id) === current_conversation_id ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
-									<Avatar
-										className = "avatar"
-									>
-										{d.user_id_2}
-									</Avatar>
-									<h4 className = "fullname-conversation"> {d.getUserName.fullname} </h4>
-								</div>
-							</div>
-						)
-					}
+					// } else {
+						// console.log(d)
+						// return (
+						// 	<div key={i} className = "conversation-user-container">
+						// 		<div className = {Number(d.id) === current_conversation_id ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
+						// 			<Avatar
+						// 				className = "avatar"
+						// 			>
+						// 				{d.user_id_2}
+						// 			</Avatar>
+						// 			<h4 className = "fullname-conversation"> {d.getUserName.fullname} </h4>
+						// 		</div>
+						// 	</div>
+						// )
+					// }
 				})}
 			</List>
 

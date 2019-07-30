@@ -32,6 +32,13 @@ Conversations Styles
 	padding: 1em;
 }
 
+.conversationsList .activeConversationItem {
+	padding: 1em;
+
+	background-color: #c10909;
+	color: white;
+}
+
 /*
 =========================
 Chat Styles

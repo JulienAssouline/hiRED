@@ -497,7 +497,7 @@ async addConversation(parent, input, {req, app, postgres}) {
 			else {
 
 				const newConversation = {
-					text: 'INSERT INTO hired.conversations (user_id_1, user_id_2) VALUES ($1, $2, $3) RETURNING *',
+					text: 'INSERT INTO hired.conversations (user_id_1, user_id_2) VALUES ($1, $2) RETURNING *',
 					values: [user_id_1, user_id_2],
 				}
 
