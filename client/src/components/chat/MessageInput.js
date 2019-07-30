@@ -45,18 +45,22 @@ function MessageInput(props) {
     date_array.push(d.date)
   })
 
-  console.log(props.data.getMessages)
-
   date_array = date_array.reverse()
+
+
 
 	return (
 		<>
 			<List className={chatStyles.messagesContainer}>
 				{props.data.getMessages.reverse().map((d,i, array) =>
 						<div key = {i}>
-								<ListItemText
-									primary={<Typography style={{ display: (d.date === date_array[i + 1]) ? "none": "block", textAlign: "center", fontSize: "1rem", fontWeight: 900}}>{d.date}</Typography>}>
-								</ListItemText>
+							<ListItem style = {{display: "flex", flexFlow: "row" }}>
+								<div style = {{display: (d.date === date_array[i + 1]) ? "none": "block", position:"relative", zIndex: 1, backgroundColor: "white", padding: 10, margin: "auto"}}>
+									<Typography style={{display: (d.date === date_array[i + 1]) ? "none": "block", fontSize: "1rem", fontWeight: 900}}>{d.date}</Typography>
+								</div>
+								<div style = {{display: (d.date === date_array[i + 1]) ? "none": "block", position: "absolute", borderBottom: "1px solid #dddddd", width: "95%", zIndex: 0}}>
+								</div>
+							</ListItem>
 							<ListItem  className = {Number(viewer) === Number(d.from_user) ? "messages-active" : "messages"}>
 								<ListItemAvatar>
 									<Avatar>

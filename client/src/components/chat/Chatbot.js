@@ -47,7 +47,6 @@ const Chatbot = props => {
 		)
 	}
 
-
   return (
 		<Card className={chatStyles.mainContainer}>
 			<List className={chatStyles.conversationsList}>
@@ -60,7 +59,7 @@ const Chatbot = props => {
 										<Avatar
 											className = "avatar"
 										>
-											{d.user_id_1}
+											{d.getUserName.fullname.substring(0, 2)}
 										</Avatar>
 									</ListItemAvatar>
 									<ListItemText primary={d.getUserName.fullname} />
