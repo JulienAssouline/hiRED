@@ -14,7 +14,6 @@ const UserPortfolio = props => {
 
 	if (error) return <div>Error!</div>
 
-	console.log(data)
 	return (
 		<>
 			<div className='portfolio-items-container'>

@@ -71,21 +71,6 @@ module.exports = {
 					await postgres.query(insertMentorQuery)
 				}
 
-				if (program_name) {
-					const selectProgramColumns = ['id']
-					const programIdQuery = createSelectQuery(selectProgramColumns, 'hired.programs', 'name', program_name)
-					const programIdQueryResult = await postgres.query(programIdQuery)
-
-					if (!programIdQueryResult.rows.length) throw 'There is no program of that name'
-
-					const insertProgramsUsersObject = {
-						user_id: user_id,
-						program_id: programIdQueryResult.rows[0].id,
-					}
-					const insertProgramsUsersQuery = createInsertQuery(insertProgramsUsersObject, 'hired.program_users', true)
-					await postgres.query(insertProgramsUsersQuery)
-				}
-				
 				return {
 					message: 'success',
 				}
@@ -108,6 +93,7 @@ module.exports = {
 					fullname: fullname,
 					location: location,
 					role: role,
+					programs: program_name,
 					study_year: study_year,
 					study_cohort: study_cohort
 				}
@@ -121,23 +107,6 @@ module.exports = {
 					}
 					const updateMentorQuery = createUpdateQuery(updateMentorObject, 'user_id', 'hired.mentors', user_id)
 					await postgres.query(updateMentorQuery)
-				}
-
-				if (program_name) {
-					const selectProgramColumns = ['id']
-					const programIdQuery = createSelectQuery(selectProgramColumns, 'hired.programs', 'name', program_name)
-					const programIdQueryResult = await postgres.query(programIdQuery)
-
-					if (!programIdQueryResult.rows.length) throw 'There is no program of that name'
-
-					// const selectProgramsusersColumns = ['user_id', 'program_id']
-
-					const insertProgramsUsersObject = {
-						user_id: user_id,
-						program_id: programIdQueryResult.rows[0].id
-					}
-					const insertProgramsUsersQuery = createInsertQuery(insertProgramsUsersObject, 'hired.program_users', true)
-					await postgres.query(insertProgramsUsersQuery)
 				}
 
 				return {

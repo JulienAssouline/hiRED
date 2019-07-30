@@ -50,11 +50,13 @@ Profile Card
 
 .profile-card h3 {
 	font-size: 1.75em;
-	text-transform: capitalize
+	text-transform: capitalize;
+	margin-bottom: 0;
 }
 
 .profile-card h5 {
   font-size: 1.25em;
+	margin-top: 0;
 }
 
 .profile-card .profile-card-descript p {

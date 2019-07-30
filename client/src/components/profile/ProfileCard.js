@@ -4,6 +4,7 @@ import { useQuery } from 'react-apollo-hooks'
 import { GET_FULL_PROFILE_QUERY } from '../../graphql-queries/profileQueries'
 
 import { Card, Divider } from '@material-ui/core'
+import { programs } from '../../util/programConversionTable'
 
 import ProfileInfoheader from './ProfileInfoHeader'
 import ProfileBasicInfoSection from './ProfileBasicInfoSection'
@@ -22,9 +23,7 @@ const ProfileCard = props => {
 		<Card className='profile-card'>
 			<ProfileInfoheader
 				fullname={data.getUserProfile.fullname}
-				programName={data.getUserProfile.getPrograms.length
-					? data.getUserProfile.getPrograms[0].name
-					: ''}
+				programName={programs[data.getUserProfile.programs].label1}
 				description={data.getUserProfile.description}
 				refetch={refetch}
 			/>
@@ -40,7 +39,7 @@ const ProfileCard = props => {
 
 			<ProfileRedAcademySection
 				campus={data.getUserProfile.campus}
-				programName={data.getUserProfile.getPrograms.length ? data.getUserProfile.getPrograms[0].name : ''}
+				programName={programs[data.getUserProfile.programs].label1}
 				studyYear={data.getUserProfile.study_year}
 				studyCohort={data.getUserProfile.study_cohort}
 				refetch={refetch}
