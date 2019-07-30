@@ -66,6 +66,12 @@
   text-align: center;
 }
 
+.name.unknown {
+  top: 0px;
+  margin: 0px;
+  margin-bottom: 40px;
+}
+
 .avatar-header-container {
   display: flex;
   align-items: center;

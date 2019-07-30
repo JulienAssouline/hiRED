@@ -49,12 +49,11 @@ const UnknownRoleUser = (props) => {
   initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
 
   return (
-     Number(d.id) !== props.viewer ?
     <div className = "overall-cards-container" onClick={() => handleGoToUser(d.id)}>
       <Avatar className = "avatar"> {initials} </Avatar>
       <Card className = "info-cards-container">
         <div className = "information-unknown-container">
-          <h2 className = "name"> {d.fullname} </h2>
+          <h2 className = "name unknown"> {d.fullname} </h2>
           <Button
             onClick = {(e) => myHandler(e, d)}
             className= "message button unknown"
@@ -64,7 +63,7 @@ const UnknownRoleUser = (props) => {
           </Button>
         </div>
       </Card>
-    </div> : null
+    </div>
 );
 }
 
