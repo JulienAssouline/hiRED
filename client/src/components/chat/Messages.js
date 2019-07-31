@@ -7,7 +7,6 @@ import { COMMENTS_SUBSCRIPTION } from '../../graphql-queries/subscription'
 
 import MessageInput from "./MessageInput"
 
-// import '../../css/chat.css'
 import chatStyles from '../../css/chat/chat.module.css'
 
 function Messages(props){
@@ -19,7 +18,7 @@ function Messages(props){
 
     const {data: viewerData} = useQuery(isAuthenticated);
 
-    if (conversationData.getConversation != undefined && viewerData.getUserProfile != undefined) {
+    if (conversationData.getConversation !== undefined && viewerData.getUserProfile !== undefined) {
       if (conversationData.getConversation.user_id_1 === viewerData.getUserProfile.id) {
         props.history.push("/mentors")
       }

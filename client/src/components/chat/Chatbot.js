@@ -35,7 +35,7 @@ const Chatbot = props => {
 
   Conversations.getConversations.sort((a,b) => Number(a.id) - Number(b.id))
 
-	if (current_conversation_id == undefined) {
+	if (current_conversation_id === undefined) {
 		return (
 			<div className = "conversation-container">
 				<div className = "conversations-messages-container">

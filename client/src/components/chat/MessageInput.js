@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Avatar, Typography, Card, Divider, InputBase, IconButton, List, ListItem, ListItemText, ListItemAvatar } from '@material-ui/core'
+import { Avatar, Typography, Divider, InputBase, IconButton, List, ListItem, ListItemText, ListItemAvatar } from '@material-ui/core'
 import SendIcon from '@material-ui/icons/Send'
 
 import chatStyles from '../../css/chat/chat.module.css'
@@ -70,12 +70,7 @@ function MessageInput(props) {
 								<ListItemText
 									 primary={<Typography style={{ fontWeight: "bold"}}>{d.fullname}</Typography>}
 									 secondary={d.content} />
-								{/* <h3> {d.fullname}  </h3>
-								<div className = {Number(viewer) === Number(d.from_user) ? "from-bubble-active" : "from-bubble"}>
-									<p className = "from-message"> {d.content} </p>
-								</div> */}
 							</ListItem>
-							{/* <Divider variant='fullWidth' /> */}
 						</div>
 					)
 				}
