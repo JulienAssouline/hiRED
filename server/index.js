@@ -15,8 +15,8 @@ let resolvers = require('./resolvers')
 const http = require("http")
 
 const app = express()
-const PORT = process.env.PORT || 8080
-app.set('PORT', process.env.PORT || 8080)
+const PORT = process.env.PORT || 8083
+app.set('PORT', process.env.PORT || 8083)
 app.set('JWT_SECRET', process.env.JWT_SECRET || 'DEV_SECRET')
 
 app.set('JWT_COOKIE_NAME', 'token')
@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === 'production') {
 if (process.env.NODE_ENV !== 'production') {
 	// Allow requests from dev server address
 	const corsConfig = {
-		origin: 'http://localhost:3000',
+		origin: 'http://localhost:3001',
 		credentials: true,
 	}
 	app.set('CORS_CONFIG', corsConfig)
@@ -54,7 +54,7 @@ const apolloServer = new ApolloServer({
 		if (connection) {
 			return connection.context
 		}
-		if (req.headers.referer === 'http://localhost:8080/graphql' && process.env.NODE_ENV !== 'production') {
+		if (req.headers.referer === 'http://localhost:8083/graphql' && process.env.NODE_ENV !== 'production') {
 			app.set('SKIP_AUTH', true)
 		} else {
 			app.set('SKIP_AUTH', false)

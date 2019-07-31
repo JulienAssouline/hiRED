@@ -23,8 +23,6 @@ const Chatbot = props => {
   if (errors) return <div>I have and error</div>;
   if (viewerData.getUserProfile === undefined) return <div> Loading... </div>
 
-
-  const viewer = Number(viewerData.getUserProfile.id)
   const current_conversation_id = viewerData.getUserProfile.current_conversation_id
 
   function handleClick(e, d) {
@@ -51,7 +49,6 @@ const Chatbot = props => {
 		<Card className={chatStyles.mainContainer}>
 			<List className={chatStyles.conversationsList}>
 				{Conversations.getConversations.map((d, i) => {
-					// if (Number(d.user_id_2) === viewer) {
 						return (
 							<div key={i}>
 								<ListItem className={+d.id === current_conversation_id ? chatStyles.activeConversationItem : chatStyles.conversationItem} onClick={e => handleClick(e, d)}>
@@ -67,21 +64,6 @@ const Chatbot = props => {
 								<Divider variant='fullWidth' component='li' />
 							</div>
 						)
-					// } else {
-						// console.log(d)
-						// return (
-						// 	<div key={i} className = "conversation-user-container">
-						// 		<div className = {Number(d.id) === current_conversation_id ? "user-container active" : "user-container" }  onClick={ (e) => handleClick(e, d)}>
-						// 			<Avatar
-						// 				className = "avatar"
-						// 			>
-						// 				{d.user_id_2}
-						// 			</Avatar>
-						// 			<h4 className = "fullname-conversation"> {d.getUserName.fullname} </h4>
-						// 		</div>
-						// 	</div>
-						// )
-					// }
 				})}
 			</List>
 
