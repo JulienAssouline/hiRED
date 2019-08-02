@@ -5,9 +5,6 @@ import { useMutation } from 'react-apollo-hooks';
 import { ADD_CONVERSATION_MUTATION, UPDATE_SELECTED_CONVERSATION } from '../../graphql-queries/mutations'
 import { GET_CONVERSATIONS, isAuthenticated } from '../../graphql-queries/queries'
 
-
-
-
 const RoleFilledUser = (props) => {
 	const { handleGoToUser } = props
 
